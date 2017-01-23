@@ -61,6 +61,9 @@
           <label control="useragentswitcher-vendor-sub" value="&useragentswitcher.vendor.sub;"/>
           <textbox id="useragentswitcher-vendor-sub"/>
         </row>
+        <row align="center">
+          <checkbox id="useragentswitcher-allow-empty-properties" label="&useragentswitcher.allow.empty.properties;" tooltiptext="&useragentswitcher.allow.empty.properties.tooltip;"/>
+        </row>
       </rows>
     </grid>
 	</vbox>

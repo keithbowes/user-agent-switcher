@@ -173,6 +173,16 @@ var UserAgentSwitcherExporter =
 			{
 				userAgent.setAttribute("vendorsub", "");
 			}
+
+			// If allowing empty properties is set
+			if (userAgentElement.hasAttribute("useragentswitcherallowemptyproperties"))
+			{
+				userAgent.setAttribute("allowemptyproperties", userAgentElement.getAttribute("useragentswitcherallowemptyproperties"));
+			}
+			else
+			{
+				userAgent.setAttribute("allowemptyproperties", "0");
+			}
 	
 			parentElement.appendChild(userAgent);
 		}

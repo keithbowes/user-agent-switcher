@@ -4,6 +4,7 @@ var UserAgentSwitcherUserAgentDialog =
 	// Clears the user agent
 	clearUserAgent: function()
 	{
+		window.opener.UserAgentSwitcherOptions.allowEmptyProperties = null;
 		window.opener.UserAgentSwitcherOptions.appCodeName = null;
 		window.opener.UserAgentSwitcherOptions.appName     = null;
 		window.opener.UserAgentSwitcherOptions.appVersion  = null;
@@ -37,6 +38,8 @@ var UserAgentSwitcherUserAgentDialog =
 			document.getElementById("useragentswitcher-user-agent").value            = window.arguments[6];
 			document.getElementById("useragentswitcher-vendor").value                = window.arguments[7];
 			document.getElementById("useragentswitcher-vendor-sub").value            = window.arguments[8];
+			document.getElementById("useragentswitcher-allow-empty-properties")
+			        .checked                                                         = window.arguments[9] != 0;
 			document.title                                                           = UserAgentSwitcherStringBundle.getString("editUserAgent");
 		}
 	},
@@ -163,6 +166,7 @@ var UserAgentSwitcherUserAgentDialog =
 	// Saves a user agent
 	saveUserAgent: function()
 	{
+		window.opener.UserAgentSwitcherOptions.allowEmptyProperties = Number(document.getElementById("useragentswitcher-allow-empty-properties").checked);
 		window.opener.UserAgentSwitcherOptions.appCodeName = UserAgentSwitcherString.trim(document.getElementById("useragentswitcher-app-code-name").value);
 		window.opener.UserAgentSwitcherOptions.appName     = UserAgentSwitcherString.trim(document.getElementById("useragentswitcher-app-name").value);
 		window.opener.UserAgentSwitcherOptions.appVersion  = UserAgentSwitcherString.trim(document.getElementById("useragentswitcher-app-version").value);

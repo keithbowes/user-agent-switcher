@@ -433,6 +433,18 @@ var UserAgentSwitcherImporter =
 	{
 		userAgent.setAttribute("label", userAgentElement.getAttribute("description"));
 
+		// Whether to allow empty properties
+		// 0: Empty properties will revert to the default value
+		// 1: Empty properties will be empty
+		if (userAgentElement.hasAttribute("allowemptyproperties"))
+		{
+			userAgent.setAttribute("useragentswitcherallowemptyproperties", userAgentElement.getAttribute("allowemptyproperties"));
+		}
+		else
+		{
+			userAgent.setAttribute("useragentswitcherallowemptyproperties", "0");
+		}
+
 		// If the user agent element has an app code name attribute
 		if(userAgentElement.hasAttribute("appcodename"))
 		{

@@ -8,6 +8,8 @@
 <!ENTITY useragentswitcher.about.key "Ü">
 <!ENTITY useragentswitcher.about.label "Über...">
 <!ENTITY useragentswitcher.default.key "S">
+<!ENTITY useragentswitcher.allow.empty.properties "Leere Eigenschaften erlauben">
+<!ENTITY useragentswitcher.allow.empty.properties "Leere Werte wie leer statt wie Defaultwerte schicken">
 <!ENTITY useragentswitcher.default.label "Standard">
 <!ENTITY useragentswitcher.help.label "Hilfe (engl.)...">
 <!ENTITY useragentswitcher.help.key "H">

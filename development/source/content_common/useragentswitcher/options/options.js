@@ -266,7 +266,7 @@ var UserAgentSwitcherOptions =
 		// If an item is selected
 		if(selectedItem)
 		{
-			window.openDialog("chrome://useragentswitcher/content/options/dialogs/useragent.xul", "useragentswitcher-user-agent-dialog", "centerscreen,chrome,modal,resizable", "edit", selectedItem.getAttribute("useragentswitcherappcodename"), selectedItem.getAttribute("useragentswitcherappname"), selectedItem.getAttribute("useragentswitcherappversion"), selectedItem.getAttribute("label"), selectedItem.getAttribute("useragentswitcherplatform"), selectedItem.getAttribute("useragentswitcheruseragent"), selectedItem.getAttribute("useragentswitchervendor"), selectedItem.getAttribute("useragentswitchervendorsub"));
+			window.openDialog("chrome://useragentswitcher/content/options/dialogs/useragent.xul", "useragentswitcher-user-agent-dialog", "centerscreen,chrome,modal,resizable", "edit", selectedItem.getAttribute("useragentswitcherappcodename"), selectedItem.getAttribute("useragentswitcherappname"), selectedItem.getAttribute("useragentswitcherappversion"), selectedItem.getAttribute("label"), selectedItem.getAttribute("useragentswitcherplatform"), selectedItem.getAttribute("useragentswitcheruseragent"), selectedItem.getAttribute("useragentswitchervendor"), selectedItem.getAttribute("useragentswitchervendorsub"), selectedItem.getAttribute("useragentswitcherallowemptyproperties"));
 	
 			// If the description is set
 			if(this.description)
@@ -279,6 +279,7 @@ var UserAgentSwitcherOptions =
 				selectedItem.setAttribute("useragentswitcheruseragent", this.userAgent);
 				selectedItem.setAttribute("useragentswitchervendor", this.vendor);
 				selectedItem.setAttribute("useragentswitchervendorsub", this.vendorSub);
+				selectedItem.setAttribute("useragentswitcherallowemptyproperties", this.allowEmptyProperties);
 			}
 		}
 	},
@@ -468,6 +469,7 @@ var UserAgentSwitcherOptions =
 			treeCell.setAttribute("useragentswitcheruseragent", this.userAgent);
 			treeCell.setAttribute("useragentswitchervendor", this.vendor);
 			treeCell.setAttribute("useragentswitchervendorsub", this.vendorSub);
+			treeCell.setAttribute("useragentswitcherallowemptyproperties", this.allowEmptyProperties);
 			
 			this.addTreeItemToSelection(treeItem);	
 		}

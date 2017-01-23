@@ -430,20 +430,33 @@ var UserAgentSwitcher =
 		var appCodeName          = userAgent.getAttribute("useragentswitcherappcodename");
 		var position             = userAgent.getAttribute("useragentswitcherposition");
 		var userAgentDescription = userAgent.getAttribute("label");
-		
-		// If the app code name is not set add a space since an empty app code name is ignored
-		if(!appCodeName)
+
+		var properties = new Array('appcodename', 'appname', 'appversion', 'platform', 'useragent', 'vendor', 'vendorsub');
+		var pref;
+		for (i = 0; i < properties.length; i++)
 		{
-			appCodeName = " ";
+			switch (properties[i])
+			{
+				case 'appcodename':
+					pref = 'general.useragent.appName';
+					break;
+				case 'platform':
+					pref = 'general.platform.override';
+					break;
+				case 'vendor':
+				case 'vendorsub':
+					pref = 'general.useragent.' + properties[i];
+					break;
+				default:
+					pref = 'general.' + properties[i] + '.override';
+					break;
+			}
+
+			if (userAgent.getAttribute('useragentswitcher' + properties[i]) || userAgent.getAttribute('useragentswitcherallowemptyproperties') != 0)
+				UserAgentSwitcherPreferences.setStringPreference(pref, userAgent.getAttribute("useragentswitcher" + properties[i]));
+			else
+				UserAgentSwitcherPreferences.deletePreference(pref);
 		}
-		
-		UserAgentSwitcherPreferences.setStringPreference("general.useragent.appName", appCodeName);
-		UserAgentSwitcherPreferences.setStringPreference("general.appname.override", userAgent.getAttribute("useragentswitcherappname"));
-		UserAgentSwitcherPreferences.setStringPreference("general.appversion.override", userAgent.getAttribute("useragentswitcherappversion"));
-		UserAgentSwitcherPreferences.setStringPreference("general.platform.override", userAgent.getAttribute("useragentswitcherplatform"));
-		UserAgentSwitcherPreferences.setStringPreference("general.useragent.override", userAgent.getAttribute("useragentswitcheruseragent"));
-		UserAgentSwitcherPreferences.setStringPreference("general.useragent.vendor", userAgent.getAttribute("useragentswitchervendor"));
-		UserAgentSwitcherPreferences.setStringPreference("general.useragent.vendorSub", userAgent.getAttribute("useragentswitchervendorsub"));
 
 		// Loop through the open windows
 		for(var i = 0; i < allWindowsLength; i++)
