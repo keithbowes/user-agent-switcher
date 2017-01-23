@@ -319,7 +319,7 @@ var UserAgentSwitcher =
 		if(userAgentMenu)
 		{
 			userAgentMenu.setAttribute("image", "chrome://useragentswitcher/skin/default.png");
-			userAgentMenu.setAttribute("label", defaultUserAgent);
+			userAgentMenu.setAttribute("tooltiptext", defaultUserAgent);
 		}
 
 		// If the user agent button is set
@@ -375,6 +375,7 @@ var UserAgentSwitcher =
 		if(userAgentMenu)
 		{
 			userAgentMenu.setAttribute("image", "chrome://useragentswitcher/skin/non-default.png");
+			userAgentMenu.setAttribute("tooltiptext", selectedUserAgentDescription);
 
 			//// If the selected user agent description is set			
 			//if(selectedUserAgentDescription)
