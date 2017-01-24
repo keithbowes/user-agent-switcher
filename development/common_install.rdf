@@ -9,10 +9,12 @@
     <em:description>@description@</em:description>
     <em:homepageURL>@home.page@</em:homepageURL>
     <em:iconURL>chrome://useragentswitcher/content/logo.png</em:iconURL>
-    <em:id>{e968fc70-8f95-4ab9-9e79-304de2a71ee1}</em:id>
+    <em:id>@id@</em:id>
     <em:name>@name@</em:name>
     <em:optionsURL>chrome://useragentswitcher/content/options/options.xul</em:optionsURL>
+    <em:type>2</em:type><!-- extension -->
     <em:updateInfoURL>@home.page@history/</em:updateInfoURL>
+    <em:updateURL>@user.agent.switcher.update.manifest@</em:updateURL>
     <em:version>@version@</em:version>
     <em:file>
       <Description about="urn:mozilla:extension:file:useragentswitcher.jar">
@@ -21,36 +23,14 @@
         <em:skin>skin/classic/useragentswitcher/</em:skin>
       </Description>
     </em:file>
-    <!-- Firefox -->
     <em:targetApplication>
       <Description>
-        <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
-        <em:maxVersion>@firefox.max.version@</em:maxVersion>
-        <em:minVersion>1.0</em:minVersion>
-      </Description>
-    </em:targetApplication>
-    <!-- Flock -->
-    <em:targetApplication>
-      <Description>
-        <em:id>{a463f10c-3994-11da-9945-000d60ca027b}</em:id>
-        <em:maxVersion>@flock.max.version@</em:maxVersion>
-        <em:minVersion>1.0</em:minVersion>
-      </Description>
-    </em:targetApplication>
-    <!-- SeaMonkey -->
-    <em:targetApplication>
-      <Description>
-        <em:id>{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}</em:id>
-        <em:maxVersion>@seamonkey.max.version@</em:maxVersion>
-        <em:minVersion>1.0</em:minVersion>
-      </Description>
-    </em:targetApplication>
-    <!-- Songbird -->
-    <em:targetApplication>
-      <Description>
-        <em:id>songbird@songbirdnest.com</em:id>
-        <em:maxVersion>@songbird.max.version@</em:maxVersion>
-        <em:minVersion>1.0</em:minVersion>
+        <!-- All Toolkit-based applications.  Available in Gecko 1.9+ (Firefox 3+, SeaMonkey 2+, etc).
+        This add-on doesn't work (beyond creating a menu with nonfunctional items) in old XPFE-based
+        applications anyway. -->
+        <em:id>toolkit@mozilla.org</em:id>
+        <em:maxVersion>@toolkit.max.version@</em:maxVersion>
+        <em:minVersion>1.9b1</em:minVersion>
       </Description>
     </em:targetApplication>
   </Description>

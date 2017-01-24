@@ -35,7 +35,6 @@ var UserAgentSwitcherDOM =
 		var windowMediator = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
 		
 		allWindows = allWindows.concat(UserAgentSwitcherArray.convertEnumerationToArray(windowMediator.getEnumerator("navigator:browser")));
-		allWindows = allWindows.concat(UserAgentSwitcherArray.convertEnumerationToArray(windowMediator.getEnumerator("Songbird:Main")));
 
 		return allWindows;	
 	},

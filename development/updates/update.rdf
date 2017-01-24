@@ -3,6 +3,15 @@
 <RDF:RDF xmlns:em="http://www.mozilla.org/2004/em-rdf#"
          xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 
+    <RDF:Description about="urn:mozilla:extension:user-agent-switcher@chrispederick.com">
+        <em:updates>
+            <RDF:Seq>
+                <RDF:li resource="urn:mozilla:extension:user-agent-switcher@chrispederick.com:0.7.3-kb-1.0"/>
+            </RDF:Seq>
+        </em:updates>
+    </RDF:Description>
+
+    <!-- Releases with the old ID -->
     <RDF:Description about="urn:mozilla:extension:{e968fc70-8f95-4ab9-9e79-304de2a71ee1}">
         <em:updates>
             <RDF:Seq>
@@ -24,6 +33,19 @@
                 <RDF:li resource="urn:mozilla:extension:{e968fc70-8f95-4ab9-9e79-304de2a71ee1}:0.6"/>
             </RDF:Seq>
         </em:updates>
+    </RDF:Description>
+
+    <!-- See ../common_install.rdf for info about the use of toolkit@mozilla.org -->
+    <RDF:Description about="urn:mozilla:extension:user-agent-switcher@chrispederick.com:0.7.3-kb-1.0">
+        <em:version>0.7.3-kb-1.0</em:version>
+        <em:targetApplication>
+            <RDF:Description>
+                <em:id>toolkit@mozilla.org</em:id>
+                <em:maxVersion>49.*</em:maxVersion>
+                <em:minVersion>1.9b1</em:minVersion>
+                <em:updateLink>https://github.com/keithbowes/releases/download/0.7.3-kb-1.0/user-agent-switcher.xpi</em:updateLink>
+            </RDF:Description>
+        </em:targetApplication>
     </RDF:Description>
     <RDF:Description about="urn:mozilla:extension:{e968fc70-8f95-4ab9-9e79-304de2a71ee1}:0.7.3">
         <em:version>0.7.3</em:version>
