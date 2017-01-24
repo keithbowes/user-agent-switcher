@@ -2,36 +2,40 @@ User Agent Switcher
 ===================
 
 The User Agent Switcher extension adds a menu and a toolbar button to switch the user agent of a browser.
-The extension is available for Firefox, and will run on any platform that this browser supports including Windows, OS X and Linux.
+The extension is available for Toolkit-based Gecko applications (see below), and will run on any platform that this layout engine supports including Windows, OS X and Linux.
 
-The extension can be installed from its home page:
+The extension can be installed from [the extension's home page](http://chrispederick.com/work/user-agent-switcher/), from [the extension's AMO page](https://addons.mozilla.org/addon/user-agent-switcher/), or from the [releases page](releases/).
 
-* Home page: [http://chrispederick.com/work/user-agent-switcher/](http://chrispederick.com/work/user-agent-switcher/)
 
-Or directly from the Firefox extension repository:
+Works in
+--------
 
-* Firefox: [https://addons.mozilla.org/en-US/firefox/addon/user-agent-switcher/](https://addons.mozilla.org/en-US/firefox/addon/user-agent-switcher/)
+The current version should work in any Toolkit-based application using Gecko 1.9 or higher.  It's been successfully tested in:
+
+* [Firefox](https://www.mozilla.org/en-US/firefox/organizations/all/) 45.6.0
+* [Nightingale](http://getnightingale.com/all-versions.php) 1.12.1
+* [SeaMonkey](http://www.seamonkey-project.org/releases/) 2.46
+
+It should also work in [Flock](https://web.archive.org/web/20110325151017/http://www.flock.com/) 2.x, Firefox 3.0 or higher, Nightingale 1.8 or higher, SeaMonkey 2.0 or higher, versions 0.3 or higher of Nightingale's predecessor [Songbird](http://getsongbird.net/), and in other applications using Toolkit and Gecko 1.9 or higher, but these haven't been tested.
+
+[Older versions](https://addons.mozilla.org/addon/user-agent-switcher/versions/) [claim to support](blob/e8ddcbafcfc5caeac9c33bc787dd4328741df456/development/common_install.rdf) older 1.x and 2.x versions of Firefox and older 1.x versions of Flock.  For SeaMonkey, 2.0 or higher is needed for it to function in a meaningful way (older versions claim to work in SeaMonkey 1.x, but they don't). 
+
+Of course, I recommend you use a current version of a maintained application if possible, to avoid putting yourself at risk for exploits.  Currently, such applications are Firefox and SeaMonkey.  Flock and Songbird have been discontinued and shouldn't be used.
 
 Announcements
 -------------
 
 For announcements about the User Agent Switcher extension including news about beta releases and previews of upcoming versions follow:
 
-* Blog: [http://blog.chrispederick.com/](http://blog.chrispederick.com/)
-* Twitter: [http://twitter.com/chrispederick/](http://twitter.com/chrispederick/)
+* [My blog](http://blog.chrispederick.com/)
+* [Me on Twitter](http://twitter.com/chrispederick/)
+* [Releases on GitHub](releases/)
 
 Help
 ----
 
-Help for the User Agent Switcher extension can be found on its home page:
-
-* Help: [http://chrispederick.com/work/user-agent-switcher/help/](http://chrispederick.com/work/user-agent-switcher/help/)
-* Known issues: [http://chrispederick.com/work/user-agent-switcher/issues/](http://chrispederick.com/work/user-agent-switcher/issues/)
-* To-do list: [http://chrispederick.com/work/user-agent-switcher/to-do/](http://chrispederick.com/work/user-agent-switcher/to-do/)
-
-To report a new issue or suggest a new feature please post in the forums:
-
-* Forums: [http://forums.chrispederick.com/](http://forums.chrispederick.com/)
+* [Help](http://chrispederick.com/work/user-agent-switcher/help/)
+* [Known issues](issues/)
 
 Acknowledgements
 ----------------
@@ -45,8 +49,8 @@ Author
 
 ### Chris Pederick
 
-* [http://chrispederick.com/](http://chrispederick.com/)
-* [http://twitter.com/chrispederick/](http://twitter.com/chrispederick/)
+* [My website](http://chrispederick.com/)
+* [My Twitter account](http://twitter.com/chrispederick/)
 
 License
 -------
