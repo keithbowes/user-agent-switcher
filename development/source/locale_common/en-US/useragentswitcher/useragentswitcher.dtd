@@ -43,6 +43,7 @@
 <!ENTITY useragentswitcher.paste "Paste">
 <!ENTITY useragentswitcher.platform "Platform:">
 <!ENTITY useragentswitcher.reset.options "Reset Options...">
+<!ENTITY useragentswitcher.reset.on.close "Reset on close">
 <!ENTITY useragentswitcher.test "Test...">
 <!ENTITY useragentswitcher.test.key "T">
 <!ENTITY useragentswitcher.user.agent "User Agent">

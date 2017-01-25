@@ -37,6 +37,7 @@
 <!ENTITY useragentswitcher.options.user.agents.label "Browserkennung">
 <!ENTITY useragentswitcher.options.view.default "Standard ansehen...">
 <!ENTITY useragentswitcher.platform.label "Plattform:">
+<!ENTITY useragentswitcher.reset.on.close "Bei Beenden zurücksetzen">
 <!ENTITY useragentswitcher.user.agent.label "Browserkennung:">
 <!ENTITY useragentswitcher.vendor.label "Anbieter:">
 <!ENTITY useragentswitcher.vendor.sub.label "Anbieterversion:">

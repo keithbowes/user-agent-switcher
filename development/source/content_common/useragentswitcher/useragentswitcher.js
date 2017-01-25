@@ -172,17 +172,26 @@ var UserAgentSwitcher =
 		}		
 	},
 
+	// Checks whether a preferences matches an attribute
+	isMatch: function(userAgent, pref, attr)
+	{
+		if (UserAgentSwitcherPreferences.isPreferenceSet(pref))
+			return UserAgentSwitcherPreferences.getStringPreference(pref, true) == userAgent.getAttribute("useragentswitcher" + attr);
+		else
+			return true;
+	},
+
 	// Returns true if this is the selected user agent
 	isSelectedUserAgent: function(userAgent)
 	{
 		// If all the attributes match
-		if((UserAgentSwitcherPreferences.getStringPreference("general.useragent.appName", true) == userAgent.getAttribute("useragentswitcherappcodename") || (UserAgentSwitcherPreferences.getStringPreference("general.useragent.appName", true) == " " && userAgent.getAttribute("useragentswitcherappcodename") == "")) &&	
-			  UserAgentSwitcherPreferences.getStringPreference("general.appname.override", true) == userAgent.getAttribute("useragentswitcherappname") &&
-			  UserAgentSwitcherPreferences.getStringPreference("general.appversion.override", true) == userAgent.getAttribute("useragentswitcherappversion") &&
-			  UserAgentSwitcherPreferences.getStringPreference("general.platform.override", true) == userAgent.getAttribute("useragentswitcherplatform") &&
-			  UserAgentSwitcherPreferences.getStringPreference("general.useragent.override", true) == userAgent.getAttribute("useragentswitcheruseragent") &&
-			  UserAgentSwitcherPreferences.getStringPreference("general.useragent.vendor", true) == userAgent.getAttribute("useragentswitchervendor") &&
-			  UserAgentSwitcherPreferences.getStringPreference("general.useragent.vendorSub", true) == userAgent.getAttribute("useragentswitchervendorsub"))
+		if (UserAgentSwitcher.isMatch(userAgent, "general.useragent.appName", "appcodename") &&
+			UserAgentSwitcher.isMatch(userAgent, "general.appname.override", "appname") &&
+			UserAgentSwitcher.isMatch(userAgent, "general.appversion.override", "appversion") &&
+			UserAgentSwitcher.isMatch(userAgent, "general.platform.override", "platform") &&
+			UserAgentSwitcher.isMatch(userAgent, "general.useragent.override", "useragent") &&
+			UserAgentSwitcher.isMatch(userAgent, "general.useragent.vendor", "vendor") &&
+			UserAgentSwitcher.isMatch(userAgent, "general.useragent.vendorSub", "vendorsub"))
 		{
 			return true;
 		}

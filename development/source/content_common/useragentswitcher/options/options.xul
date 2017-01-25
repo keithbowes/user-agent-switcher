@@ -38,6 +38,9 @@
 				<spacer flex="1"/>
 				<button label="&useragentswitcher.reset.options;" oncommand="UserAgentSwitcherOptions.resetOptions()"/>
 			</hbox>
+			<hbox flex="1">
+				<checkbox id="useragentswitcher-reset-on-close" label="&useragentswitcher.reset.on.close;" oncommand="UserAgentSwitcherOptions.toggleResetOnClose(this)"/>
+			</hbox>
 		</groupbox>
 
 		<groupbox flex="1">
