@@ -10,6 +10,7 @@
     <em:homepageURL>@home.page@</em:homepageURL>
     <em:iconURL>chrome://useragentswitcher/content/logo.png</em:iconURL>
     <em:id>@id@</em:id>
+    <em:multiprocessCompatible>true</em:multiprocessCompatible>
     <em:name>@name@</em:name>
     <em:optionsURL>chrome://useragentswitcher/content/options/options.xul</em:optionsURL>
     <em:type>2</em:type><!-- extension -->
