@@ -1,5 +1,6 @@
 META-INF
 builds/*
 chrome
+config.sed
 install.js
 install.rdf
