@@ -33,7 +33,7 @@ chrome_files = $(wildcard $(addprefix source/content_common/useragentswitcher/,*
 	       $(addprefix source/locale_common/,$(addsuffix /useragentswitcher/*.*,$(addsuffix *,$(LINGUAS)))) \
 	       source/skin_common/classic/useragentswitcher/*.*)
 
-.PHONY: all build clean chrome distclean generate install selfsign sign xpi
+.PHONY: all build clean chrome distclean generate install selfsign sign update-translations xpi
 all build xpi: $(out_xpi)
 
 chrome: chrome/useragentswitcher.jar
@@ -59,6 +59,14 @@ selfsign: generate
 	$(MKDIR) META-INF
 	$(GPG) --armor --detach-sign --output META-INF/signature.asc install.js install.rdf license.txt chrome/useragentswitcher.jar
 	$(MAKE) xpi
+
+dtd_files ::= $(addsuffix /useragentswitcher/useragentswitcher.dtd,$(wildcard source/locale_common/*))
+update-translations: $(dtd_files)
+$(dtd_files): $(addprefix source/locale_common/en-US/useragentswitcher/useragentswitcher.,dtd properties)
+	$(MKDIR) po
+	-$(foreach t,$(subst /useragentswitcher/useragentswitcher.dtd,,$@), \
+		moz2po -t $(dir $(t))en-US $(t) po; po2moz -t $(dir $(t))en-US po $(t);)
+	$(RMDIR) po
 
 chrome/useragentswitcher.jar: config.sed $(chrome_files)
 	$(MKDIR) chrome

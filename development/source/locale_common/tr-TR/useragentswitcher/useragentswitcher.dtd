@@ -1,40 +1,53 @@
-<!ENTITY useragentswitcher.key "Y">
-<!ENTITY useragentswitcher.label "Yazılım ismi">
-<!ENTITY useragentswitcher.name "User Agent Switcher (sitelere gösterilen ismi değiştirici)">
-<!ENTITY useragentswitcher.about.author "Geliştirici">
-<!ENTITY useragentswitcher.about.build.date "Build Date">
-<!ENTITY useragentswitcher.about.home.page "Web sitesi">
-<!ENTITY useragentswitcher.about.title "User Agent Switcher hakkında">
+<!ENTITY useragentswitcher.about "About...">
 <!ENTITY useragentswitcher.about.key "H">
-<!ENTITY useragentswitcher.about.label "Hakkında…">
-<!ENTITY useragentswitcher.default.key "T">
-<!ENTITY useragentswitcher.default.label "Temel isim">
-<!ENTITY useragentswitcher.help.label "Yardım…">
+<!ENTITY useragentswitcher.about.title "User Agent Switcher hakkında">
+<!ENTITY useragentswitcher.allow.empty.properties "Allow Empty Properties">
+<!ENTITY useragentswitcher.allow.empty.properties.tooltip "Send blank values as empty rather than as the default value">
+<!ENTITY useragentswitcher.app.code.name "App Code Name:">
+<!ENTITY useragentswitcher.app.name "App Name:">
+<!ENTITY useragentswitcher.app.version "App Version:">
+<!ENTITY useragentswitcher.author "Author">
+<!ENTITY useragentswitcher.build.date "Build Date">
+<!ENTITY useragentswitcher.copy "Copy">
+<!ENTITY useragentswitcher.cut "Cut">
+<!ENTITY useragentswitcher.default.user.agent "Default User Agent">
+<!ENTITY useragentswitcher.default.user.agent.key "D">
+<!ENTITY useragentswitcher.delete "Delete...">
+<!ENTITY useragentswitcher.description "Description:">
+<!ENTITY useragentswitcher.download.user.agents "Download lists of user agents to import...">
+<!ENTITY useragentswitcher.edit "Edit...">
+<!ENTITY useragentswitcher.edit.user.agents "Edit User Agents...">
+<!ENTITY useragentswitcher.edit.user.agents.key "E">
+<!ENTITY useragentswitcher.export "Export...">
+<!ENTITY useragentswitcher.general "General">
+<!ENTITY useragentswitcher.help "Help...">
 <!ENTITY useragentswitcher.help.key "Y">
-<!ENTITY useragentswitcher.options.key "S">
-<!ENTITY useragentswitcher.options.label "Seçenekler">
-<!ENTITY useragentswitcher.options.menu.key "S">
-<!ENTITY useragentswitcher.options.menu.label "Seçenekler…">
-<!ENTITY useragentswitcher.app.name.label "App Name (yazılım ismi)&#160;:">
-<!ENTITY useragentswitcher.app.version.label "App Version (yazılımın sürümü):">
-<!ENTITY useragentswitcher.description.label "Özeti&#160;:">
+<!ENTITY useragentswitcher.home.page "Home Page">
+<!ENTITY useragentswitcher.import "Import...">
+<!ENTITY useragentswitcher.import.export "Import/Export">
 <!ENTITY useragentswitcher.import.overwrite "Halihazırda bulunan yazılım isimlerini yenilerini alırken sil">
 <!ENTITY useragentswitcher.menu.hide "Eklenti araçlar menüsünde gösterilmesin">
-<!ENTITY useragentswitcher.options.add "Ekle…">
-<!ENTITY useragentswitcher.options.default.label "Temel kurulum">
-<!ENTITY useragentswitcher.options.delete "Kaldır…">
-<!ENTITY useragentswitcher.options.edit "Düzenle…">
-<!ENTITY useragentswitcher.options.export "Dışa aktar…">
-<!ENTITY useragentswitcher.options.general.label "Genel">
-<!ENTITY useragentswitcher.options.import "İçe aktar…">
-<!ENTITY useragentswitcher.options.import.export "İçe/Dışa aktar">
-<!ENTITY useragentswitcher.options.move.down "Aşağıya">
-<!ENTITY useragentswitcher.options.move.up "Yukarıya">
-<!ENTITY useragentswitcher.options.reset "Seçenekleri ilk hâline çevir (sıfırla)…">
+<!ENTITY useragentswitcher.move.down "Move Down">
+<!ENTITY useragentswitcher.move.up "Move Up">
+<!ENTITY useragentswitcher.name "User Agent Switcher (sitelere gösterilen ismi değiştirici)">
+<!ENTITY useragentswitcher.name.key "U">
+<!ENTITY useragentswitcher.name.label "Name:">
+<!ENTITY useragentswitcher.new "New">
+<!ENTITY useragentswitcher.new.folder "New Folder...">
+<!ENTITY useragentswitcher.new.separator "New Separator">
+<!ENTITY useragentswitcher.new.user.agent "New User Agent...">
+<!ENTITY useragentswitcher.new.user.agent.description "The default user agent values are displayed below. Add a description and edit any of the values to create a new user agent.">
+<!ENTITY useragentswitcher.options "Options...">
+<!ENTITY useragentswitcher.options.key "S">
 <!ENTITY useragentswitcher.options.title "User Agent Switcher seçenekleri">
-<!ENTITY useragentswitcher.options.user.agents.label "User Agent string (yazılım ismi)">
-<!ENTITY useragentswitcher.options.view.default "Temel seçenekleri göster…">
-<!ENTITY useragentswitcher.platform.label "Platform&#160;:">
+<!ENTITY useragentswitcher.paste "Paste">
+<!ENTITY useragentswitcher.platform "Platform:">
+<!ENTITY useragentswitcher.reset.options "Reset Options...">
+<!ENTITY useragentswitcher.reset.on.close "Reset on close">
+<!ENTITY useragentswitcher.test "Test...">
+<!ENTITY useragentswitcher.test.key "T">
+<!ENTITY useragentswitcher.user.agent "User Agent">
 <!ENTITY useragentswitcher.user.agent.label "Yazılım (User Agent) isimleri&#160;:">
-<!ENTITY useragentswitcher.vendor.label "Vendor (Piyasaya süren)&#160;:">
-<!ENTITY useragentswitcher.vendor.sub.label "Piyasaya süren (ek)Sub&#160;:">
+<!ENTITY useragentswitcher.user.agents "User Agents">
+<!ENTITY useragentswitcher.vendor "Vendor:">
+<!ENTITY useragentswitcher.vendor.sub "Vendor Sub:">

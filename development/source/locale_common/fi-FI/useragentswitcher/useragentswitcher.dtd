@@ -1,40 +1,53 @@
-<!ENTITY useragentswitcher.key "S">
-<!ENTITY useragentswitcher.label "Selaintunniste">
-<!ENTITY useragentswitcher.name "Selaintunnisteen vaihtaja">
-<!ENTITY useragentswitcher.about.author "Tekijä">
-<!ENTITY useragentswitcher.about.build.date "Build Date">
-<!ENTITY useragentswitcher.about.home.page "Kotisivu">
-<!ENTITY useragentswitcher.about.title "Tietoja selaintunnisteen vaihtajasta">
+<!ENTITY useragentswitcher.about "About...">
 <!ENTITY useragentswitcher.about.key "T">
-<!ENTITY useragentswitcher.about.label "Tietoja...">
-<!ENTITY useragentswitcher.default.key "O">
-<!ENTITY useragentswitcher.default.label "Oletus">
-<!ENTITY useragentswitcher.help.label "Ohje...">
+<!ENTITY useragentswitcher.about.title "Tietoja selaintunnisteen vaihtajasta">
+<!ENTITY useragentswitcher.allow.empty.properties "Allow Empty Properties">
+<!ENTITY useragentswitcher.allow.empty.properties.tooltip "Send blank values as empty rather than as the default value">
+<!ENTITY useragentswitcher.app.code.name "App Code Name:">
+<!ENTITY useragentswitcher.app.name "App Name:">
+<!ENTITY useragentswitcher.app.version "App Version:">
+<!ENTITY useragentswitcher.author "Author">
+<!ENTITY useragentswitcher.build.date "Build Date">
+<!ENTITY useragentswitcher.copy "Copy">
+<!ENTITY useragentswitcher.cut "Cut">
+<!ENTITY useragentswitcher.default.user.agent "Default User Agent">
+<!ENTITY useragentswitcher.default.user.agent.key "D">
+<!ENTITY useragentswitcher.delete "Delete...">
+<!ENTITY useragentswitcher.description "Description:">
+<!ENTITY useragentswitcher.download.user.agents "Download lists of user agents to import...">
+<!ENTITY useragentswitcher.edit "Edit...">
+<!ENTITY useragentswitcher.edit.user.agents "Edit User Agents...">
+<!ENTITY useragentswitcher.edit.user.agents.key "E">
+<!ENTITY useragentswitcher.export "Export...">
+<!ENTITY useragentswitcher.general "General">
+<!ENTITY useragentswitcher.help "Help...">
 <!ENTITY useragentswitcher.help.key "O">
-<!ENTITY useragentswitcher.options.key "A">
-<!ENTITY useragentswitcher.options.label "Asetukset">
-<!ENTITY useragentswitcher.options.menu.key "A">
-<!ENTITY useragentswitcher.options.menu.label "Asetukset...">
-<!ENTITY useragentswitcher.app.name.label "Ohjelman nimi:">
-<!ENTITY useragentswitcher.app.version.label "Ohjelman versio:">
-<!ENTITY useragentswitcher.description.label "Kuvaus:">
+<!ENTITY useragentswitcher.home.page "Home Page">
+<!ENTITY useragentswitcher.import "Import...">
+<!ENTITY useragentswitcher.import.export "Import/Export">
 <!ENTITY useragentswitcher.import.overwrite "Korvaa olemassa olevat tunnisteet tuotaessa uusia">
 <!ENTITY useragentswitcher.menu.hide "Piilota Selaintunnisteen vaihtajan valikko">
-<!ENTITY useragentswitcher.options.add "Lisää...">
-<!ENTITY useragentswitcher.options.default.label "Oletus">
-<!ENTITY useragentswitcher.options.delete "Poista...">
-<!ENTITY useragentswitcher.options.edit "Muokkaa...">
-<!ENTITY useragentswitcher.options.export "Vie...">
-<!ENTITY useragentswitcher.options.general.label "Yleinen">
-<!ENTITY useragentswitcher.options.import "Tuo...">
-<!ENTITY useragentswitcher.options.import.export "Tuo tai Vie">
-<!ENTITY useragentswitcher.options.move.down "Siirrä alas">
-<!ENTITY useragentswitcher.options.move.up "Siirrä ylös">
-<!ENTITY useragentswitcher.options.reset "Palauta alkuasetukset...">
+<!ENTITY useragentswitcher.move.down "Move Down">
+<!ENTITY useragentswitcher.move.up "Move Up">
+<!ENTITY useragentswitcher.name "Selaintunnisteen vaihtaja">
+<!ENTITY useragentswitcher.name.key "U">
+<!ENTITY useragentswitcher.name.label "Name:">
+<!ENTITY useragentswitcher.new "New">
+<!ENTITY useragentswitcher.new.folder "New Folder...">
+<!ENTITY useragentswitcher.new.separator "New Separator">
+<!ENTITY useragentswitcher.new.user.agent "New User Agent...">
+<!ENTITY useragentswitcher.new.user.agent.description "The default user agent values are displayed below. Add a description and edit any of the values to create a new user agent.">
+<!ENTITY useragentswitcher.options "Options...">
+<!ENTITY useragentswitcher.options.key "A">
 <!ENTITY useragentswitcher.options.title "Selaintunnisteen vaihtajan asetukset">
-<!ENTITY useragentswitcher.options.user.agents.label "Selaintunnisteet">
-<!ENTITY useragentswitcher.options.view.default "Näytä oletus...">
-<!ENTITY useragentswitcher.platform.label "Alusta:">
+<!ENTITY useragentswitcher.paste "Paste">
+<!ENTITY useragentswitcher.platform "Platform:">
+<!ENTITY useragentswitcher.reset.options "Reset Options...">
+<!ENTITY useragentswitcher.reset.on.close "Reset on close">
+<!ENTITY useragentswitcher.test "Test...">
+<!ENTITY useragentswitcher.test.key "T">
+<!ENTITY useragentswitcher.user.agent "User Agent">
 <!ENTITY useragentswitcher.user.agent.label "Selaintunniste:">
-<!ENTITY useragentswitcher.vendor.label "Julkaisija:">
-<!ENTITY useragentswitcher.vendor.sub.label "2. julkaisija:">
+<!ENTITY useragentswitcher.user.agents "User Agents">
+<!ENTITY useragentswitcher.vendor "Vendor:">
+<!ENTITY useragentswitcher.vendor.sub "Vendor Sub:">

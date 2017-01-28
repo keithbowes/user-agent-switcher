@@ -1,40 +1,53 @@
-<!ENTITY useragentswitcher.key "N">
-<!ENTITY useragentswitcher.label "User-Agent">
-<!ENTITY useragentswitcher.name "User-Agent keitiklis">
-<!ENTITY useragentswitcher.about.author "Autorius">
-<!ENTITY useragentswitcher.about.build.date "Build Date">
-<!ENTITY useragentswitcher.about.home.page "Tinklapis">
-<!ENTITY useragentswitcher.about.title "Apie User-Agent keitiklį">
+<!ENTITY useragentswitcher.about "About...">
 <!ENTITY useragentswitcher.about.key "A">
-<!ENTITY useragentswitcher.about.label "Apie...">
-<!ENTITY useragentswitcher.default.key "N">
-<!ENTITY useragentswitcher.default.label "Numatytasis">
-<!ENTITY useragentswitcher.help.label "Pagalba...">
+<!ENTITY useragentswitcher.about.title "Apie User-Agent keitiklį">
+<!ENTITY useragentswitcher.allow.empty.properties "Allow Empty Properties">
+<!ENTITY useragentswitcher.allow.empty.properties.tooltip "Send blank values as empty rather than as the default value">
+<!ENTITY useragentswitcher.app.code.name "App Code Name:">
+<!ENTITY useragentswitcher.app.name "App Name:">
+<!ENTITY useragentswitcher.app.version "App Version:">
+<!ENTITY useragentswitcher.author "Author">
+<!ENTITY useragentswitcher.build.date "Build Date">
+<!ENTITY useragentswitcher.copy "Copy">
+<!ENTITY useragentswitcher.cut "Cut">
+<!ENTITY useragentswitcher.default.user.agent "Default User Agent">
+<!ENTITY useragentswitcher.default.user.agent.key "D">
+<!ENTITY useragentswitcher.delete "Delete...">
+<!ENTITY useragentswitcher.description "Description:">
+<!ENTITY useragentswitcher.download.user.agents "Download lists of user agents to import...">
+<!ENTITY useragentswitcher.edit "Edit...">
+<!ENTITY useragentswitcher.edit.user.agents "Edit User Agents...">
+<!ENTITY useragentswitcher.edit.user.agents.key "E">
+<!ENTITY useragentswitcher.export "Export...">
+<!ENTITY useragentswitcher.general "General">
+<!ENTITY useragentswitcher.help "Help...">
 <!ENTITY useragentswitcher.help.key "P">
-<!ENTITY useragentswitcher.options.key "N">
-<!ENTITY useragentswitcher.options.label "Nustatymai">
-<!ENTITY useragentswitcher.options.menu.key "N">
-<!ENTITY useragentswitcher.options.menu.label "Nustatymai...">
-<!ENTITY useragentswitcher.app.name.label "Programos pavadinimas:">
-<!ENTITY useragentswitcher.app.version.label "Programos versija:">
-<!ENTITY useragentswitcher.description.label "Aprašymas:">
+<!ENTITY useragentswitcher.home.page "Home Page">
+<!ENTITY useragentswitcher.import "Import...">
+<!ENTITY useragentswitcher.import.export "Import/Export">
 <!ENTITY useragentswitcher.import.overwrite "Importavus perrašyti esančius User-Agent">
 <!ENTITY useragentswitcher.menu.hide "Slėpti User-Agent keitiklio meniu">
-<!ENTITY useragentswitcher.options.add "Pridėti...">
-<!ENTITY useragentswitcher.options.default.label "Naumatytasis">
-<!ENTITY useragentswitcher.options.delete "Trinti...">
-<!ENTITY useragentswitcher.options.edit "Redaguoti...">
-<!ENTITY useragentswitcher.options.export "Eksportuoti...">
-<!ENTITY useragentswitcher.options.general.label "Bendri nustatymai">
-<!ENTITY useragentswitcher.options.import "Importuoti...">
-<!ENTITY useragentswitcher.options.import.export "Importuoti/Eksportuoti">
-<!ENTITY useragentswitcher.options.move.down "Perkelti žemyn">
-<!ENTITY useragentswitcher.options.move.up "Perkelti aukštyn">
-<!ENTITY useragentswitcher.options.reset "Atkurti nustatymus...">
+<!ENTITY useragentswitcher.move.down "Move Down">
+<!ENTITY useragentswitcher.move.up "Move Up">
+<!ENTITY useragentswitcher.name "User-Agent keitiklis">
+<!ENTITY useragentswitcher.name.key "U">
+<!ENTITY useragentswitcher.name.label "Name:">
+<!ENTITY useragentswitcher.new "New">
+<!ENTITY useragentswitcher.new.folder "New Folder...">
+<!ENTITY useragentswitcher.new.separator "New Separator">
+<!ENTITY useragentswitcher.new.user.agent "New User Agent...">
+<!ENTITY useragentswitcher.new.user.agent.description "The default user agent values are displayed below. Add a description and edit any of the values to create a new user agent.">
+<!ENTITY useragentswitcher.options "Options...">
+<!ENTITY useragentswitcher.options.key "N">
 <!ENTITY useragentswitcher.options.title "User-Agent ketiklio nustatymai">
-<!ENTITY useragentswitcher.options.user.agents.label "User-Agents">
-<!ENTITY useragentswitcher.options.view.default "Rodyti numatytąjį...">
-<!ENTITY useragentswitcher.platform.label "Platforma:">
+<!ENTITY useragentswitcher.paste "Paste">
+<!ENTITY useragentswitcher.platform "Platform:">
+<!ENTITY useragentswitcher.reset.options "Reset Options...">
+<!ENTITY useragentswitcher.reset.on.close "Reset on close">
+<!ENTITY useragentswitcher.test "Test...">
+<!ENTITY useragentswitcher.test.key "T">
+<!ENTITY useragentswitcher.user.agent "User Agent">
 <!ENTITY useragentswitcher.user.agent.label "User-Agent:">
-<!ENTITY useragentswitcher.vendor.label "Gamintojas:">
-<!ENTITY useragentswitcher.vendor.sub.label "Gamintojo padalinys:">
+<!ENTITY useragentswitcher.user.agents "User Agents">
+<!ENTITY useragentswitcher.vendor "Vendor:">
+<!ENTITY useragentswitcher.vendor.sub "Vendor Sub:">
