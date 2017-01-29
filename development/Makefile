@@ -3,14 +3,17 @@ SHELL = /bin/sh
 BROWSER ?= $(if $(and $(DISPLAY),$(XDG_SESSION_ID)),xdg-open, \
 	   $(if $(and $(COMSPEC),$(OS)),start,firefox))
 
+CP ?= install -m 644
 CURL ?= curl
 ECHO ?= echo
-GPG ?= gpg
 MKDIR ?= install -d -m 755
+MV ?= mv
 RM ?= rm -f
 RMDIR ?= $(RM) -r
 SED ?= sed
 ZIP ?= zip -q -r -9
+
+CERT_PASS ?= password
 
 AMO_API_KEY ?= user:12345678:987
 AMO_API_SECRET ?= 28934y23i4h32i4j23nk4j3244
@@ -54,12 +57,6 @@ sign: $(out_xpi)
 	$(CURL) -H "Authorization: JWT $(JWT)" -XPUT --form "upload=@$(out_xpi)" https://addons.mozilla.org/api/v3/addons/$(ID)/versions/$(VERSION) 
 	$(CURL) -o $(signed_xpi) https://addons.mozilla.org/addon/$(ID)/$(notdir $(signed_xpi))
 
-# If Mozilla didn't have such an inconvenient signing system:
-selfsign: generate
-	$(MKDIR) META-INF
-	$(GPG) --armor --detach-sign --output META-INF/signature.asc install.js install.rdf license.txt chrome/useragentswitcher.jar
-	$(MAKE) xpi
-
 dtd_files ::= $(addsuffix /useragentswitcher/useragentswitcher.dtd,$(wildcard source/locale_common/*))
 update-translations: $(dtd_files)
 $(dtd_files): $(addprefix source/locale_common/en-US/useragentswitcher/useragentswitcher.,dtd properties)
@@ -72,7 +69,7 @@ chrome/useragentswitcher.jar: config.sed $(chrome_files)
 	$(MKDIR) chrome
 	$(foreach dir,content locale skin,$(MKDIR) $(addprefix chrome/,$(dir);))
 	$(foreach file,$(subst $<,,$^),$(MKDIR) $(dir $(call adjust_path,$(file))); $(SED) -f $< -e "s/@build.date@/`date +'%B %d, %Y'`/g" $(file) > $(call adjust_path,$(file));)
-	cd chrome && $(ZIP) $(notdir $@) content locale skin
+	cd chrome && $(ZIP) -0 $(notdir $@) content locale skin
 	$(RMDIR) $(addprefix chrome/,content locale skin)
 
 config.sed: config.properties
@@ -81,6 +78,25 @@ config.sed: config.properties
 install.%: config.sed common_install.%
 	$(SED) -f $^ > $@
 
-$(out_xpi): $(wildcard META-INF) chrome/useragentswitcher.jar chrome.manifest install.js install.rdf
+$(out_xpi): chrome/useragentswitcher.jar chrome.manifest install.js install.rdf
 	$(MKDIR) builds
 	$(ZIP) $@ $^ license.txt
+
+# The older, more convenient way to sign. 
+# I hope Mozilla reintroduces something like this.
+selfsign: generate x509.cert
+	$(MKDIR) META-INF
+	signtool -d . -k $(ID) -p $(CERT_PASS) .
+	$(ZIP) $(out_xpi) META-INF/zigbert.rsa
+	$(ZIP) -D $(out_xpi) chrome/useragentswitcher.jar install.js install.rdf license.txt \
+		$(filter-out %.rsa,$(wildcard META-INF/*))
+	$(MV) $(out_xpi) $(subst .xpi,-selfsigned.xpi,$(out_xpi))
+
+x509.cert: x509.cacert
+	$(CP) $< $@
+
+x509.cacert: key3.db
+	signtool -G $(ID) -d . -p $(CERT_PASS)
+
+key3.db:
+	certutil -N -d .
