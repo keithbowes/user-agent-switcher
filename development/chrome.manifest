@@ -1,5 +1,35 @@
 content	useragentswitcher	                         			           jar:chrome/useragentswitcher.jar!/content/useragentswitcher/
-locale	useragentswitcher en-US	                     			         jar:chrome/useragentswitcher.jar!/locale/en-US/useragentswitcher/
+
+locale useragentswitcher be-BY jar:chrome/useragentswitcher.jar!/locale/be-BY/useragentswitcher/
+locale useragentswitcher cs-CZ jar:chrome/useragentswitcher.jar!/locale/cs-CZ/useragentswitcher/
+locale useragentswitcher da-DK jar:chrome/useragentswitcher.jar!/locale/da-DK/useragentswitcher/
+locale useragentswitcher de-DE jar:chrome/useragentswitcher.jar!/locale/de-DE/useragentswitcher/
+locale useragentswitcher en-US jar:chrome/useragentswitcher.jar!/locale/en-US/useragentswitcher/
+locale useragentswitcher es-AR jar:chrome/useragentswitcher.jar!/locale/es-AR/useragentswitcher/
+locale useragentswitcher es-ES jar:chrome/useragentswitcher.jar!/locale/es-ES/useragentswitcher/
+locale useragentswitcher eu-ES jar:chrome/useragentswitcher.jar!/locale/eu-ES/useragentswitcher/
+locale useragentswitcher fi-FI jar:chrome/useragentswitcher.jar!/locale/fi-FI/useragentswitcher/
+locale useragentswitcher fr-FR jar:chrome/useragentswitcher.jar!/locale/fr-FR/useragentswitcher/
+locale useragentswitcher fy-NL jar:chrome/useragentswitcher.jar!/locale/fy-NL/useragentswitcher/
+locale useragentswitcher he-IL jar:chrome/useragentswitcher.jar!/locale/he-IL/useragentswitcher/
+locale useragentswitcher hu-HU jar:chrome/useragentswitcher.jar!/locale/hu-HU/useragentswitcher/
+locale useragentswitcher it-IT jar:chrome/useragentswitcher.jar!/locale/it-IT/useragentswitcher/
+locale useragentswitcher ja-JP jar:chrome/useragentswitcher.jar!/locale/ja-JP/useragentswitcher/
+locale useragentswitcher ko-KR jar:chrome/useragentswitcher.jar!/locale/ko-KR/useragentswitcher/
+locale useragentswitcher lt-LT jar:chrome/useragentswitcher.jar!/locale/lt-LT/useragentswitcher/
+locale useragentswitcher mk-MK jar:chrome/useragentswitcher.jar!/locale/mk-MK/useragentswitcher/
+locale useragentswitcher nl-NL jar:chrome/useragentswitcher.jar!/locale/nl-NL/useragentswitcher/
+locale useragentswitcher pl-PL jar:chrome/useragentswitcher.jar!/locale/pl-PL/useragentswitcher/
+locale useragentswitcher pt-BR jar:chrome/useragentswitcher.jar!/locale/pt-BR/useragentswitcher/
+locale useragentswitcher pt-PT jar:chrome/useragentswitcher.jar!/locale/pt-PT/useragentswitcher/
+locale useragentswitcher ro-RO jar:chrome/useragentswitcher.jar!/locale/ro-RO/useragentswitcher/
+locale useragentswitcher ru-RU jar:chrome/useragentswitcher.jar!/locale/ru-RU/useragentswitcher/
+locale useragentswitcher sk-SK jar:chrome/useragentswitcher.jar!/locale/sk-SK/useragentswitcher/
+locale useragentswitcher tr-TR jar:chrome/useragentswitcher.jar!/locale/tr-TR/useragentswitcher/
+locale useragentswitcher uk-UA jar:chrome/useragentswitcher.jar!/locale/uk-UA/useragentswitcher/
+locale useragentswitcher zh-CN jar:chrome/useragentswitcher.jar!/locale/zh-CN/useragentswitcher/
+locale useragentswitcher zh-TW jar:chrome/useragentswitcher.jar!/locale/zh-TW/useragentswitcher/
+
 overlay	chrome://browser/content/browser.xul	     			           chrome://useragentswitcher/content/useragentswitcher.xul
 overlay	chrome://navigator/content/navigator.xul     			         chrome://useragentswitcher/content/useragentswitcher.xul
 skin	useragentswitcher classic/1.0                			   				 jar:chrome/useragentswitcher.jar!/skin/classic/useragentswitcher/
