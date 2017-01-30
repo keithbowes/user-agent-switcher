@@ -6,6 +6,7 @@ BROWSER ?= $(if $(and $(DISPLAY),$(XDG_SESSION_ID)),xdg-open, \
 CP ?= install -m 644
 CURL ?= curl
 ECHO ?= echo
+MARKDOWN ?= Markdown.pl
 MKDIR ?= install -d -m 755
 MV ?= mv
 RM ?= rm -f
@@ -73,6 +74,13 @@ chrome/useragentswitcher.jar: config.sed $(chrome_files)
 	$(foreach file,$(subst $<,,$^),$(MKDIR) $(dir $(call adjust_path,$(file))); $(SED) -f $< -e "s/@build.date@/`date +'%B %d, %Y'`/g" $(file) > $(call adjust_path,$(file));)
 	cd chrome && $(ZIP) -0 $(notdir $@) content locale skin
 	$(RMDIR) $(addprefix chrome/,content locale skin)
+
+docs/index.html: README.md
+	$(MKDIR) $(dir $@)
+	$(file > $@,<!DOCTYPE html><html lang="en"><head><meta charset="utf-8" /><title>User Agent Switcher Overview</title></head><body>)
+	$(file >> $@,$(shell $(MARKDOWN) $<))
+	$(file >> $@,</body></html>)
+	tidy -asxhtml -utf8 -w -im $@
 
 config.sed: config.properties
 	$(SED) -e 's/^\(.\+\)=\(.\+\)$$/s,@\1@,\2,g/g' $< > $@

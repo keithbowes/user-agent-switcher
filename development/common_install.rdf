@@ -6,6 +6,7 @@
   <Description about="urn:mozilla:install-manifest">
     <em:aboutURL>chrome://useragentswitcher/content/about/about.xul</em:aboutURL>
     <em:creator>Chris Pederick</em:creator>
+    <em:contributor>Keith Bowes</em:contributor>
     <em:description>@description@</em:description>
     <em:homepageURL>@home.page@</em:homepageURL>
     <em:iconURL>chrome://useragentswitcher/content/logo.png</em:iconURL>
@@ -14,7 +15,7 @@
     <em:name>@name@</em:name>
     <em:optionsURL>chrome://useragentswitcher/content/options/options.xul</em:optionsURL>
     <em:type>2</em:type><!-- extension -->
-    <em:updateInfoURL>@home.page@history/</em:updateInfoURL>
+    <em:updateInfoURL>@home.page@releases/</em:updateInfoURL>
     <em:updateURL>@user.agent.switcher.update.manifest@</em:updateURL>
     <em:version>@version@</em:version>
     <em:file>

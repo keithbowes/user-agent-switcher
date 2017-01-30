@@ -103,7 +103,7 @@ var UserAgentSwitcher =
 	// Opens the help
 	help: function()
 	{
-		window.getBrowser().selectedTab = window.getBrowser().addTab("@home.page@help/");
+		window.getBrowser().selectedTab = window.getBrowser().addTab("@home.page@docs/help/");
 	},
 	
 	// Initializes the extension
@@ -440,7 +440,7 @@ var UserAgentSwitcher =
 		var position             = userAgent.getAttribute("useragentswitcherposition");
 		var userAgentDescription = userAgent.getAttribute("label");
 
-		var properties = new Array('appcodename', 'appname', 'appversion', 'platform', 'useragent', 'vendor', 'vendorsub');
+		var properties = ['appcodename', 'appname', 'appversion', 'platform', 'useragent', 'vendor', 'vendorsub'];
 		var pref;
 		for (i = 0; i < properties.length; i++)
 		{
@@ -477,7 +477,7 @@ var UserAgentSwitcher =
 	// Opens the test page
 	test: function()
 	{
-		window.getBrowser().selectedTab = window.getBrowser().addTab("@home.page@features/test/");
+		window.getBrowser().selectedTab = window.getBrowser().addTab("chrome://useragentswitcher/content/test.html");
 	},
 	
 	// Uninitializes the extension

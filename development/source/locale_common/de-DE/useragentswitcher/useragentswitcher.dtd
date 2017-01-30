@@ -46,7 +46,7 @@
 <!ENTITY useragentswitcher.reset.on.close "Bei Beenden zurücksetzen">
 <!ENTITY useragentswitcher.test "Testen…">
 <!ENTITY useragentswitcher.test.key "T">
-<!ENTITY useragentswitcher.user.agent "Browserkennung:">
+<!ENTITY useragentswitcher.user.agent "Browserkennung">
 <!ENTITY useragentswitcher.user.agent.label "Browserkennung:">
 <!ENTITY useragentswitcher.user.agents "Browserkennungen">
 <!ENTITY useragentswitcher.vendor "Anbieter:">

@@ -166,7 +166,7 @@ var UserAgentSwitcherUpgrade =
 	
 		windowContent.removeEventListener("load", UserAgentSwitcherUpgrade.openUpgradePage, false);
 
-		window.setTimeout(function() { windowContent.selectedTab = windowContent.addTab("@home.page@installed/" + UserAgentSwitcherUpgrade.getVersion().replace(/\./g, "") + "/"); }, 0);	
+		window.setTimeout(function() {  if (confirm(UserAgentSwitcherStringBundle.getString("whatsNew"))) { windowContent.selectedTab = windowContent.addTab("@home.page@releases/@version@/"); }}, 0);	
 	},
 
 	// Parses the version number
