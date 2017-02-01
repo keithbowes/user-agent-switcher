@@ -16,7 +16,7 @@
 <!ENTITY useragentswitcher.description "Beschreibung:">
 <!ENTITY useragentswitcher.download.user.agents "Listen Browserkennungen herunterladen, um zu importieren...">
 <!ENTITY useragentswitcher.edit "Bearbeiten...">
-<!ENTITY useragentswitcher.edit.user.agents "Browserkennungen bearbeiten">
+<!ENTITY useragentswitcher.edit.user.agents "Browserkennungen bearbeiten...">
 <!ENTITY useragentswitcher.edit.user.agents.key "B">
 <!ENTITY useragentswitcher.export "Exportieren...">
 <!ENTITY useragentswitcher.general "Allgemein">
@@ -37,7 +37,7 @@
 <!ENTITY useragentswitcher.new.separator "Neues Trennzeichen">
 <!ENTITY useragentswitcher.new.user.agent "Neue Browserkennung...">
 <!ENTITY useragentswitcher.new.user.agent.description "Die Standardbrowserkennungwerte sind unten gezeigt. Einfüge eine Beschreibung und bearbeite irgendein aus den Werten, um eine neue Browserkennung zu erstellen.">
-<!ENTITY useragentswitcher.options "Erstellungen...">
+<!ENTITY useragentswitcher.options "Einstellungen...">
 <!ENTITY useragentswitcher.options.key "E">
 <!ENTITY useragentswitcher.options.title "User Agent Switcher - Einstellungen">
 <!ENTITY useragentswitcher.paste "Einfügen">

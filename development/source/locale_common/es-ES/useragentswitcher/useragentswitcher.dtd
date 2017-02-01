@@ -1,6 +1,8 @@
 <!ENTITY useragentswitcher.about "Acerca de...">
 <!ENTITY useragentswitcher.about.key "c">
 <!ENTITY useragentswitcher.about.title "Acerca de User Agent Switcher">
+<!ENTITY useragentswitcher.allow.empty.properties "Allow Empty Properties">
+<!ENTITY useragentswitcher.allow.empty.properties.tooltip "Send blank values as empty rather than as the default value">
 <!ENTITY useragentswitcher.app.code.name "Nombre de c&#243;digo de aplicaci&#243;n:">
 <!ENTITY useragentswitcher.app.name "Nombre de aplicaci&#243;n:">
 <!ENTITY useragentswitcher.app.version "Version de aplicaci&#243;n:">
@@ -41,6 +43,7 @@
 <!ENTITY useragentswitcher.paste "Pegar">
 <!ENTITY useragentswitcher.platform "Plataforma:">
 <!ENTITY useragentswitcher.reset.options "Restablecer Opciones...">
+<!ENTITY useragentswitcher.reset.on.close "Reset on close">
 <!ENTITY useragentswitcher.test "Probar...">
 <!ENTITY useragentswitcher.test.key "P">
 <!ENTITY useragentswitcher.user.agent "Agente de usuario">
