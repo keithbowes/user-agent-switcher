@@ -20,9 +20,6 @@
     <em:version>@version@</em:version>
     <em:targetApplication>
       <Description>
-        <!-- All Toolkit-based applications.  Available in Gecko 1.9+ (Firefox 3+, SeaMonkey 2+, etc).
-        This add-on doesn't work (beyond creating a menu with nonfunctional items) in old XPFE-based
-        applications anyway. -->
         <em:id>toolkit@mozilla.org</em:id>
         <em:maxVersion>@toolkit.max.version@</em:maxVersion>
         <em:minVersion>1.9b1</em:minVersion>
