@@ -2,7 +2,7 @@
 <!ENTITY useragentswitcher.about.key "A">
 <!ENTITY useragentswitcher.about.title "關於使用者識別字串轉換器">
 <!ENTITY useragentswitcher.allow.empty.properties "Allow Empty Properties">
-<!ENTITY useragentswitcher.allow.empty.properties.tooltip "Send blank values as empty rather than as the default value">
+<!ENTITY useragentswitcher.allow.empty.properties.tooltip "Let empty fields override default values">
 <!ENTITY useragentswitcher.app.code.name "App Code Name:">
 <!ENTITY useragentswitcher.app.name "應用程式名稱:">
 <!ENTITY useragentswitcher.app.version "應用程式版本:">
