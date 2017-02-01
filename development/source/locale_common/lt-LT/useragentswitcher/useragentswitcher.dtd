@@ -2,7 +2,7 @@
 <!ENTITY useragentswitcher.about.key "A">
 <!ENTITY useragentswitcher.about.title "Apie User-Agent keitiklį">
 <!ENTITY useragentswitcher.allow.empty.properties "Allow Empty Properties">
-<!ENTITY useragentswitcher.allow.empty.properties.tooltip "Send blank values as empty rather than as the default value">
+<!ENTITY useragentswitcher.allow.empty.properties.tooltip "Let empty fields override default values">
 <!ENTITY useragentswitcher.app.code.name "App Code Name:">
 <!ENTITY useragentswitcher.app.name "Programos pavadinimas:">
 <!ENTITY useragentswitcher.app.version "Programos versija:">
