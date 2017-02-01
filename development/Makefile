@@ -3,18 +3,14 @@ SHELL = /bin/sh
 BROWSER ?= $(if $(and $(DISPLAY),$(XDG_SESSION_ID)),xdg-open, \
 	   $(if $(and $(COMSPEC),$(OS)),start,firefox))
 
-CP ?= install -m 644
 CURL ?= curl
 ECHO ?= echo
 MARKDOWN ?= Markdown.pl
 MKDIR ?= install -d -m 755
-MV ?= mv
 RM ?= rm -f
 RMDIR ?= $(RM) -r
 SED ?= sed
 ZIP ?= zip -q -r -9
-
-CERT_PASS ?= password
 
 AMO_API_KEY ?= user:12345678:987
 AMO_API_SECRET ?= 28934y23i4h32i4j23nk4j3244
@@ -39,7 +35,7 @@ chrome_files = $(wildcard $(addprefix source/content_common/useragentswitcher/,*
 	       $(addprefix source/locale_common/,$(addsuffix /useragentswitcher/*.*,$(addsuffix *,$(LINGUAS)))) \
 	       source/skin_common/classic/useragentswitcher/*.*)
 
-.PHONY: all build clean chrome distclean generate install selfsign sign update-translations xpi
+.PHONY: all build clean chrome distclean generate install sign update-translations xpi
 all build xpi: $(out_xpi)
 
 chrome: chrome/useragentswitcher.jar
@@ -91,22 +87,3 @@ install.rdf: config.sed common_install.rdf
 $(out_xpi): chrome/useragentswitcher.jar chrome.manifest install.rdf
 	$(MKDIR) builds
 	$(ZIP) $@ $^ license.txt
-
-# The older, more convenient way to sign. 
-# I hope Mozilla reintroduces something like this.
-selfsign: generate x509.cert
-	$(MKDIR) META-INF
-	signtool -d . -k $(ID) -p $(CERT_PASS) .
-	$(ZIP) $(out_xpi) META-INF/zigbert.rsa
-	$(ZIP) -D $(out_xpi) chrome/useragentswitcher.jar install.rdf license.txt \
-		$(filter-out %.rsa,$(wildcard META-INF/*))
-	$(MV) $(out_xpi) $(subst .xpi,-selfsigned.xpi,$(out_xpi))
-
-x509.cert: x509.cacert
-	$(CP) $< $@
-
-x509.cacert: key3.db
-	signtool -G $(ID) -d . -p $(CERT_PASS)
-
-key3.db:
-	certutil -N -d .
