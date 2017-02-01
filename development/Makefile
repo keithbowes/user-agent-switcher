@@ -16,9 +16,6 @@ AMO_API_KEY ?= user:12345678:987
 AMO_API_SECRET ?= 28934y23i4h32i4j23nk4j3244
 JWT ?= $(shell jwtgen --api-key $(AMO_API_KEY) --api-secret $(AMO_API_SECRET))
 
-LINGUAS ?= en-US
-locales = $(notdir $(wildcard $(addprefix source/locale_common/,$(addsuffix *,$(LINGUAS)))))
-
 # In GNU make 4.2+, you can portably read files with the $(file ...) function
 # In older version, I'll just use the cat command (which may not available on some OSes)
 needed_version ::= 4.2
@@ -26,8 +23,7 @@ is_needed_version ::= $(filter $(needed_version),$(firstword $(sort $(MAKE_VERSI
 ID ::= $(subst id=,,$(filter id=%,$(if $(is_needed_version),$(file < config.properties),$(shell cat config.properties))))
 VERSION ::= $(subst version=,,$(filter version=%,$(if $(is_needed_version),$(file < config.properties),$(shell cat config.properties))))
 
-out_prefix = $(if $(findstring $(firstword $(sort 2 $(words $(locales)))),2),-localized,)
-out_xpi = builds/user-agent-switcher-$(VERSION)$(out_prefix).xpi
+out_xpi = builds/user-agent-switcher-$(VERSION).xpi
 signed_xpi = $(out_xpi:.xpi=.1-signed.1-signed.xpi)
 
 .PHONY: all build clean distclean generate install sign update-translations xpi

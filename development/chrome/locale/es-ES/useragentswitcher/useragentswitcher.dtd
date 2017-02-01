@@ -2,7 +2,7 @@
 <!ENTITY useragentswitcher.about.key "c">
 <!ENTITY useragentswitcher.about.title "Acerca de User Agent Switcher">
 <!ENTITY useragentswitcher.allow.empty.properties "Allow Empty Properties">
-<!ENTITY useragentswitcher.allow.empty.properties.tooltip "Let empty fields override default values">
+<!ENTITY useragentswitcher.allow.empty.properties.tooltip "Send blank values as empty rather than as the default value">
 <!ENTITY useragentswitcher.app.code.name "Nombre de c&#243;digo de aplicaci&#243;n:">
 <!ENTITY useragentswitcher.app.name "Nombre de aplicaci&#243;n:">
 <!ENTITY useragentswitcher.app.version "Version de aplicaci&#243;n:">
