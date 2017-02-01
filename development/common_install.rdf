@@ -18,13 +18,6 @@
     <em:updateInfoURL>@home.page@releases/</em:updateInfoURL>
     <em:updateURL>@user.agent.switcher.update.manifest@</em:updateURL>
     <em:version>@version@</em:version>
-    <em:file>
-      <Description about="urn:mozilla:extension:file:useragentswitcher.jar">
-        <em:locale>locale/en-US/useragentswitcher/</em:locale>
-        <em:package>content/useragentswitcher/</em:package>
-        <em:skin>skin/classic/useragentswitcher/</em:skin>
-      </Description>
-    </em:file>
     <em:targetApplication>
       <Description>
         <!-- All Toolkit-based applications.  Available in Gecko 1.9+ (Firefox 3+, SeaMonkey 2+, etc).
