@@ -29,7 +29,8 @@ signed_xpi = $(out_xpi:.xpi=.1-signed.1-signed.xpi)
 .PHONY: all build clean distclean generate install sign update-translations xpi
 all build xpi: $(out_xpi)
 
-generate: install.rdf
+chrome: chrome/useragentswitcher.jar
+generate: chrome install.rdf
 
 clean:
 	$(RM) $(wildcard builds/*.xpi)
