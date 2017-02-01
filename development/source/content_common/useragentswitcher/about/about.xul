@@ -18,7 +18,7 @@
     <description class="title">&useragentswitcher.build.date;</description>
     <description class="date">@build.date@</description>
     <description class="title">&useragentswitcher.author;</description>
-    <description>Chris Pederick</description>
+    <description>@author@</description>
     <description onclick="UserAgentSwitcherAbout.openURL(this)" class="url">@home.page@</description>
   </vbox>
   <separator class="groove"/>
