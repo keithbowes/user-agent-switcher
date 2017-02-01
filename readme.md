@@ -31,8 +31,7 @@ Currently my planned releases are:
 
 * ~~0.8: My first release, separating it from the original.  Maybe it should be 0.7.4, as there are no major changes, but just some annoyances I've had have been fixed (persistent settings, the name of the menu item stays the same, fix for Netflix not working with the Tech Patterns list).~~
 * 0.8.1: Make this an extractionless, restartless extension.  Self-signing will give way to signing from mozilla.org.  No more English-only builds.
-* 0.8.2: Store the user-agent strings in the preferences instead of as a file.  The DOM will be built from the preferences rather than being read from the file.  This should help with network and mobile profiles.
-* 0.9: This should be a hybrid XPCOM/WebExtension in browsers that support it, or pure XPCOM in those that don't.  Chris Pederick's list of issues and to-dos will be fixed in the WebExtensions and shared code.  Not much might be different from 0.8.2 in the XPCOM code.
+* 0.9: This should be a hybrid XPCOM/WebExtension in browsers that support it, or pure XPCOM in those that don't.  Chris Pederick's list of issues and to-dos will be fixed in the WebExtensions and shared code.  Not much might be different from 0.8.1 in the XPCOM code.
 * 1.0: Completely separate XPCOM and WebExtension extensions.  They might share the same tree or I might create a branch for the legacy extension.  Doubtlessly other features and bug fixes.
 
 ## Help
@@ -54,5 +53,5 @@ Supported by:
 ## License
 
 All files are distributed for free under the terms of the
-[GNU General Public License](https://github.com/keithbowes/user-agent-switcher/license.txt).
+[GNU General Public License](https://github.com/keithbowes/user-agent-switcher/blob/master/license.txt).
 This does not apply to the icons included in the extension which have their own individual licenses.
