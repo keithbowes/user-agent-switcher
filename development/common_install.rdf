@@ -14,6 +14,7 @@
     <em:name>@name@</em:name>
     <em:optionsURL>chrome://useragentswitcher/content/options/options.xul</em:optionsURL>
     <em:type>2</em:type><!-- extension -->
+    <em:unpack>true</em:unpack>
     <em:updateInfoURL>@home.page@releases/</em:updateInfoURL>
     <em:updateURL>@user.agent.switcher.update.manifest@</em:updateURL>
     <em:version>@version@</em:version>
