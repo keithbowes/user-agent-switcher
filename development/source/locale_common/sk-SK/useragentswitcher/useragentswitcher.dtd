@@ -1,34 +1,34 @@
-<!ENTITY useragentswitcher.about "About...">
+<!ENTITY useragentswitcher.about "Čo je...">
 <!ENTITY useragentswitcher.about.key "o">
 <!ENTITY useragentswitcher.about.title "Čo je User Agent Switcher">
 <!ENTITY useragentswitcher.allow.empty.properties "Allow Empty Properties">
 <!ENTITY useragentswitcher.allow.empty.properties.tooltip "Send blank values as empty rather than as the default value">
 <!ENTITY useragentswitcher.app.code.name "App Code Name:">
-<!ENTITY useragentswitcher.app.name "App Name:">
-<!ENTITY useragentswitcher.app.version "App Version:">
-<!ENTITY useragentswitcher.author "Author">
-<!ENTITY useragentswitcher.build.date "Build Date">
+<!ENTITY useragentswitcher.app.name "Názov aplikácie:">
+<!ENTITY useragentswitcher.app.version "Verzia aplikácie:">
+<!ENTITY useragentswitcher.author "Autor">
+<!ENTITY useragentswitcher.build.date "Dátum zostavenia">
 <!ENTITY useragentswitcher.copy "Copy">
 <!ENTITY useragentswitcher.cut "Cut">
-<!ENTITY useragentswitcher.default.user.agent "Default User Agent">
-<!ENTITY useragentswitcher.default.user.agent.key "D">
-<!ENTITY useragentswitcher.delete "Delete...">
-<!ENTITY useragentswitcher.description "Description:">
+<!ENTITY useragentswitcher.default.user.agent "Predvolený">
+<!ENTITY useragentswitcher.default.user.agent.key "d">
+<!ENTITY useragentswitcher.delete "Odstrániť...">
+<!ENTITY useragentswitcher.description "Popis:">
 <!ENTITY useragentswitcher.download.user.agents "Download lists of user agents to import...">
-<!ENTITY useragentswitcher.edit "Edit...">
+<!ENTITY useragentswitcher.edit "Upraviť...">
 <!ENTITY useragentswitcher.edit.user.agents "Edit User Agents...">
-<!ENTITY useragentswitcher.edit.user.agents.key "E">
-<!ENTITY useragentswitcher.export "Export...">
-<!ENTITY useragentswitcher.general "General">
-<!ENTITY useragentswitcher.help "Help...">
+<!ENTITY useragentswitcher.edit.user.agents.key "a">
+<!ENTITY useragentswitcher.export "Exportovať...">
+<!ENTITY useragentswitcher.general "Všeobecné">
+<!ENTITY useragentswitcher.help "Pomocník...">
 <!ENTITY useragentswitcher.help.key "P">
-<!ENTITY useragentswitcher.home.page "Home Page">
-<!ENTITY useragentswitcher.import "Import...">
+<!ENTITY useragentswitcher.home.page "Domovská stránka">
+<!ENTITY useragentswitcher.import "Importovať...">
 <!ENTITY useragentswitcher.import.export "Import/Export">
 <!ENTITY useragentswitcher.import.overwrite "Pri importe prepísať doterajšie nastavenia">
 <!ENTITY useragentswitcher.menu.hide "Skryť ponuku nástrojov rozšírenia User Agent Switcher">
-<!ENTITY useragentswitcher.move.down "Move Down">
-<!ENTITY useragentswitcher.move.up "Move Up">
+<!ENTITY useragentswitcher.move.down "Presunúť nadol">
+<!ENTITY useragentswitcher.move.up "Presunúť nahor">
 <!ENTITY useragentswitcher.name "User Agent Switcher">
 <!ENTITY useragentswitcher.name.key "U">
 <!ENTITY useragentswitcher.name.label "Name:">
@@ -37,17 +37,17 @@
 <!ENTITY useragentswitcher.new.separator "New Separator">
 <!ENTITY useragentswitcher.new.user.agent "New User Agent...">
 <!ENTITY useragentswitcher.new.user.agent.description "The default user agent values are displayed below. Add a description and edit any of the values to create a new user agent.">
-<!ENTITY useragentswitcher.options "Options...">
+<!ENTITY useragentswitcher.options "Nastavenia...">
 <!ENTITY useragentswitcher.options.key "N">
 <!ENTITY useragentswitcher.options.title "Nastavenia pre User Agent Switcher">
 <!ENTITY useragentswitcher.paste "Paste">
-<!ENTITY useragentswitcher.platform "Platform:">
-<!ENTITY useragentswitcher.reset.options "Reset Options...">
+<!ENTITY useragentswitcher.platform "Operačný systém:">
+<!ENTITY useragentswitcher.reset.options "Obnoviť nastavenia...">
 <!ENTITY useragentswitcher.reset.on.close "Reset on close">
 <!ENTITY useragentswitcher.test "Test...">
 <!ENTITY useragentswitcher.test.key "T">
 <!ENTITY useragentswitcher.user.agent "User Agent">
 <!ENTITY useragentswitcher.user.agent.label "Prehliadač:">
-<!ENTITY useragentswitcher.user.agents "User Agents">
-<!ENTITY useragentswitcher.vendor "Vendor:">
-<!ENTITY useragentswitcher.vendor.sub "Vendor Sub:">
+<!ENTITY useragentswitcher.user.agents "Prehliadače">
+<!ENTITY useragentswitcher.vendor "Distribúcia:">
+<!ENTITY useragentswitcher.vendor.sub "Údaje o distribúcii:">
