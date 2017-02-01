@@ -28,9 +28,9 @@ VERSION ::= $(subst version=,,$(filter version=%,$(if $(is_needed_version),$(fil
 
 out_prefix = $(if $(findstring $(firstword $(sort 2 $(words $(locales)))),2),-localized,)
 out_xpi = builds/user-agent-switcher-$(VERSION)$(out_prefix).xpi
-signed_xpi = $(subst .xpi,.1-signed.1-signed.xpi,$(out_xpi))
+signed_xpi = $(out_xpi:.xpi=.1-signed.1-signed.xpi)
 
-adjust_path = $(subst source,chrome,$(subst _common,,$(1)))
+adjust_path = $(1:source/%_common=chrome/%)
 chrome_files = $(wildcard $(addprefix source/content_common/useragentswitcher/,*.* */*.* options/dialogs/*.*) \
 	       $(addprefix source/locale_common/,$(addsuffix /useragentswitcher/*.*,$(addsuffix *,$(LINGUAS)))) \
 	       source/skin_common/classic/useragentswitcher/*.*)

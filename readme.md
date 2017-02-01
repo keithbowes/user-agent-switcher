@@ -54,5 +54,5 @@ Supported by:
 ## License
 
 All files are distributed for free under the terms of the
-[GNU General Public License](https://github.com/keithbowes/user-agent-switcher/license.txt).
+[GNU General Public License](https://github.com/keithbowes/user-agent-switcher/blob/master/license.txt).
 This does not apply to the icons included in the extension which have their own individual licenses.
