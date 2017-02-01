@@ -43,12 +43,12 @@ chrome_files = $(wildcard $(addprefix source/content_common/useragentswitcher/,*
 all build xpi: $(out_xpi)
 
 chrome: chrome/useragentswitcher.jar
-generate: chrome install.js install.rdf
+generate: chrome install.rdf
 
 clean:
 	$(RM) $(wildcard builds/*.xpi chrome/useragentswitcher.jar)
 	$(RM) $(wildcard config.sed)
-	$(RM) $(wildcard install.js install.rdf)
+	$(RM) $(wildcard install.rdf)
 
 distclean: clean
 	$(RMDIR) $(wildcard META-INF builds chrome)
@@ -85,10 +85,10 @@ docs/index.html: README.md
 config.sed: config.properties
 	$(SED) -e 's/^\(.\+\)=\(.\+\)$$/s,@\1@,\2,g/g' $< > $@
 
-install.%: config.sed common_install.%
+install.rdf: config.sed common_install.rdf
 	$(SED) -f $^ > $@
 
-$(out_xpi): chrome/useragentswitcher.jar chrome.manifest install.js install.rdf
+$(out_xpi): chrome/useragentswitcher.jar chrome.manifest install.rdf
 	$(MKDIR) builds
 	$(ZIP) $@ $^ license.txt
 
@@ -98,7 +98,7 @@ selfsign: generate x509.cert
 	$(MKDIR) META-INF
 	signtool -d . -k $(ID) -p $(CERT_PASS) .
 	$(ZIP) $(out_xpi) META-INF/zigbert.rsa
-	$(ZIP) -D $(out_xpi) chrome/useragentswitcher.jar install.js install.rdf license.txt \
+	$(ZIP) -D $(out_xpi) chrome/useragentswitcher.jar install.rdf license.txt \
 		$(filter-out %.rsa,$(wildcard META-INF/*))
 	$(MV) $(out_xpi) $(subst .xpi,-selfsigned.xpi,$(out_xpi))
 

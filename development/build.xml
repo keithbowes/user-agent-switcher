@@ -48,7 +48,6 @@
     <delete dir="chrome/locale"/>
     <delete dir="chrome/skin"/>
     <echo level="info" message="Building extension file"/>
-    <copy file="common_install.js" tofile="install.js">
       <filterset refid="common.filters"/>
     </copy>
     <copy file="common_install.rdf" tofile="install.rdf">
@@ -57,7 +56,6 @@
     <zip destfile="builds/user-agent-switcher.xpi">
       <zipfileset dir="chrome" prefix="chrome"/>
       <zipfileset file="chrome.manifest"/>
-      <zipfileset file="install.js"/>
       <zipfileset file="install.rdf"/>
       <zipfileset file="license.txt"/>
     </zip>
@@ -66,7 +64,6 @@
   <target name="clean" description="Cleans the generated files">
     <echo level="info" message="Cleaning up the build"/>
     <delete dir="chrome"/>
-    <delete file="install.js"/>
     <delete file="install.rdf"/>
   </target>
 
@@ -74,7 +71,6 @@
   <target name="test" depends="init" description="Test">
     <echo level="info" message="Cleaning up the previous build"/>
     <delete dir="chrome"/>
-    <delete file="install.js"/>
     <delete file="install.rdf"/>
     <delete file="builds/user-agent-switcher-test.xpi"/>
     <echo level="info" message="Creating extension structure"/>
@@ -103,7 +99,6 @@
     <delete dir="chrome/locale"/>
     <delete dir="chrome/skin"/>
     <echo level="info" message="Building extension file"/>
-    <copy file="common_install.js" tofile="install.js">
       <filterset refid="common.filters"/>
     </copy>
     <copy file="common_install.rdf" tofile="install.rdf">
@@ -112,13 +107,11 @@
     <zip destfile="builds/user-agent-switcher-test.xpi">
       <zipfileset dir="chrome" prefix="chrome"/>
       <zipfileset file="chrome.manifest"/>
-      <zipfileset file="install.js"/>
       <zipfileset file="install.rdf"/>
       <zipfileset file="license.txt"/>
     </zip>
     <echo level="info" message="Cleaning up the build"/>
     <delete dir="chrome"/>
-    <delete file="install.js"/>
     <delete file="install.rdf"/>
   </target>
 </project>
