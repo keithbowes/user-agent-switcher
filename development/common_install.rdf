@@ -5,6 +5,7 @@
 
   <Description about="urn:mozilla:install-manifest">
     <em:aboutURL>chrome://useragentswitcher/content/about/about.xul</em:aboutURL>
+    <em:bootstrap>true</em:bootstrap>
     <em:creator>@author@</em:creator>
     <em:description>@description@</em:description>
     <em:homepageURL>@home.page@</em:homepageURL>

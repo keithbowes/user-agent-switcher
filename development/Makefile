@@ -67,6 +67,6 @@ config.sed: config.properties
 install.rdf: config.sed common_install.rdf
 	$(SED) -f $^ > $@
 
-$(out_xpi): chrome chrome.manifest install.rdf
+$(out_xpi): bootstrap.js chrome chrome.manifest install.rdf
 	$(MKDIR) builds
 	$(ZIP) $@ $^ license.txt
