@@ -1,3 +1,4 @@
+var EXPORTED_SYMBOLS = ['UserAgentSwitcherDOM'];
 // User Agent Switcher DOM
 var UserAgentSwitcherDOM =
 {
@@ -34,6 +35,7 @@ var UserAgentSwitcherDOM =
 		var allWindows     = [];
 		var windowMediator = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
 		
+		Components.utils.import("chrome://useragentswitcher/content/common/array.js");
 		allWindows = allWindows.concat(UserAgentSwitcherArray.convertEnumerationToArray(windowMediator.getEnumerator("navigator:browser")));
 
 		return allWindows;	

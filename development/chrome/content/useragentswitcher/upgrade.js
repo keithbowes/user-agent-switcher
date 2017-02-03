@@ -1,3 +1,4 @@
+var EXPORTED_SYMBOLS = ['UserAgentSwitcherUpgrade'];
 // User Agent Switcher upgrade
 var UserAgentSwitcherUpgrade =
 {
@@ -8,7 +9,7 @@ var UserAgentSwitcherUpgrade =
 	},
 
 	// Installs the user agents
-	installUserAgents: function()
+	installUserAgents: function(window)
 	{
 		// If the user agent directory does not exist
 		if(!UserAgentSwitcherImporter.getUserAgentDirectoryLocation().exists())
@@ -20,19 +21,21 @@ var UserAgentSwitcherUpgrade =
 		if(!UserAgentSwitcherImporter.getUserAgentFileLocation().exists())
 		{
 			UserAgentSwitcherImporter.createUserAgentFile();
-    		UserAgentSwitcherImporter.reset();
+    		UserAgentSwitcherImporter.reset(window);
 		}
 	},
 
 	// Migrate to version 0.7
-	migrateTo07: function()
+	migrateTo07: function(window)
 	{
 		var description    = null;
 		var userAgent      = null;
 		var userAgentCount = UserAgentSwitcherPreferences.getIntegerPreference("useragentswitcher.user.agents.count");
 		var userAgentFile  = null;
-		var xmlDocument    = document.implementation.createDocument("", "", null);
+		var xmlDocument    = window.document.implementation.createDocument("", "", null);
 		var rootElement    = xmlDocument.createElement("useragentswitcher");
+
+		Components.utils.import("chrome://useragentswitcher/content/xml/import.js");
 	
 		// If the user agent directory does not exist
 		if(!UserAgentSwitcherImporter.getUserAgentDirectoryLocation().exists())
@@ -145,7 +148,7 @@ var UserAgentSwitcherUpgrade =
 		if(rootElement.childNodes.length > 0)
 		{
 			var outputStream  = Components.classes["@mozilla.org/network/file-output-stream;1"].createInstance(Components.interfaces.nsIFileOutputStream);
-			var xmlSerializer = new XMLSerializer();
+			var xmlSerializer = new window.XMLSerializer();
 
 			xmlDocument.appendChild(rootElement);
 	
@@ -155,18 +158,22 @@ var UserAgentSwitcherUpgrade =
 		} 
 		else
 		{
-			UserAgentSwitcherImporter.reset();
+			UserAgentSwitcherImporter.reset(window);
 		}
 	},
 
 	// Opens the upgrade page
-	openUpgradePage: function()
+	openUpgradePage: function(window)
 	{
 		var windowContent = window.getBrowser();
-	
-		windowContent.removeEventListener("load", UserAgentSwitcherUpgrade.openUpgradePage, false);
 
-		window.setTimeout(function() {  if (confirm(UserAgentSwitcherStringBundle.getString("whatsNew"))) { windowContent.selectedTab = windowContent.addTab("@home.page@releases/@version@/"); }}, 0);	
+		window.setTimeout(function() {
+			Components.utils.import("chrome://useragentswitcher/content/common/stringbundle.js");
+			if (window.confirm(UserAgentSwitcherStringBundle.getString("whatsNew")))
+			{
+				windowContent.selectedTab = windowContent.addTab("@home.page@releases/@version@/");
+			}
+		}, 0);	
 	},
 
 	// Parses the version number
@@ -200,8 +207,9 @@ var UserAgentSwitcherUpgrade =
 	},
 	
 	// Upgrades the extension
-	upgrade: function()
+	upgrade: function(window)
 	{
+		Components.utils.import("chrome://useragentswitcher/content/common/preferences.js");
 		var previousVersion = this.parseVersion(UserAgentSwitcherPreferences.getStringPreference("useragentswitcher.version", true));
 		var version         = this.parseVersion(this.getVersion());
 
@@ -211,12 +219,12 @@ var UserAgentSwitcherUpgrade =
 			// If the previous version is less than 0.7
 			if(previousVersion < this.parseVersion("0.7"))
 			{
-				this.migrateTo07();
+				this.migrateTo07(window);
 			}
 
-			this.installUserAgents();
+			this.installUserAgents(window);
 
-			window.getBrowser().addEventListener("load", UserAgentSwitcherUpgrade.openUpgradePage, false);
+			UserAgentSwitcherUpgrade.openUpgradePage(window);
 	
 			UserAgentSwitcherPreferences.setStringPreference("useragentswitcher.version", version);
 		}

@@ -1,12 +1,8 @@
+var EXPORTED_SYMBOLS = ['UserAgentSwitcher'];
+
 // User Agent Switcher
 var UserAgentSwitcher = 
 {
-	// Displays the about dialog
-	about: function()
-	{
-		window.openDialog("chrome://useragentswitcher/content/about/about.xul", "useragentswitcher-about-dialog", "centerscreen,chrome,modal");
-	},
-
 	// Called when a button has been dropped
 	buttonDrop: function(event)
 	{
@@ -17,7 +13,7 @@ var UserAgentSwitcher =
 	changeOptions: function()
 	{
 		var hideMenuPreference = false;
-		var menu               = document.getElementById("useragentswitcher-menu");
+		var menu               = UserAgentSwitcher.currentWindow.document.getElementById("useragentswitcher-menu");
 	
 		// If the hide menu preference is set
 		if(UserAgentSwitcherPreferences.isPreferenceSet("useragentswitcher.menu.hide"))
@@ -31,7 +27,24 @@ var UserAgentSwitcher =
 			menu.setAttribute("hidden", hideMenuPreference);
 		}
 	},
-	
+
+	// Respond to one of the menu commands
+	command: function(event)
+	{
+		switch (event.target.getAttribute('liv'))
+		{
+			case 'about':
+				UserAgentSwitcher.currentWindow.openDialog("chrome://useragentswitcher/content/about/about.xul", "useragentswitcher-about-dialog", "centerscreen,chrome,modal");
+				break;
+			case 'help':
+				UserAgentSwitcher.currentWindow.getBrowser().selectedTab = UserAgentSwitcher.currentWindow.getBrowser().addTab("@home.page@docs/help/");
+				break;
+			case 'test':
+				UserAgentSwitcher.currentWindow.getBrowser().selectedTab = UserAgentSwitcher.currentWindow.getBrowser().addTab("chrome://useragentswitcher/content/test.html");
+				break;
+		}
+	},
+
 	// Finds the selected user agent and returns it's position and description
 	findSelectedUserAgent: function()
 	{
@@ -72,6 +85,7 @@ var UserAgentSwitcher =
 			var subMenus       = menu.getElementsByTagName("menu");
 			var subMenusLength = subMenus.length;
 		
+			Components.utils.import("chrome://useragentswitcher/content/common/array.js");
 			userAgents = userAgents.concat(UserAgentSwitcherArray.convertCollectionToArray(menu.getElementsByAttribute("checked", "true")));
 
 			// Loop through the sub menus
@@ -99,23 +113,21 @@ var UserAgentSwitcher =
 
 	return flavourSet;
 	},
-   
-	// Opens the help
-	help: function()
-	{
-		window.getBrowser().selectedTab = window.getBrowser().addTab("@home.page@docs/help/");
-	},
 	
 	// Initializes the extension
 	initialize: function(event)
 	{
+		UserAgentSwitcher.currentWindow = (typeof window != "undefined") ? window : event;
 		// Try to get the window content
 		try
 		{
 			var observerService = Components.classes["@mozilla.org/observer-service;1"].getService(Components.interfaces.nsIObserverService);
 
-			UserAgentSwitcherUpgrade.upgrade();
-			UserAgentSwitcherImporter.import(UserAgentSwitcherImporter.importTypeMenu, UserAgentSwitcherImporter.getUserAgentFileLocation(), true);
+			Components.utils.import("chrome://useragentswitcher/content/xml/import.js");
+			Components.utils.import("chrome://useragentswitcher/content/upgrade.js");
+
+			UserAgentSwitcherUpgrade.upgrade(UserAgentSwitcher.currentWindow);
+			UserAgentSwitcherImporter.import(UserAgentSwitcher.currentWindow, UserAgentSwitcherImporter.importTypeMenu, UserAgentSwitcherImporter.getUserAgentFileLocation(), true);
 			UserAgentSwitcher.initializeDisplay();
 	
 			// If the observer service is set
@@ -124,11 +136,12 @@ var UserAgentSwitcher =
 				observerService.addObserver(UserAgentSwitcher, "quit-application-requested", false);
 			}
 	
-			document.getElementById("navigator-toolbox").addEventListener("dragdrop", UserAgentSwitcher.buttonDrop, false);
-			window.removeEventListener("load", UserAgentSwitcher.initialize, false);
+			UserAgentSwitcher.currentWindow.document.getElementById("navigator-toolbox").addEventListener("dragdrop", UserAgentSwitcher.buttonDrop, false);
+			UserAgentSwitcher.currentWindow.removeEventListener("load", UserAgentSwitcher.initialize, false);
 		}
 		catch(exception)
 		{
+			Components.utils.import("chrome://useragentswitcher/content/common/log.js");
 			UserAgentSwitcherLog.log("UserAgentSwitcher.initialize", exception);
 		}
 	},
@@ -136,6 +149,10 @@ var UserAgentSwitcher =
 	// Initializes the display
 	initializeDisplay: function()
 	{
+		Components.utils.import("chrome://useragentswitcher/content/common/dom.js");
+		Components.utils.import("chrome://useragentswitcher/content/common/preferences.js");
+		Components.utils.import("chrome://useragentswitcher/content/common/stringbundle.js");
+
 		var allWindows           = UserAgentSwitcherDOM.getAllWindows();
 		var allWindowsLength     = allWindows.length;
 		var defaultUserAgent     = null;
@@ -205,7 +222,7 @@ var UserAgentSwitcher =
 		// If the reset on close preference is not set or is set to true
 		if(!UserAgentSwitcherPreferences.isPreferenceSet("useragentswitcher.reset.onclose") || UserAgentSwitcherPreferences.getBooleanPreference("useragentswitcher.reset.onclose", true))
 		{
-			UserAgentSwitcher.reset();
+			UserAgentSwitcher.reset(data);
 		}
 
 		return false;
@@ -252,7 +269,7 @@ var UserAgentSwitcher =
 	// Displays the options dialog
 	options: function()
 	{
-		window.openDialog("chrome://useragentswitcher/content/options/options.xul", "useragentswitcher-options-dialog", "centerscreen,chrome,modal,resizable");
+		UserAgentSwitcher.currentWindow.openDialog("chrome://useragentswitcher/content/options/options.xul", "useragentswitcher-options-dialog", "centerscreen,chrome,modal,resizable");
 	
 		UserAgentSwitcher.changeOptions();
 	},
@@ -440,6 +457,9 @@ var UserAgentSwitcher =
 		var position             = userAgent.getAttribute("useragentswitcherposition");
 		var userAgentDescription = userAgent.getAttribute("label");
 
+		if (typeof userAgent.target != 'undefined')
+			userAgent = userAgent.target.getAttribute("userdata");
+
 		var properties = ['appcodename', 'appname', 'appversion', 'platform', 'useragent', 'vendor', 'vendorsub'];
 		var pref;
 		for (i = 0; i < properties.length; i++)
@@ -474,12 +494,6 @@ var UserAgentSwitcher =
 		}
 	},
 	
-	// Opens the test page
-	test: function()
-	{
-		window.getBrowser().selectedTab = window.getBrowser().addTab("chrome://useragentswitcher/content/test.html");
-	},
-	
 	// Uninitializes the extension
 	uninitialize: function(event)
 	{
@@ -507,15 +521,19 @@ var UserAgentSwitcher =
 				}
 			}
 	
-			document.getElementById("navigator-toolbox").removeEventListener("dragdrop", UserAgentSwitcher.buttonDrop, false);	
-			window.removeEventListener("close", UserAgentSwitcher.uninitialize, false);
+				UserAgentSwitcher.currentWindow.document.getElementById("navigator-toolbox").removeEventListener("dragdrop", UserAgentSwitcher.buttonDrop, false);	
+				UserAgentSwitcher.currentWindow.removeEventListener("close", UserAgentSwitcher.uninitialize, false);
 		}
 		catch(exception)
 		{
+			Components.utils.import("chrome://useragentswitcher/content/common/log.js");
 			UserAgentSwitcherLog.log("UserAgentSwitcher.uninitialize", exception);
 		}
 	}
 };
 
-window.addEventListener("load", UserAgentSwitcher.initialize, false);
-window.addEventListener("unload", UserAgentSwitcher.uninitialize, false);
+if (typeof window != "undefined")
+{
+	window.addEventListener("load", UserAgentSwitcher.initialize, false);
+	window.addEventListener("unload", UserAgentSwitcher.uninitialize, false);
+}

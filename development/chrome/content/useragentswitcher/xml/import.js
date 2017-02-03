@@ -1,3 +1,7 @@
+var EXPORTED_SYMBOLS = ['UserAgentSwitcherImporter'];
+const XMLHttpRequest = Components.Constructor("@mozilla.org/xmlextras/xmlhttprequest;1",
+			                 "nsIXMLHttpRequest");
+
 // User Agent Switcher importer
 var UserAgentSwitcherImporter =
 {
@@ -155,13 +159,13 @@ var UserAgentSwitcherImporter =
 	},
 
 	// Evaluates the specified xpath on the specified element returning an array of the matching elements
-	evaluateXPath: function(expression, element)
+	evaluateXPath: function(window, expression, element)
 	{
 		var evaluationResults = null;
 		var matchingElement   = null;
 		var matchingElements  = [];
 		var ownerDocument     = element.ownerDocument;
-		var xPathEvaluator    = new XPathEvaluator();
+		var xPathEvaluator    = new window.XPathEvaluator();
 		var resolver          = xPathEvaluator.createNSResolver(element.ownerDocument == null ? element.documentElement : element.ownerDocument.documentElement);
 	
 		evaluationResults = xPathEvaluator.evaluate(expression, element, resolver, 0, null);
@@ -181,6 +185,7 @@ var UserAgentSwitcherImporter =
 		var existingCounts = {};
 		var userAgentTree  = this.importDocument.getElementById("useragentswitcher-options-user-agents");
 	
+		Components.utils.import("chrome://useragentswitcher/content/common/dom.js");
 		existingCounts.folderCount    = UserAgentSwitcherDOM.findElementsByXPath(userAgentTree, "//treeitem[@container='true']").length;
 		existingCounts.separatorCount = UserAgentSwitcherDOM.findElementsByXPath(userAgentTree, "//treeseparator").length;
 		existingCounts.userAgentCount = UserAgentSwitcherDOM.findElementsByXPath(userAgentTree, "//treeitem[not(@container)]").length;
@@ -209,76 +214,70 @@ var UserAgentSwitcherImporter =
 	},
 
 	// Imports the user agents from a file
-	import: function(type, file, ignoreParentWindow)
+	import: function(window, type, file, ignoreParentWindow)
 	{
 		// Try to import from a file
 		try
 		{
-			// If the file exists, is a file and is readable
-			if(file.exists() && file.isFile() && file.isReadable())
-			{
-				var request     = new XMLHttpRequest();
-				var xmlDocument = null;
-	
-				request.open("get", "file://" + file.path, false);
-				request.send(null);
-	
-				xmlDocument = request.responseXML;
-				
-				// If the file could not be parsed correctly
-				if(xmlDocument.documentElement.nodeName == "parsererror")
-				{
-					return UserAgentSwitcherStringBundle.getFormattedString("importParserError", [file.path]);
-				}
-				else
-				{
-					this.folderCount    = 0;
-   				this.importType     = type;
-   				this.parentFolder   = null;
-					this.separatorCount = 0;
-					this.userAgentCount = 0;
+			var request     = new XMLHttpRequest();
+			var xmlDocument = null;
 
-					// If we are importing from the options
-					if(type == this.importTypeOptions)
-					{
-						this.importDocument = document;
-					
-						// If the overwrite preference is set
-						if(this.importDocument.getElementById("useragentswitcher-import-overwrite").checked)
-						{
-							UserAgentSwitcherDOM.removeAllChildElements(this.importDocument.getElementById("useragentswitcher-options-user-agents"));	
-						}
-						else
-						{
-							var existingCounts = this.getExistingCounts();
-						
-							this.folderCount    = existingCounts.folderCount;
-							this.separatorCount = existingCounts.separatorCount;
-							this.userAgentCount = existingCounts.userAgentCount;
-						}
-					}
-					else
-					{
-						this.setImportDocument(ignoreParentWindow);
-						this.removeUserAgents();	
-					}
-	
-					this.importFile(xmlDocument.documentElement);
-					
-					// If nothing was imported
-					if(this.separatorCount == 0 && this.folderCount == 0 && this.userAgentCount == 0)
-					{
-						return UserAgentSwitcherStringBundle.getFormattedString("importParserError", [file.path]);
-					}
-				}
+			request.open("get", "chrome://useragentswitcher/content/xml/useragents.xml", false);
+			request.send(null);
+
+			xmlDocument = request.responseXML;
+			
+			// If the file could not be parsed correctly
+			if(xmlDocument.documentElement.nodeName == "parsererror")
+			{
+				return UserAgentSwitcherStringBundle.getFormattedString("importParserError", ["chrome://useragentswitcher/content/xml/useragents.xml"]);
 			}
 			else
 			{
-				return UserAgentSwitcherStringBundle.getFormattedString("importFileFailed", [file.path]);
+				this.folderCount    = 0;
+				this.importType     = type;
+				this.parentFolder   = null;
+				this.separatorCount = 0;
+				this.userAgentCount = 0;
+
+				// If we are importing from the options
+				if(type == this.importTypeOptions)
+				{
+					this.importDocument = window.document;
+				
+					// If the overwrite preference is set
+					if(this.importDocument.getElementById("useragentswitcher-import-overwrite").checked)
+					{
+						Components.utils.import("chrome://useragentswitcher/content/common/dom.js");
+						UserAgentSwitcherDOM.removeAllChildElements(this.importDocument.getElementById("useragentswitcher-options-user-agents"));	
+					}
+					else
+					{
+						var existingCounts = this.getExistingCounts();
+					
+						this.folderCount    = existingCounts.folderCount;
+						this.separatorCount = existingCounts.separatorCount;
+						this.userAgentCount = existingCounts.userAgentCount;
+					}
+				}
+				else
+				{
+					this.setImportDocument(window,ignoreParentWindow);
+					this.removeUserAgents();	
+				}
+
+				this.importFile(window, xmlDocument.documentElement);
+				
+				// If nothing was imported
+				if(this.separatorCount == 0 && this.folderCount == 0 && this.userAgentCount == 0)
+				{
+					return UserAgentSwitcherStringBundle.getFormattedString("importParserError", [file.path]);
+				}
 			}
 		}
 		catch(exception)
 		{
+			Components.utils.import("chrome://useragentswitcher/content/common/log.js");
 			UserAgentSwitcherLog.log("UserAgentSwitcherImporter.import", exception);
 		}
 
@@ -286,10 +285,10 @@ var UserAgentSwitcherImporter =
 	},
 	
 	// Imports the user agents
-	importFile: function(rootNode)
+	importFile: function(window, rootNode)
 	{
 		var element        = null;
-		var elements       = this.evaluateXPath("*", rootNode);
+		var elements       = this.evaluateXPath(window, "*", rootNode);
 		var elementsLength = elements.length;
 
 		// Loop through the user agents
@@ -308,7 +307,7 @@ var UserAgentSwitcherImporter =
 			{
 				this.folderCount++;				
 
-				this.importFolder(element);				
+				this.importFolder(window, element);				
 			}
 			else if(element.nodeName == "separator")
 			{
@@ -320,7 +319,7 @@ var UserAgentSwitcherImporter =
 	},
 	
 	// Imports a folder
-	importFolder: function(folderElement)
+	importFolder: function(window, folderElement)
 	{
 		// If this is a menu import type
 		if(this.importType == this.importTypeMenu)
@@ -340,7 +339,7 @@ var UserAgentSwitcherImporter =
 			this.menuParentFolder    = this.addMenuFolder(menu, "menu", this.menuParentFolder);	
 			this.toolbarParentFolder = this.addMenuFolder(menu, "toolbar", this.toolbarParentFolder);	
 				
-			this.importFile(folderElement);
+			this.importFile(window, folderElement);
 			
 			this.menuParentFolder    = previousMenuParentFolder;	
 			this.toolbarParentFolder = previousToolbarParentFolder;	
@@ -369,7 +368,7 @@ var UserAgentSwitcherImporter =
 			
 			this.optionsParentFolder = treeChildren;
 				
-			this.importFile(folderElement);
+			this.importFile(window, folderElement);
 			
 			this.optionsParentFolder = previousParentFolder
 		}
@@ -395,6 +394,7 @@ var UserAgentSwitcherImporter =
 	// Imports a user agent
 	importUserAgent: function(userAgentElement)
 	{
+		Components.utils.import("chrome://useragentswitcher/content/useragentswitcher.js");
 		// If the user agent element has a description attribute
 		if(userAgentElement.hasAttribute("description"))
 		{
@@ -405,9 +405,10 @@ var UserAgentSwitcherImporter =
 	
 				this.populateUserAgent(menuItem, userAgentElement);
 	
-				menuItem.setAttribute("oncommand", "UserAgentSwitcher.switchUserAgent(this)");
 				menuItem.setAttribute("type", "radio");
 				menuItem.setAttribute("useragentswitcherposition", this.userAgentCount);
+				menuItem.setAttribute("userdata", this);
+				menuItem.addEventListener('command', UserAgentSwitcher.switchUserAgent, false);
 		
 				this.addMenuUserAgent(menuItem, "menu", this.menuParentFolder);	
 				this.addMenuUserAgent(menuItem, "toolbar", this.toolbarParentFolder);	
@@ -527,6 +528,7 @@ var UserAgentSwitcherImporter =
 			// Remove the next sibling to the top separator if it exists and is not the bottom separator
 			while(optionsSeparator.nextSibling && optionsSeparator.nextSibling.getAttribute("id") != "useragentswitcher-separator-2-" + suffix)
 			{
+				Components.utils.import("chrome://useragentswitcher/content/common/dom.js");
 				UserAgentSwitcherDOM.removeElement(optionsSeparator.nextSibling);
 			}
 		}
@@ -540,10 +542,10 @@ var UserAgentSwitcherImporter =
 	},
 	
 	// Resets the user agent file
-	reset: function()
+	reset: function(window)
 	{
 		var outputStream  = Components.classes["@mozilla.org/network/file-output-stream;1"].createInstance(Components.interfaces.nsIFileOutputStream);
-		var request       = new XMLHttpRequest();
+		var request       = new window.XMLHttpRequest();
 		var userAgentFile = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsILocalFile);
 
 		userAgentFile.initWithPath(this.getUserAgentFileLocation().path);
@@ -557,9 +559,9 @@ var UserAgentSwitcherImporter =
 	},
 
 	// Sets the import document
-	setImportDocument: function(ignoreParentWindow)
+	setImportDocument: function(window, ignoreParentWindow)
 	{
-		this.importDocument = document;
+		this.importDocument = window.document;
 	
 		// If not ignoring the parent window and there is a parent window
 		if(!ignoreParentWindow && window.opener)

@@ -1,3 +1,5 @@
+var EXPORTED_SYMBOLS = ['UserAgentSwitcherPreferences'];
+
 // User Agent Switcher preferences
 var UserAgentSwitcherPreferences =
 {

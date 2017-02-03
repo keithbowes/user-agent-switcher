@@ -1,29 +1,31 @@
 Components.utils.import("resource://gre/modules/Services.jsm");
-
 var stringBundle = Services.strings.createBundle("chrome://useragentswitcher/locale/useragentswitcher.properties");
 
 function startup(data,reason) {
-    //Components.utils.import("chrome://myAddon/content/myModule.jsm");
-    //myModule.startup();  // Do whatever initial startup stuff you need to do
+  //Components.utils.import("chrome://myAddon/content/myModule.jsm");
+  //myModule.startup();  // Do whatever initial startup stuff you need to do
 
-    forEachOpenWindow(loadIntoWindow);
-    Services.wm.addListener(WindowListener);
+  forEachOpenWindow(loadIntoWindow);
+  Services.wm.addListener(WindowListener);
+
+	Components.utils.import("chrome://useragentswitcher/content/useragentswitcher.js");
 }
 
 function shutdown(data,reason) {
-    if (reason == APP_SHUTDOWN)
-        return;
+  if (reason == APP_SHUTDOWN)
+    return;
 
-    forEachOpenWindow(unloadFromWindow);
-    Services.wm.removeListener(WindowListener);
+	UserAgentSwitcher.uninitialize();
+  forEachOpenWindow(unloadFromWindow);
+  Services.wm.removeListener(WindowListener);
 
-    //myModule.shutdown();  // Do whatever shutdown stuff you need to do on addon disable
+  //myModule.shutdown();  // Do whatever shutdown stuff you need to do on addon disable
 
-    //Components.utils.unload("chrome://myAddon/content/myModule.jsm");  // Same URL as above
+  //Components.utils.unload("chrome://myAddon/content/myModule.jsm");  // Same URL as above
 
-    // HACK WARNING: The Addon Manager does not properly clear all addon related caches on update;
-    //               in order to fully update images and locales, their caches need clearing here
-    Services.obs.notifyObservers(null, "chrome-flush-caches", null);
+  // HACK WARNING: The Addon Manager does not properly clear all addon related caches on update;
+  //         in order to fully update images and locales, their caches need clearing here
+  //Services.obs.notifyObservers(null, "chrome-flush-caches", null);
 }
 
 function install(data,reason) { }
@@ -31,13 +33,15 @@ function uninstall(data,reason) { }
 
 function loadIntoWindow(window) {
 /* call/move your UI construction function here */
-	createMenu(window, ['TasksMenu'], ['downloadmgr']);
-	createMenu(window, ['ToolsMenu', 'tools-menu'], ['devToolsSeparator']);
+	createMenu(window, ['TasksMenu', 'ToolsMenu', 'tools-menu'], ['devToolsSeparator', 'downloadmgr']);
 	createTool(window); 
+	UserAgentSwitcher.initialize(window);
 }
 
 function createMenuSkeleton(window, menu, type)
 {
+	Components.utils.import("chrome://useragentswitcher/content/useragentswitcher.js");
+
 	var menupopup = window.document.createElement('menupopup');
 	menupopup.id = 'useragentswitcher-popup-' + type;
 	menu.appendChild(menupopup);
@@ -46,8 +50,8 @@ function createMenuSkeleton(window, menu, type)
 	defaultmenu.id = 'useragentswitcher-default-' + type;
 	defaultmenu.setAttribute('label', stringBundle.GetStringFromName('useragentswitcher_defaultUserAgent'));
 	defaultmenu.setAttribute('name', 'useragentswitcher-group-' + type);
-	defaultmenu.setAttribute('oncommand', 'UserAgentSwitcher.reset();');
 	defaultmenu.setAttribute('type', 'radio');
+	defaultmenu.addEventListener('command', UserAgentSwitcher.reset, false);
 
 	if (type == 'toolbar')
 		defaultmenu.setAttribute('accesskey', 'useragentswitcher_default_user_agent_key');
@@ -64,7 +68,7 @@ function createMenuSkeleton(window, menu, type)
 	editmenu = window.document.createElement('menuitem');
 	editmenu.id = 'useragentswitcher-edit-user-agents-' + type;
 	editmenu.setAttribute('label', stringBundle.GetStringFromName('useragentswitcher_edit_user_agents'));
-	editmenu.setAttribute('oncommand', 'UserAgentSwitcher.options();');
+	editmenu.addEventListener('command', UserAgentSwitcher.options, false);
 
 	if (type == 'toolbar')
 		editmenu.setAttribute('accesskey', 'useragentswitcher_edit_user_agents_key');
@@ -86,6 +90,7 @@ function createMenuSkeleton(window, menu, type)
 
 	var optionsmenu = editmenu.cloneNode();
   optionsmenu.setAttribute('label', stringBundle.GetStringFromName('useragentswitcher_options'));
+	optionsmenu.addEventListener('command', UserAgentSwitcher.options, false);
 
 	if (type == 'toolbar')
 		optionsmenu.setAttribute('accesskey', 'useragentswitcher_options_key');
@@ -97,18 +102,18 @@ function createMenuSkeleton(window, menu, type)
 	uapopup.appendChild(sep);
 
 	menus = ['help', 'test', 'about'];
-	var sub = [];
 	for (var i = 0; i < menus.length; i++)
 	{
-		sub[i] = window.document.createElement('menuitem');
-		sub[i].id = 'useragentswitcher-' + menus[i] + '-' + type;
-		sub[i].setAttribute('label', stringBundle.GetStringFromName('useragentswitcher_' + menus[i]));
-		sub[i].setAttribute('oncommand', 'UserAgentSwitcher.' + menus[i] + '()');
+		sub = window.document.createElement('menuitem');
+		sub.id = 'useragentswitcher-' + menus[i] + '-' + type;
+		sub.setAttribute('label', stringBundle.GetStringFromName('useragentswitcher_' + menus[i]));
+		sub.setAttribute('liv', menus[i]);
+		sub.addEventListener('command', UserAgentSwitcher.command, false);
 
 		if (type == 'toolbar')
-			sub[i].setAttribute('accesskey', stringBundle.GetStringFromName('useragentswitcher_' + menus[i] + '_key'));
+			sub.setAttribute('accesskey', stringBundle.GetStringFromName('useragentswitcher_' + menus[i] + '_key'));
 
-		uapopup.appendChild(sub[i]);
+		uapopup.appendChild(sub);
 	}
 }
 
@@ -181,25 +186,25 @@ function unloadFromWindow(window) {
 
 function forEachOpenWindow(todo)  // Apply a function to all open browser windows
 {
-    var windows = Services.wm.getEnumerator("navigator:browser");
-    while (windows.hasMoreElements())
-        todo(windows.getNext().QueryInterface(Components.interfaces.nsIDOMWindow));
+  var windows = Services.wm.getEnumerator("navigator:browser");
+  while (windows.hasMoreElements())
+    todo(windows.getNext().QueryInterface(Components.interfaces.nsIDOMWindow));
 }
 
 var WindowListener =
 {
-    onOpenWindow: function(xulWindow)
+  onOpenWindow: function(xulWindow)
+  {
+    var window = xulWindow.QueryInterface(Components.interfaces.nsIInterfaceRequestor)
+                .getInterface(Components.interfaces.nsIDOMWindow);
+    function onWindowLoad()
     {
-        var window = xulWindow.QueryInterface(Components.interfaces.nsIInterfaceRequestor)
-                              .getInterface(Components.interfaces.nsIDOMWindow);
-        function onWindowLoad()
-        {
-            window.removeEventListener("load",onWindowLoad);
-            if (window.document.documentElement.getAttribute("windowtype") == "navigator:browser")
-                loadIntoWindow(window);
-        }
-        window.addEventListener("load",onWindowLoad);
-    },
-    onCloseWindow: function(xulWindow) { },
-    onWindowTitleChange: function(xulWindow, newTitle) { }
+      window.removeEventListener("load",onWindowLoad);
+      if (window.document.documentElement.getAttribute("windowtype") == "navigator:browser")
+        loadIntoWindow(window);
+    }
+    window.addEventListener("load",onWindowLoad);
+  },
+  onCloseWindow: function(xulWindow) { },
+  onWindowTitleChange: function(xulWindow, newTitle) { }
 };

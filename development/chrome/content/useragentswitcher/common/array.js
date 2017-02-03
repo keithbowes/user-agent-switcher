@@ -1,3 +1,5 @@
+var EXPORTED_SYMBOLS = ['UserAgentSwitcherArray'];
+
 // User Agent Switcher array
 var UserAgentSwitcherArray =
 {

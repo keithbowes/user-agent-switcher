@@ -1,3 +1,5 @@
+var EXPORTED_SYMBOLS = ['UserAgentSwitcherLog'];
+
 // User Agent Switcher log
 var UserAgentSwitcherLog =
 {	
