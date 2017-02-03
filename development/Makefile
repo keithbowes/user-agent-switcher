@@ -14,7 +14,12 @@ ZIP ?= zip -q -r -9
 
 AMO_API_KEY ?= user:12345678:987
 AMO_API_SECRET ?= 28934y23i4h32i4j23nk4j3244
-JWT ?= $(shell jwtgen --api-key $(AMO_API_KEY) --api-secret $(AMO_API_SECRET))
+AMO_DOM ?= allizom.org
+JWT ?= $(strip $(shell jwtgen --api-key $(AMO_API_KEY) --api-secret $(AMO_API_SECRET)))
+
+# Default to all locales, but it can be overridden
+LINGUAS ?= *
+locales = $(notdir $(wildcard $(addprefix source/locale_common/,$(addsuffix *,en $(LINGUAS)))))
 
 # In GNU make 4.2+, you can portably read files with the $(file ...) function
 # In older version, I'll just use the cat command (which may not available on some OSes)
@@ -23,10 +28,21 @@ is_needed_version ::= $(filter $(needed_version),$(firstword $(sort $(MAKE_VERSI
 ID ::= $(subst id=,,$(filter id=%,$(if $(is_needed_version),$(file < config.properties),$(shell cat config.properties))))
 VERSION ::= $(subst version=,,$(filter version=%,$(if $(is_needed_version),$(file < config.properties),$(shell cat config.properties))))
 
-out_xpi = builds/user-agent-switcher-$(VERSION).xpi
-signed_xpi = $(out_xpi:.xpi=.1-signed.1-signed.xpi)
+out_prefix = $(if $(findstring $(firstword $(sort 2 $(words $(locales)))),2),-localized,)
+out_xpi = builds/user-agent-switcher-$(VERSION)$(out_prefix).xpi
+signed_xpi = $(out_xpi:.xpi=-signed.xpi)
 
-.PHONY: all build clean distclean generate install sign update-translations xpi
+adjust_path = $(subst source,chrome,$(subst _common,,$(1)))
+chrome_files = $(wildcard $(addprefix source/content_common/useragentswitcher/,*.* */*.* options/dialogs/*.*) \
+	       $(addprefix source/locale_common/,$(addsuffix /useragentswitcher/*.*,$(addsuffix *,$(LINGUAS)))) \
+	       source/skin_common/classic/useragentswitcher/*.*)
+
+# If jq is installed, use it to parse JSON
+# If not, use a more limited Python script
+jq = $(if $(shell jq -h),$(shell jq -r $(1) $(2)),$(shell python -c 'import json; f = open("$(2)"); \
+     j = json.load(f); f.close(); print(j$(foreach p,$(subst ., ,$(1)),["$(p)"]));'))
+
+.PHONY: all build clean chrome distclean generate install sign update-translations xpi
 all build xpi: $(out_xpi)
 
 chrome: chrome/useragentswitcher.jar
@@ -43,9 +59,16 @@ distclean: clean
 install: sign
 	$(BROWSER) $(out_xpi)
 
-sign: $(out_xpi)
-	$(CURL) -H "Authorization: JWT $(JWT)" -XPUT --form "upload=@$(out_xpi)" https://addons.mozilla.org/api/v3/addons/$(ID)/versions/$(VERSION) 
-	$(CURL) -o $(signed_xpi) https://addons.mozilla.org/addon/$(ID)/$(notdir $(signed_xpi))
+sign: sign-send sign-retrieve
+
+sign-check:
+	$(CURL) $(CURLFLAGS) -H "Authorization: JWT $(JWT)" -g https://addons.$(AMO_DOM)/api/v3/addons/$(ID)/versions/$(VERSION)/
+
+sign-retrieve:
+	$(CURL) -H "Authorization: JWT $(JWT) -g -o $(signed_xpi) https://addons.$(AMO_DOM)/addon/$(ID)/$(notdir $(signed_xpi))
+	
+sign-send: $(out_xpi)
+	$(CURL) -H "Authorization: JWT $(JWT)" -H "Content-type: multipart/form-data -XPUT -g --form "upload=@$(out_xpi)" https://addons.$(AMO_DOM)/api/v3/addons/$(ID)/versions/$(VERSION)/ 
 
 dtd_files ::= $(addsuffix /useragentswitcher/useragentswitcher.dtd,$(wildcard chrome/locale/*))
 update-translations: $(dtd_files)
