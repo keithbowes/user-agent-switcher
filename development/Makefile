@@ -21,37 +21,26 @@ JWT ?= $(strip $(shell jwtgen --api-key $(AMO_API_KEY) --api-secret $(AMO_API_SE
 LINGUAS ?= *
 locales = $(notdir $(wildcard $(addprefix source/locale_common/,$(addsuffix *,en $(LINGUAS)))))
 
-# In GNU make 4.2+, you can portably read files with the $(file ...) function
-# In older version, I'll just use the cat command (which may not available on some OSes)
-needed_version ::= 4.2
-is_needed_version ::= $(filter $(needed_version),$(firstword $(sort $(MAKE_VERSION) $(needed_version))))
-ID ::= $(subst id=,,$(filter id=%,$(if $(is_needed_version),$(file < config.properties),$(shell cat config.properties))))
-VERSION ::= $(subst version=,,$(filter version=%,$(if $(is_needed_version),$(file < config.properties),$(shell cat config.properties))))
+ID = $(call jq,.applications.gecko.id)
+VERSION = $(call jq,.version)
+
+jq = $(shell jq -r $(1) $(if $(2),$(2),manifest.json))
 
 out_prefix = $(if $(findstring $(firstword $(sort 2 $(words $(locales)))),2),-localized,)
 out_xpi = builds/user-agent-switcher-$(VERSION)$(out_prefix).xpi
 signed_xpi = $(out_xpi:.xpi=-signed.xpi)
 
-adjust_path = $(subst source,chrome,$(subst _common,,$(1)))
-chrome_files = $(wildcard $(addprefix source/content_common/useragentswitcher/,*.* */*.* options/dialogs/*.*) \
-	       $(addprefix source/locale_common/,$(addsuffix /useragentswitcher/*.*,$(addsuffix *,$(LINGUAS)))) \
-	       source/skin_common/classic/useragentswitcher/*.*)
+common_files = $(addprefix chrome/content/useragentswitcher/,about/common_about.xul common_upgrade.js options/common_options.js) common_install.rdf
+generated_files = $(subst common_,,$(common_files))
 
-# If jq is installed, use it to parse JSON
-# If not, use a more limited Python script
-jq = $(if $(shell jq -h),$(shell jq -r $(1) $(2)),$(shell python -c 'import json; f = open("$(2)"); \
-     j = json.load(f); f.close(); print(j$(foreach p,$(subst ., ,$(1)),["$(p)"]));'))
-
-.PHONY: all build clean chrome distclean generate install sign update-translations xpi
-all build xpi: $(out_xpi)
-
-chrome: chrome/useragentswitcher.jar
-generate: chrome install.rdf
+.PHONY: all build clean chrome distclean generate install sign-download sign-submit update-translations xpi
+all build xpi: generate $(out_xpi)
+generate: $(generated_files)
 
 clean:
 	$(RM) $(wildcard builds/*.xpi)
 	$(RM) $(wildcard config.sed)
-	$(RM) $(wildcard install.rdf)
+	$(RM) $(wildcard $(generated_files))
 
 distclean: clean
 	$(RMDIR) $(wildcard builds)
@@ -59,13 +48,12 @@ distclean: clean
 install: sign
 	$(BROWSER) $(out_xpi)
 
-sign: sign-send sign-retrieve
-
-sign-check:
-	$(CURL) $(CURLFLAGS) -H "Authorization: JWT $(JWT)" -g https://addons.$(AMO_DOM)/api/v3/addons/$(ID)/versions/$(VERSION)/
-
-sign-retrieve:
-	$(CURL) -H "Authorization: JWT $(JWT) -g -o $(signed_xpi) https://addons.$(AMO_DOM)/addon/$(ID)/$(notdir $(signed_xpi))
+sign-download:
+	$(CURL) -H "Authorization: JWT $(JWT)" -g -o signed.json https://$(AMO_DOMAIN)/api/v3/addons/$(ID)/versions/$(VERSION)/
+	$(if $(findstring true,$(call jq,.files[0].signed,signed.json)),\
+		$(CURL) -g -o $(signed_xpi) -H "Authorization: JWT $(JWT)" $(call jq,.files[0].download_url,signed.json),\
+		$(error Not signed))
+	$(RM) signed.json
 	
 sign-send: $(out_xpi)
 	$(CURL) -H "Authorization: JWT $(JWT)" -H "Content-type: multipart/form-data -XPUT -g --form "upload=@$(out_xpi)" https://addons.$(AMO_DOM)/api/v3/addons/$(ID)/versions/$(VERSION)/ 
@@ -85,12 +73,16 @@ docs/index.html: README.md
 	$(file >> $@,</body></html>)
 	tidy -asxhtml -utf8 -w -im $@
 
-config.sed: config.properties
-	$(SED) -e 's/^\(.\+\)=\(.\+\)$$/s,@\1@,\2,g/g' $< > $@
-
-install.rdf: config.sed common_install.rdf
-	$(SED) -f $^ > $@
+$(generated_files): $(common_files)
+	$(SED) \
+		-e 's/@author@/$(call jq,.author)/g' \
+		-e 's/@description@/$(call jq,.description)/g' \
+		-e 's,@home\.page@,$(call jq,.homepage),g' \
+		-e 's/@id@/$(ID)/g' \
+		-e 's,@user\.agents\.page@,$(call jq,.useragents_download),g' \
+		-e 's/@version@/$(VERSION)/g' \
+		$(dir $@)$(addprefix common_,$(notdir $@))  > $@
 
 $(out_xpi): chrome chrome.manifest install.rdf
 	$(MKDIR) builds
-	$(ZIP) $@ $^ license.txt
+	$(ZIP) $@ $^ license.txt $(foreach f,$(common_files),-x $(f))
