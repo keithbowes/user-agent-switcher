@@ -16,7 +16,7 @@
 <!ENTITY useragentswitcher.description "Beschreibung:">
 <!ENTITY useragentswitcher.download.user.agents "Listen Browserkennungen herunterladen, um zu importieren...">
 <!ENTITY useragentswitcher.edit "Bearbeiten...">
-<!ENTITY useragentswitcher.edit.user.agents "Browserkennungen bearbeiten">
+<!ENTITY useragentswitcher.edit.user.agents "Browserkennungen bearbeiten...">
 <!ENTITY useragentswitcher.edit.user.agents.key "B">
 <!ENTITY useragentswitcher.export "Exportieren...">
 <!ENTITY useragentswitcher.general "Allgemein">

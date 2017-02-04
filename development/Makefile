@@ -14,6 +14,7 @@ ZIP ?= zip -q -r -9
 
 AMO_API_KEY ?= user:12345678:987
 AMO_API_SECRET ?= 28934y23i4h32i4j23nk4j3244
+AMO_DOMAIN ?= addons.allizom.org
 JWT ?= $(shell jwtgen --api-key $(AMO_API_KEY) --api-secret $(AMO_API_SECRET))
 
 # In GNU make 4.2+, you can portably read files with the $(file ...) function
@@ -24,11 +25,10 @@ ID ::= $(subst id=,,$(filter id=%,$(if $(is_needed_version),$(file < config.prop
 VERSION ::= $(subst version=,,$(filter version=%,$(if $(is_needed_version),$(file < config.properties),$(shell cat config.properties))))
 
 out_xpi = builds/user-agent-switcher-$(VERSION).xpi
-signed_xpi = $(out_xpi:.xpi=.1-signed.1-signed.xpi)
+signed_xpi = $(out_xpi:.xpi=-signed.xpi)
 
-.PHONY: all build clean distclean generate install sign update-translations xpi
+.PHONY: all build clean chrome distclean generate install sign-download sign-submit update-translations xpi
 all build xpi: $(out_xpi)
-
 generate: install.rdf
 
 clean:
@@ -42,9 +42,15 @@ distclean: clean
 install: sign
 	$(BROWSER) $(out_xpi)
 
-sign: $(out_xpi)
-	$(CURL) -H "Authorization: JWT $(JWT)" -XPUT --form "upload=@$(out_xpi)" https://addons.mozilla.org/api/v3/addons/$(ID)/versions/$(VERSION) 
-	$(CURL) -o $(signed_xpi) https://addons.mozilla.org/addon/$(ID)/$(notdir $(signed_xpi))
+sign-download:
+	$(CURL) -H "Authorization: JWT $(JWT)" -g -o signed.json https://$(AMO_DOMAIN)/api/v3/addons/$(ID)/versions/$(VERSION)/
+	$(if $(findstring true,$(call jq,.files[0].signed signed.json)),\
+		$(CURL) -g -o $(signed_xpi) -H "Authorization: JWT $(JWT)" $(call jq,.files[0].download_url),\
+		$(error Not signed))
+	$(RM) signed.json
+	
+sign-submit: $(out_xpi)
+	$(CURL) -H "Authorization: JWT $(JWT)" -H "Content-type: multipart/form-data" -XPUT -g --form "upload=@$(out_xpi)" https://$(AMO_DOMAIN)/api/v3/addons/$(ID)/versions/$(VERSION)/ 
 
 dtd_files ::= $(addsuffix /useragentswitcher/useragentswitcher.dtd,$(wildcard chrome/locale/*))
 update-translations: $(dtd_files)
