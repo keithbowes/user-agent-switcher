@@ -30,13 +30,13 @@ Of course, I recommend you use a current version of a maintained application if 
 Currently my planned releases are:
 
 * ~~0.8: My first release, separating it from the original.  Maybe it should be 0.7.4, as there are no major changes, but just some annoyances I've had have been fixed (persistent settings, the name of the menu item stays the same, fix for Netflix not working with the Tech Patterns list).~~
-* 0.8.1: Make this an extractionless, restartless extension.  Self-signing will give way to signing from mozilla.org.  No more English-only builds.
+* ~~0.8.1: Start work on an restartless add-on, to make migration to WebExtensions easier.  Unreleased.~~
 * 0.9: This should be a hybrid XPCOM/WebExtension in browsers that support it, or pure XPCOM in those that don't.  Chris Pederick's list of issues and to-dos will be fixed in the WebExtensions and shared code.  Not much might be different from 0.8.1 in the XPCOM code.
 * 1.0: Completely separate XPCOM and WebExtension extensions.  They might share the same tree or I might create a branch for the legacy extension.  Doubtlessly other features and bug fixes.
 
 ## Help
 
-* [Help](http://chrispederick.com/work/user-agent-switcher/help/)
+* [Help](https://github.com/keithbowes/docs/help.html)
 * [Known issues](https://github.com/keithbowes/user-agent-switcher/issues/)
 
 ## Acknowledgements

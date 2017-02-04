@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta content="HTML Tidy for Linux (vers 25 March 2009), see www.w3.org" name="generator" />
+    <title>
+      User Agent Switcher Help
+    </title>
+  </head>
+  <body>
+    <h1>
+      User Agent Switcher Help
+    </h1>
+    <p>
+      This is a short help document inspired by <a href="http://chrispederick.com/work/user-agent-switcher/help/">Chris Pederick's</a>.
+    </p>
+    <h2>
+      Requirements
+    </h2>
+    <p>
+      Please read the <a href="https://keithbowes.github.io/user-agent-switcher/">README file</a> for that.
+    </p>
+    <h2>
+      Adding different user agents
+    </h2>
+    <p>
+      Currently that's possible, but the 0.9 rewrite will make it so that you can enter the URI of the user-agents file rather than importing and exporting. I might add custom user agents as an option.
+    </p>
+    <h2>
+      How can the localizations be updated?
+    </h2>
+    <p>
+      Please fork the repository and send me a pull request. I'll try to add the translations.
+    </p>
+    <p>
+      Note: Currently only the English and German translations are complete. German isn't my native language, so there may be errors. The others are around two-thirds complete and include the English strings where translated strings aren't available.
+    </p>
+    <p>
+      0.9 will transform these into WebExtension JSON files and lose the country code, except where it's necessary to distinguish dialects that aren't mutually intelligible (as mainland and Taiwanese Chinese, but the Portuguese and Spanish translations will be merged). Please try to send in country-agnostic translations if possible.
+    </p>
+    <h2>
+      Where are the signed XPIs?
+    </h2>
+    <p>
+      As this extension changes user agent settings, Mozilla won't sign it. Maybe when it's migrated to WebExtensions (modifying HTTP headers without directly changing user settings), it will be signed.
+    </p>
+    <h2>
+      How to report bugs
+    </h2>
+    <p>
+      Please use <a href="https://github.com/keithbowes/user-agent-switcher/issues">GitHub issues</a>.
+    </p>
+  </body>
+</html>

@@ -35,7 +35,7 @@ generated_files = $(subst common_,,$(common_files))
 
 .PHONY: all build clean chrome distclean generate install sign-download sign-submit update-translations xpi
 all build xpi: generate $(out_xpi)
-generate: $(generated_files)
+generate: $(generated_files) $(wildcard docs/*.html)
 
 clean:
 	$(RM) $(wildcard builds/*.xpi)
@@ -68,10 +68,15 @@ $(dtd_files): $(addprefix chrome/locale/en-US/useragentswitcher/useragentswitche
 
 docs/index.html: README.md
 	$(MKDIR) $(dir $@)
-	$(file > $@,<!DOCTYPE html><html lang="en"><head><meta charset="utf-8" /><title>User Agent Switcher Overview</title></head><body>)
+	$(file > $@,<title>User Agent Switcher Overview</title>)
 	$(file >> $@,$(shell $(MARKDOWN) $<))
-	$(file >> $@,</body></html>)
-	tidy -asxhtml -utf8 -w -im $@
+	-tidy -config docs/tidy.conf $@
+
+docs/help.html: docs/HELP.md
+	$(MKDIR) $(dir $@)
+	$(file > $@,<title>User Agent Switcher Help</title>)
+	$(file >> $@,$(shell $(MARKDOWN) $<))
+	-tidy -config docs/tidy.conf $@
 
 $(generated_files): $(common_files)
 	$(SED) \
