@@ -7,7 +7,6 @@
 <!ENTITY useragentswitcher.app.name "Programnév:">
 <!ENTITY useragentswitcher.app.version "Programverzió:">
 <!ENTITY useragentswitcher.author "Készítő">
-<!ENTITY useragentswitcher.build.date "Építési dátum">
 <!ENTITY useragentswitcher.copy "Copy">
 <!ENTITY useragentswitcher.cut "Cut">
 <!ENTITY useragentswitcher.default.user.agent "Alapértelmezett">

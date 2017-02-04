@@ -7,7 +7,6 @@
 <!ENTITY useragentswitcher.app.name "Име:">
 <!ENTITY useragentswitcher.app.version "Верзија:">
 <!ENTITY useragentswitcher.author "Автор">
-<!ENTITY useragentswitcher.build.date "Build Date">
 <!ENTITY useragentswitcher.copy "Copy">
 <!ENTITY useragentswitcher.cut "Cut">
 <!ENTITY useragentswitcher.default.user.agent "Основен">

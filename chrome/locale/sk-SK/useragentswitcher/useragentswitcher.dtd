@@ -7,7 +7,6 @@
 <!ENTITY useragentswitcher.app.name "Názov aplikácie:">
 <!ENTITY useragentswitcher.app.version "Verzia aplikácie:">
 <!ENTITY useragentswitcher.author "Autor">
-<!ENTITY useragentswitcher.build.date "Dátum zostavenia">
 <!ENTITY useragentswitcher.copy "Copy">
 <!ENTITY useragentswitcher.cut "Cut">
 <!ENTITY useragentswitcher.default.user.agent "Predvolený">

@@ -7,7 +7,6 @@
 <!ENTITY useragentswitcher.app.name "App Name:">
 <!ENTITY useragentswitcher.app.version "App Version:">
 <!ENTITY useragentswitcher.author "製作者">
-<!ENTITY useragentswitcher.build.date "ビルド日">
 <!ENTITY useragentswitcher.copy "Copy">
 <!ENTITY useragentswitcher.cut "Cut">
 <!ENTITY useragentswitcher.default.user.agent "デフォルト">

@@ -7,7 +7,6 @@
 <!ENTITY useragentswitcher.app.name "App Name (yazılım ismi)&#160;:">
 <!ENTITY useragentswitcher.app.version "App Version (yazılımın sürümü):">
 <!ENTITY useragentswitcher.author "Geliştirici">
-<!ENTITY useragentswitcher.build.date "Build Date">
 <!ENTITY useragentswitcher.copy "Copy">
 <!ENTITY useragentswitcher.cut "Cut">
 <!ENTITY useragentswitcher.default.user.agent "Temel isim">

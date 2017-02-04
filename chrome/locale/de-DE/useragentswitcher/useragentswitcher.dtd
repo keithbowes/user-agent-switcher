@@ -7,7 +7,6 @@
 <!ENTITY useragentswitcher.app.name "Programmname:">
 <!ENTITY useragentswitcher.app.version "Programmversion:">
 <!ENTITY useragentswitcher.author "Autor">
-<!ENTITY useragentswitcher.build.date "Erstellungsdatum">
 <!ENTITY useragentswitcher.copy "Kopieren">
 <!ENTITY useragentswitcher.cut "Schneiden">
 <!ENTITY useragentswitcher.default.user.agent "Standard">

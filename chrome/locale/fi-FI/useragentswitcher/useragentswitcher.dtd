@@ -7,7 +7,6 @@
 <!ENTITY useragentswitcher.app.name "Ohjelman nimi:">
 <!ENTITY useragentswitcher.app.version "Ohjelman versio:">
 <!ENTITY useragentswitcher.author "Tekijä">
-<!ENTITY useragentswitcher.build.date "Build Date">
 <!ENTITY useragentswitcher.copy "Copy">
 <!ENTITY useragentswitcher.cut "Cut">
 <!ENTITY useragentswitcher.default.user.agent "Oletus">

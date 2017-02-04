@@ -7,7 +7,6 @@
 <!ENTITY useragentswitcher.app.name "应用程序名称:">
 <!ENTITY useragentswitcher.app.version "应用程序版本:">
 <!ENTITY useragentswitcher.author "作者">
-<!ENTITY useragentswitcher.build.date "创建日期">
 <!ENTITY useragentswitcher.copy "Copy">
 <!ENTITY useragentswitcher.cut "Cut">
 <!ENTITY useragentswitcher.default.user.agent "默认">
