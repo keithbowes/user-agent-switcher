@@ -1,35 +1,35 @@
-<!ENTITY useragentswitcher.about "NÃ©vjegy...">
+<!ENTITY useragentswitcher.about "Névjegy...">
 <!ENTITY useragentswitcher.about.key "N">
-<!ENTITY useragentswitcher.about.title "A BÃ¶ngÃ©szÅ AzonosÃ­tÃ³ VÃ¡ltÃ³ nÃ©vjegye">
+<!ENTITY useragentswitcher.about.title "A Böngésző Azonosító Váltó névjegye">
 <!ENTITY useragentswitcher.allow.empty.properties "Allow Empty Properties">
 <!ENTITY useragentswitcher.allow.empty.properties.tooltip "Let empty fields override default values">
 <!ENTITY useragentswitcher.app.code.name "App Code Name:">
-<!ENTITY useragentswitcher.app.name "ProgramnÃ©v:">
-<!ENTITY useragentswitcher.app.version "ProgramverziÃ³:">
-<!ENTITY useragentswitcher.author "KÃ©szÃ­tÅ">
-<!ENTITY useragentswitcher.build.date "ÃpÃ­tÃ©si dÃ¡tum">
+<!ENTITY useragentswitcher.app.name "Programnév:">
+<!ENTITY useragentswitcher.app.version "Programverzió:">
+<!ENTITY useragentswitcher.author "Készítő">
+<!ENTITY useragentswitcher.build.date "Építési dátum">
 <!ENTITY useragentswitcher.copy "Copy">
 <!ENTITY useragentswitcher.cut "Cut">
-<!ENTITY useragentswitcher.default.user.agent "AlapÃ©rtelmezett">
+<!ENTITY useragentswitcher.default.user.agent "Alapértelmezett">
 <!ENTITY useragentswitcher.default.user.agent.key "A">
-<!ENTITY useragentswitcher.delete "EltÃ¡volÃ­tÃ¡s...">
-<!ENTITY useragentswitcher.description "LeÃ­rÃ¡s:">
+<!ENTITY useragentswitcher.delete "Eltávolítás...">
+<!ENTITY useragentswitcher.description "Leírás:">
 <!ENTITY useragentswitcher.download.user.agents "Download lists of user agents to import...">
-<!ENTITY useragentswitcher.edit "SzerkesztÃ©s...">
+<!ENTITY useragentswitcher.edit "Szerkesztés...">
 <!ENTITY useragentswitcher.edit.user.agents "Edit User Agents...">
 <!ENTITY useragentswitcher.edit.user.agents.key "B">
-<!ENTITY useragentswitcher.export "ExportÃ¡lÃ¡s...">
-<!ENTITY useragentswitcher.general "ÃltalÃ¡nos">
-<!ENTITY useragentswitcher.help "SÃºgÃ³...">
+<!ENTITY useragentswitcher.export "Exportálás...">
+<!ENTITY useragentswitcher.general "Általános">
+<!ENTITY useragentswitcher.help "Súgó...">
 <!ENTITY useragentswitcher.help.key "S">
 <!ENTITY useragentswitcher.home.page "Honlap">
-<!ENTITY useragentswitcher.import "ImportÃ¡lÃ¡s...">
-<!ENTITY useragentswitcher.import.export "ImportÃ¡lÃ¡s/ExportÃ¡lÃ¡s">
-<!ENTITY useragentswitcher.import.overwrite "LÃ©tezÅ bÃ¶ngÃ©szÅ azonosÃ­tÃ³k felÃ¼lÃ­rÃ¡sa importÃ¡lÃ¡skor">
-<!ENTITY useragentswitcher.menu.hide "BÃ¶ngÃ©szÅ AzonosÃ­tÃ³ VÃ¡ltÃ³ menÃ¼elem elrejtÃ©se az EszkÃ¶zÃ¶k menÃ¼bÅl">
-<!ENTITY useragentswitcher.move.down "MozgatÃ¡s lefelÃ©">
-<!ENTITY useragentswitcher.move.up "MozgatÃ¡s felfelÃ©">
-<!ENTITY useragentswitcher.name "BÃ¶ngÃ©szÅ AzonosÃ­tÃ³ VÃ¡ltÃ³">
+<!ENTITY useragentswitcher.import "Importálás...">
+<!ENTITY useragentswitcher.import.export "Importálás/Exportálás">
+<!ENTITY useragentswitcher.import.overwrite "Létező böngésző azonosítók felülírása importáláskor">
+<!ENTITY useragentswitcher.menu.hide "Böngésző Azonosító Váltó menüelem elrejtése az Eszközök menüből">
+<!ENTITY useragentswitcher.move.down "Mozgatás lefelé">
+<!ENTITY useragentswitcher.move.up "Mozgatás felfelé">
+<!ENTITY useragentswitcher.name "Böngésző Azonosító Váltó">
 <!ENTITY useragentswitcher.name.key "U">
 <!ENTITY useragentswitcher.name.label "Name:">
 <!ENTITY useragentswitcher.new "New">
@@ -37,17 +37,17 @@
 <!ENTITY useragentswitcher.new.separator "New Separator">
 <!ENTITY useragentswitcher.new.user.agent "New User Agent...">
 <!ENTITY useragentswitcher.new.user.agent.description "The default user agent values are displayed below. Add a description and edit any of the values to create a new user agent.">
-<!ENTITY useragentswitcher.options "BeÃ¡llÃ­tÃ¡sok...">
+<!ENTITY useragentswitcher.options "Beállítások...">
 <!ENTITY useragentswitcher.options.key "B">
-<!ENTITY useragentswitcher.options.title "BÃ¶ngÃ©szÅ AzonosÃ­tÃ³ VÃ¡ltÃ³ BeÃ¡llÃ­tÃ¡sok">
+<!ENTITY useragentswitcher.options.title "Böngésző Azonosító Váltó Beállítások">
 <!ENTITY useragentswitcher.paste "Paste">
 <!ENTITY useragentswitcher.platform "Platform:">
-<!ENTITY useragentswitcher.reset.options "AlapÃ©rtelmezett beÃ¡llÃ­tÃ¡sok...">
+<!ENTITY useragentswitcher.reset.options "Alapértelmezett beállítások...">
 <!ENTITY useragentswitcher.reset.on.close "Reset on close">
 <!ENTITY useragentswitcher.test "Test...">
 <!ENTITY useragentswitcher.test.key "T">
 <!ENTITY useragentswitcher.user.agent "User Agent">
-<!ENTITY useragentswitcher.user.agent.label "BÃ¶ngÃ©szÅ azonosÃ­tÃ³:">
-<!ENTITY useragentswitcher.user.agents "BÃ¶ngÃ©szÅ azonosÃ­tÃ³k">
-<!ENTITY useragentswitcher.vendor "SzÃ¡llÃ­tÃ³:">
-<!ENTITY useragentswitcher.vendor.sub "TovÃ¡bbi szÃ¡llÃ­tÃ³:">
+<!ENTITY useragentswitcher.user.agent.label "Böngésző azonosító:">
+<!ENTITY useragentswitcher.user.agents "Böngésző azonosítók">
+<!ENTITY useragentswitcher.vendor "Szállító:">
+<!ENTITY useragentswitcher.vendor.sub "További szállító:">
