@@ -77,7 +77,8 @@ $(generated_files): $(common_files)
 	$(SED) \
 		-e 's/@author@/$(call jq,.author)/g' \
 		-e 's/@description@/$(call jq,.description)/g' \
-		-e 's,@home\.page@,$(call jq,.homepage),g' \
+		-e 's,@home\.page@,$(call jq,.homepage_url),g' \
+		-e 's/@name@/$(call jq,.name)/g' \
 		-e 's/@id@/$(ID)/g' \
 		-e 's,@user\.agents\.page@,$(call jq,.useragents_download),g' \
 		-e 's/@version@/$(VERSION)/g' \

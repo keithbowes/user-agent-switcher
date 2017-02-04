@@ -2,11 +2,13 @@
 
   "manifest_version": 2,
   "name": "User Agent Switcher",
-  "version": "0.8.1",
+  "short_name": "uaswitch",
+  "version": "0.9",
 
   "author": "Keith Bowes",
+  "default_locale": "en",
   "description": "Adds a menu and a toolbar button to switch the user agent of a browser.",
-  "homepage": "https://keithbowes.github.io/user-agent-switcher/",
+  "homepage_url": "https://keithbowes.github.io/user-agent-switcher/",
 
   "useragents_download": "http://techpatterns.com/downloads/download_item.php?folder=firefox&filename=useragentswitcher.xml",
 
