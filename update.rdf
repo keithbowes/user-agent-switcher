@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+
+<RDF:RDF xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+
+    <RDF:Description about="urn:mozilla:extension:user-agent-switcher@keithbowes.github.io">
+        <em:updates>
+            <RDF:Seq>
+                <RDF:li resource="urn:mozilla:extension:user-agent-switcher@keithbowes.github.io:0.8"/>
+            </RDF:Seq>
+        </em:updates>
+    </RDF:Description>
+
+    <RDF:Description about="urn:mozilla:extension:user-agent-switcher@keithbowes.github.io:0.8">
+        <em:version>0.8</em:version>
+        <em:targetApplication>
+            <RDF:Description>
+                <em:id>toolkit@mozilla.org</em:id>
+                <em:maxVersion>49.*</em:maxVersion>
+                <em:minVersion>1.9b1</em:minVersion>
+                <em:updateLink>https://github.com/keithbowes/releases/download/0.8/user-agent-switcher.xpi</em:updateLink>
+            </RDF:Description>
+        </em:targetApplication>
+    </RDF:Description>
+</RDF:RDF>

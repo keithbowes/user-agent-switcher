@@ -1,0 +1,52 @@
+<!ENTITY useragentswitcher.about "Acerca de...">
+<!ENTITY useragentswitcher.about.key "A">
+<!ENTITY useragentswitcher.about.title "Acerca del Manejador de Agentes de Usuario">
+<!ENTITY useragentswitcher.allow.empty.properties "Allow Empty Properties">
+<!ENTITY useragentswitcher.allow.empty.properties.tooltip "Let empty fields override default values">
+<!ENTITY useragentswitcher.app.code.name "App Code Name:">
+<!ENTITY useragentswitcher.app.name "Nombre de la Aplicación:">
+<!ENTITY useragentswitcher.app.version "Versión de la Aplicación:">
+<!ENTITY useragentswitcher.author "Autor">
+<!ENTITY useragentswitcher.copy "Copy">
+<!ENTITY useragentswitcher.cut "Cut">
+<!ENTITY useragentswitcher.default.user.agent "Valores por defecto">
+<!ENTITY useragentswitcher.default.user.agent.key "D">
+<!ENTITY useragentswitcher.delete "Borrar...">
+<!ENTITY useragentswitcher.description "Descripción:">
+<!ENTITY useragentswitcher.download.user.agents "Download lists of user agents to import...">
+<!ENTITY useragentswitcher.edit "Editar...">
+<!ENTITY useragentswitcher.edit.user.agents "Edit User Agents...">
+<!ENTITY useragentswitcher.edit.user.agents.key "A">
+<!ENTITY useragentswitcher.export "Exportar...">
+<!ENTITY useragentswitcher.general "General">
+<!ENTITY useragentswitcher.help "Ayuda...">
+<!ENTITY useragentswitcher.help.key "H">
+<!ENTITY useragentswitcher.home.page "Página Principal">
+<!ENTITY useragentswitcher.import "Importar...">
+<!ENTITY useragentswitcher.import.export "Importar/Exportar">
+<!ENTITY useragentswitcher.import.overwrite "Sobreescribir los agentes de usuario existentes al importar">
+<!ENTITY useragentswitcher.menu.hide "Esconder el menú del Manejador de Agentes de Usuario">
+<!ENTITY useragentswitcher.move.down "Mover hacia Abajo">
+<!ENTITY useragentswitcher.move.up "Mover hacia Arriba">
+<!ENTITY useragentswitcher.name "Manejador de Agentes de Usuario">
+<!ENTITY useragentswitcher.name.key "U">
+<!ENTITY useragentswitcher.name.label "Name:">
+<!ENTITY useragentswitcher.new "New">
+<!ENTITY useragentswitcher.new.folder "New Folder...">
+<!ENTITY useragentswitcher.new.separator "New Separator">
+<!ENTITY useragentswitcher.new.user.agent "New User Agent...">
+<!ENTITY useragentswitcher.new.user.agent.description "The default user agent values are displayed below. Add a description and edit any of the values to create a new user agent.">
+<!ENTITY useragentswitcher.options "Opciones">
+<!ENTITY useragentswitcher.options.key "O">
+<!ENTITY useragentswitcher.options.title "Opciones del Manejador de Agentes de Usuario">
+<!ENTITY useragentswitcher.paste "Paste">
+<!ENTITY useragentswitcher.platform "Plataforma:">
+<!ENTITY useragentswitcher.reset.options "Resetear Opciones...">
+<!ENTITY useragentswitcher.reset.on.close "Reset on close">
+<!ENTITY useragentswitcher.test "Test...">
+<!ENTITY useragentswitcher.test.key "T">
+<!ENTITY useragentswitcher.user.agent "User Agent">
+<!ENTITY useragentswitcher.user.agent.label "Agente de Usuario:">
+<!ENTITY useragentswitcher.user.agents "Agentes de Usuario">
+<!ENTITY useragentswitcher.vendor "Vendedor:">
+<!ENTITY useragentswitcher.vendor.sub "Sub Vendedor:">

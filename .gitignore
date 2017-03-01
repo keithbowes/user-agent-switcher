@@ -1,0 +1,5 @@
+builds/*
+chrome/content/useragentswitcher/about/about.xul
+chrome/content/useragentswitcher/options/options.js
+chrome/content/useragentswitcher/upgrade.js
+install.rdf

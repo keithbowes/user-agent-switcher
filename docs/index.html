@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta content="HTML Tidy for Linux (vers 25 March 2009), see www.w3.org" name="generator" />
+    <title>
+      User Agent Switcher Overview
+    </title>
+  </head>
+  <body>
+    <h1>
+      User Agent Switcher
+    </h1>
+    <p>
+      The User Agent Switcher extension adds a menu and a toolbar button to switch the user agent of a browser. The extension is available for <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Tech/Toolkit_API">Toolkit</a>-based <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Gecko">Gecko</a> applications (see the <em><a href="#worksin">Works in</a></em> section for more details), and will run on any platform that this layout engine supports, including Windows, OS X, and Linux.
+    </p>
+    <h2>
+      Downloading and installing
+    </h2>
+    <p>
+      The extension can be installed from from the <a href="https://github.com/keithbowes//user-agent-switcher/releases/">releases page</a>.
+    </p>
+    <p>
+      The latest source code can be downloaded as a <a href="https://github.com/keithbowes/user-agent-switcher/zipball/master">ZIP file</a>, a <a href="https://github.com/keithbowes/user-agent-switcher/zipball/master">tarball</a>, or directly from <a href="https://github.com/keithbowes/user-agent-switcher.git">Github</a>.
+    </p>
+    <h2>
+      <span id="worksin">Works in</span>
+    </h2>
+    <p>
+      The current version should work in any Toolkit-based application using <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Gecko/Versions">Gecko 1.9 or higher</a>. It's been successfully tested in:
+    </p>
+    <ul>
+      <li>
+        <a href="https://www.mozilla.org/en-US/firefox/organizations/all/">Firefox</a> 45.7.0
+      </li>
+      <li>
+        <a href="http://getnightingale.com/all-versions.php">Nightingale</a> 1.12.1
+      </li>
+      <li>
+        <a href="http://www.palemoon.org/">Pale Moon</a> 27.0.3
+      </li>
+      <li>
+        <a href="http://www.seamonkey-project.org/releases/">SeaMonkey</a> 2.46
+      </li>
+    </ul>
+    <p>
+      It should also work in <a href="https://web.archive.org/web/20110325151017/http://www.flock.com/">Flock</a> 2.x, Firefox 3.0 or higher, Nightingale 1.8 or higher, Palemoon 2.0 or higher, SeaMonkey 2.0 or higher, versions 0.3 or higher of Nightingale's predecessor, <a href="http://getsongbird.net/">Songbird</a>, and in other applications using Toolkit and Gecko 1.9 or higher, but these haven't been tested.
+    </p>
+    <p>
+      <a href="https://addons.mozilla.org/addon/user-agent-switcher/versions/">Older versions</a> <a href="https://github.com/keithbowes/user-agent-switcher/blob/e8ddcbafcfc5caeac9c33bc787dd4328741df456/development/common_install.rdf">claim to support</a> older 1.x and 2.x versions of Firefox and older 1.x versions of Flock. For SeaMonkey, 2.0 or higher is needed for it to function in a meaningful way (older versions claim to work in SeaMonkey 1.x, but they don't).
+    </p>
+    <p>
+      Of course, I recommend you use a current version of a maintained application if possible, to avoid putting yourself at risk for exploits. Currently, such applications are Firefox and SeaMonkey. Flock and Songbird have been discontinued and shouldn't be used.
+    </p>
+    <h2>
+      Plans
+    </h2>
+    <p>
+      Currently my planned releases are:
+    </p>
+    <ul>
+      <li>
+        <del>0.8: My first release, separating it from the original. Maybe it should be 0.7.4, as there are no major changes, but just some annoyances I've had have been fixed (persistent settings, the name of the menu item stays the same, fix for Netflix not working with the Tech Patterns list).</del>
+      </li>
+      <li>0.9: This should be a hybrid XPCOM/WebExtension in browsers that support it, or pure XPCOM in those that don't. Chris Pederick's list of issues and to-dos will be fixed in the WebExtensions and shared code. Not much might be different from 0.8.1 in the XPCOM code.
+      </li>
+      <li>1.0: Completely separate XPCOM and WebExtension extensions. They might share the same tree or I might create a branch for the legacy extension. Doubtlessly other features and bug fixes.
+      </li>
+    </ul>
+    <h2>
+      Help
+    </h2>
+    <ul>
+      <li>
+        <a href="https://github.com/keithbowes/docs/help.html">Help</a>
+      </li>
+      <li>
+        <a href="https://github.com/keithbowes/user-agent-switcher/issues/">Known issues</a>
+      </li>
+    </ul>
+    <h2>
+      Acknowledgements
+    </h2>
+    <p>
+      Supported by:
+    </p>
+    <ul>
+      <li>
+        <a href="https://www.browserstack.com/">BrowserStack</a>
+      </li>
+    </ul>
+    <h2>
+      Authors
+    </h2>
+    <ul>
+      <li>
+        <a href="http://chrispederick.com/">Chris Pederick</a>, 0.1–0.7.3
+      </li>
+      <li>
+        <a href="http://github.com/keithbowes">Keith Bowes</a>, 0.8–current
+      </li>
+    </ul>
+    <h2>
+      License
+    </h2>
+    <p>
+      All files are distributed for free under the terms of the <a href="https://github.com/keithbowes/user-agent-switcher/blob/master/license.txt">GNU General Public License</a>. This does not apply to the icons included in the extension which have their own individual licenses.
+    </p>
+  </body>
+</html>
