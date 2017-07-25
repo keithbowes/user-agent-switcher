@@ -359,9 +359,6 @@ var UserAgentSwitcherOptions =
 		
 		document.getElementById("useragentswitcher-options-user-agents").addEventListener("dblclick", UserAgentSwitcherOptions.treeDoubleClick, false);
 
-		if (!UserAgentSwitcherPreferences.isPreferenceSet("useragentswithcher.reset.onclose"))
-			UserAgentSwitcherPreferences.setBooleanPreference("useragentswitcher.reset.onclose", false);
-		document.getElementById("useragentswitcher-reset-on-close").checked = UserAgentSwitcherPreferences.getBooleanPreference("useragentswitcher.reset.onclose", true);
 	},
 	
 	// Returns true if a separator is selected
@@ -680,15 +677,6 @@ var UserAgentSwitcherOptions =
 			document.getElementById("useragentswitcher-move-down-button").setAttribute("disabled", true);
 			document.getElementById("useragentswitcher-move-up-button").setAttribute("disabled", true);
 		}
-	},
-
-	// Toggles whether the user agent resets when the browser restarts 
-	toggleResetOnClose: function(wid)
-	{
-		if (wid.checked)
-			UserAgentSwitcherPreferences.deletePreference("useragentswitcher.reset.onclose");
-		else
-			UserAgentSwitcherPreferences.setBooleanPreference("useragentswitcher.reset.onclose", false);
 	},
 	
 	// Handles double clicking on the tree

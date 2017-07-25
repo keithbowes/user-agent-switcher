@@ -202,12 +202,7 @@ var UserAgentSwitcher =
 	// Observes quits
 	observe: function(subject, topic, data)
 	{
-		// If the reset on close preference is not set or is set to true
-		if(!UserAgentSwitcherPreferences.isPreferenceSet("useragentswitcher.reset.onclose") || UserAgentSwitcherPreferences.getBooleanPreference("useragentswitcher.reset.onclose", true))
-		{
-			UserAgentSwitcher.reset();
-		}
-
+		UserAgentSwitcher.reset();
 		return false;
 	},
 	
@@ -263,6 +258,10 @@ var UserAgentSwitcher =
 		var allWindows       = UserAgentSwitcherDOM.getAllWindows();
 		var allWindowsLength = allWindows.length;
 		var defaultUserAgent = UserAgentSwitcherStringBundle.getString("defaultUserAgent");
+
+		// If the obsolete useragentswitcher.reset.onclose is set
+		if (UserAgentSwitcherPreferences.isPreferenceSet("useragentswitcher.reset.onclose"))
+			UserAgentSwitcherPreferences.deletePreference("useragentswitcher.reset.onclose");
 
 		// If an override app code name is set
 		if(UserAgentSwitcherPreferences.isPreferenceSet("general.useragent.appName"))
@@ -494,17 +493,13 @@ var UserAgentSwitcher =
 				observerService.removeObserver(UserAgentSwitcher, "quit-application-requested", false);
 			}
 	
-			// If the reset on close preference is not set or is set to true
-			if(!UserAgentSwitcherPreferences.isPreferenceSet("useragentswitcher.reset.onclose") || UserAgentSwitcherPreferences.getBooleanPreference("useragentswitcher.reset.onclose", true))
+			var allWindows  = UserAgentSwitcherDOM.getAllWindows();
+			var windowCount = allWindows.length;
+
+			// If this is the last window closing
+			if(windowCount == 0)
 			{
-				var allWindows  = UserAgentSwitcherDOM.getAllWindows();
-				var windowCount = allWindows.length;
-	
-				// If this is the last window closing
-				if(windowCount == 0)
-				{
-					UserAgentSwitcher.reset();
-				}
+				UserAgentSwitcher.reset();
 			}
 	
 			document.getElementById("navigator-toolbox").removeEventListener("dragdrop", UserAgentSwitcher.buttonDrop, false);	
