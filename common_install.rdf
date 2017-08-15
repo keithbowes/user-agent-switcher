@@ -21,7 +21,7 @@
     <em:targetApplication>
       <Description>
         <em:id>toolkit@mozilla.org</em:id>
-        <em:maxVersion>49.*</em:maxVersion>
+        <em:maxVersion>56.*</em:maxVersion>
         <em:minVersion>1.9b1</em:minVersion>
       </Description>
     </em:targetApplication>
