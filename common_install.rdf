@@ -6,7 +6,7 @@
   <Description about="urn:mozilla:install-manifest">
     <em:aboutURL>chrome://useragentswitcher/content/about/about.xul</em:aboutURL>
     <em:creator>@author@</em:creator>
-    <em:description>@description@</em:description>
+    <em:description>Adds a menu and a toolbar button to switch the user agent of a browser.</em:description>
     <em:homepageURL>@home.page@</em:homepageURL>
     <em:iconURL>chrome://useragentswitcher/content/logo.png</em:iconURL>
     <em:id>@id@</em:id>

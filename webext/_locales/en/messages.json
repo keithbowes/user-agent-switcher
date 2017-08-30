@@ -1,0 +1,63 @@
+{
+  "AddNew": {
+    "message": "Add New",
+    "description": "Add new custom user agent for a certain domain"
+  },
+  "Configure": {
+    "message": "Configure"
+  },
+  "Default": {
+    "message": "Default",
+    "description": "Use the browser's default UA string"
+  },
+  "Delete": {
+    "message": "Delete",
+    "description": "Deletes the custom user agent for this domain"
+  },
+  "Description": {
+    "message": "Adds a menu and a toolbar button to switch the user agent of a browser."
+  },
+  "DownloadLatest": {
+    "message": "Download latest",
+    "description": "Allows a user to download the latest version of the user-agents file"
+  },
+  "DownloadFailed": {
+    "message": "Download failed: $1!"
+  },
+  "EnterHost": {
+    "message": "Enter a Host",
+    "description": "Host to which to assign a custom user agent"
+  },
+  "MoveDown": {
+    "message": "Move Down"
+  },
+  "MoveUp": {
+    "message": "Move Up"
+  },
+  "Name": {
+    "message": "User Agent Switcher"
+  },
+  "PropertyName": {
+    "message": "Property",
+    "description": "Name of the property of navigator"
+  },
+  "PropertyValue": {
+    "message": "Value",
+    "description": "Value of the property of navigator"
+  },
+  "Save": {
+    "message": "Save",
+    "description": "Save options"
+  },
+  "UserAgentsFile": {
+    "message": "User Agents File",
+    "description": "The URL of the file containing the list of user agents"
+  },
+  "UserAgentFor": {
+    "message": "User Agent for $1",
+    "description": "The user agent to use on URLs with the host $1"
+  },
+  "XMLHttpRequestError": {
+    "message": "An error occurred while trying to retrieve the list of user agents: $1"
+  }
+}

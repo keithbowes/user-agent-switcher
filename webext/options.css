@@ -1,0 +1,19 @@
+input#ua-file {
+  width: 90%;
+}
+
+option.folder {
+  background-color: ButtonFace;
+  color: ButtonText;
+  font-weight: bold;
+  -moz-appearance: button;
+  -webkit-appearance: button;
+}
+
+table#uaswitch-options {
+  width: 100%;
+}
+
+table#uaswitch-options #command-shelf {
+  text-align: right
+}

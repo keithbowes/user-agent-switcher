@@ -24,7 +24,7 @@ locales = $(notdir $(wildcard $(addprefix source/locale_common/,$(addsuffix *,en
 ID = $(call jq,.applications.gecko.id)
 VERSION = $(call jq,.version)
 
-jq = $(shell jq -r $(1) $(if $(2),$(2),manifest.json))
+jq = $(shell jq -r $(1) $(if $(2),$(2),webext/manifest.json))
 
 out_prefix = $(if $(findstring $(firstword $(sort 2 $(words $(locales)))),2),-localized,)
 out_xpi = builds/user-agent-switcher-$(VERSION)$(out_prefix).xpi
@@ -33,12 +33,13 @@ signed_xpi = $(out_xpi:.xpi=-signed.xpi)
 common_files = $(addprefix chrome/content/useragentswitcher/,about/common_about.xul common_upgrade.js options/common_options.js) common_install.rdf
 generated_files = $(subst common_,,$(common_files))
 
-.PHONY: all build clean chrome distclean generate install sign-download sign-submit update-translations xpi
+.PHONY: all build clean chrome distclean generate install sign-download
+.PHONY: sign-submit update-translations webext webext-sign xpi
 all build xpi: generate $(out_xpi)
 generate: $(generated_files) $(wildcard docs/*.html)
 
 clean:
-	$(RM) $(wildcard builds/*.xpi)
+	$(RM) $(wildcard $(addprefix builds/*,.xpi .zip))
 	$(RM) $(wildcard config.sed)
 	$(RM) $(wildcard $(generated_files))
 
@@ -49,12 +50,12 @@ install: sign
 	$(BROWSER) $(out_xpi)
 
 sign-download:
-	$(CURL) -H "Authorization: JWT $(JWT)" -g -o signed.json https://$(AMO_DOMAIN)/api/v3/addons/$(ID)/versions/$(VERSION)/
+	$(CURL) -H "Authorization: JWT $(JWT)" -g -o signed.json https://$(AMO_DOM)/api/v3/addons/$(ID)/versions/$(VERSION)/
 	$(if $(findstring true,$(call jq,.files[0].signed,signed.json)),\
 		$(CURL) -g -o $(signed_xpi) -H "Authorization: JWT $(JWT)" $(call jq,.files[0].download_url,signed.json),\
 		$(error Not signed))
 	$(RM) signed.json
-	
+
 sign-send: $(out_xpi)
 	$(CURL) -H "Authorization: JWT $(JWT)" -H "Content-type: multipart/form-data -XPUT -g --form "upload=@$(out_xpi)" https://addons.$(AMO_DOM)/api/v3/addons/$(ID)/versions/$(VERSION)/ 
 
@@ -81,7 +82,6 @@ docs/help.html: docs/HELP.md
 $(generated_files): $(common_files)
 	$(SED) \
 		-e 's/@author@/$(call jq,.author)/g' \
-		-e 's/@description@/$(call jq,.description)/g' \
 		-e 's,@home\.page@,$(call jq,.homepage_url),g' \
 		-e 's/@name@/$(call jq,.name)/g' \
 		-e 's/@id@/$(ID)/g' \
@@ -92,3 +92,11 @@ $(generated_files): $(common_files)
 $(out_xpi): chrome chrome.manifest install.rdf
 	$(MKDIR) builds
 	$(ZIP) $@ $^ license.txt $(foreach f,$(common_files),-x $(f))
+
+webext:
+	$(MKDIR) builds
+	web-ext build -a builds -o -s webext
+
+webext-sign:
+	web-ext sign --api-key $(AMO_API_KEY) --api-secret $(AMO_API_SECRET) --api-url-prefix https://$(AMO_DOM)/api/v3 \
+		-a builds -s webext

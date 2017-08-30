@@ -1,7 +1,7 @@
 # User Agent Switcher
 
 The User Agent Switcher extension adds a menu and a toolbar button to switch the user agent of a browser.
-The extension is available for [Toolkit](https://developer.mozilla.org/en-US/docs/Mozilla/Tech/Toolkit_API)-based [Gecko](https://developer.mozilla.org/en-US/docs/Mozilla/Gecko) applications (see the *[Works in](#worksin)* section for more details), and will run on any platform that this layout engine supports, including Windows, OS X, and Linux.
+The extension is available for [Toolkit](https://developer.mozilla.org/en-US/docs/Mozilla/Tech/Toolkit_API)-based [Gecko](https://developer.mozilla.org/en-US/docs/Mozilla/Gecko) applications (see the *[Works in](#works-in)* section for more details), and will run on any platform that this layout engine supports, including Windows, OS X, and Linux.
 
 ## Downloading and installing
 
@@ -10,7 +10,7 @@ The extension can be installed from from the [releases page](https://github.com/
 The latest source code can be downloaded as a [ZIP file](https://github.com/keithbowes/user-agent-switcher/zipball/master), a [tarball](https://github.com/keithbowes/user-agent-switcher/zipball/master), or directly from [Github](https://github.com/keithbowes/user-agent-switcher.git).
 
 
-## <span id="worksin">Works in</span>
+## Works in
 
 The current version should work in any Toolkit-based application using [Gecko 1.9 or higher](https://developer.mozilla.org/en-US/docs/Mozilla/Gecko/Versions).  It's been successfully tested in:
 

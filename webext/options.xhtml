@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="options.css"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html id="options-page" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title/>
+  </head>
+  <body>
+    <!-- TODO: Use more semantic markup for the options page -->
+    <table id="uaswitch-options">
+      <tr>
+        <td><label for="ua-file"/></td>
+        <td><input type="text" id="ua-file"/></td>
+        <td><input type="button" id="dl-ua"/></td>
+      </tr>
+      <tr>
+        <td id="hosts-cell"/>
+        <td id="ua-cell"/>
+      </tr>
+      <tr>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <input type="button" id="move-up"/>
+              </td>
+              <td>
+                <input type="button" id="move-down"/>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <input type="button" id="add-new"/>
+              </td>
+              <td>
+                <input type="button" id="delete"/>
+              </td>
+            </tr>
+          </table>
+        </td>
+        <td/>
+      </tr>
+      <tr>
+        <td/>
+        <td>
+          <div id="command-shelf">
+            <input type="button" id="save"/>
+          </div>
+        </td>
+      </tr>
+    </table>
+    <script type="text/javascript" src="options.js"/>
+  </body>
+</html>
