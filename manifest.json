@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "User Agent Switcher",
   "short_name": "uaswitch",
-  "version": "0.9",
+  "version": "0.8.1",
 
   "author": "Keith Bowes",
   "default_locale": "en",
