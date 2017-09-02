@@ -18,7 +18,18 @@
                 <em:id>toolkit@mozilla.org</em:id>
                 <em:maxVersion>49.*</em:maxVersion>
                 <em:minVersion>1.9b1</em:minVersion>
-                <em:updateLink>https://github.com/keithbowes/releases/download/0.8/user-agent-switcher.xpi</em:updateLink>
+                <em:updateLink>https://github.com/keithbowes/user-agent-switcher/releases/download/0.8/user-agent-switcher-0.8.xpi</em:updateLink>
+            </RDF:Description>
+        </em:targetApplication>
+    </RDF:Description>
+    <RDF:Description about="urn:mozilla:extension:user-agent-switcher@keithbowes.github.io:0.8.1">
+        <em:version>0.8.1</em:version>
+        <em:targetApplication>
+            <RDF:Description>
+                <em:id>toolkit@mozilla.org</em:id>
+                <em:maxVersion>56.*</em:maxVersion>
+                <em:minVersion>1.9b1</em:minVersion>
+                <em:updateLink>https://github.com/keithbowes/user-agent-switcher/releases/download/0.8.1/user-agent-switcher-0.8.1.xpi</em:updateLink>
             </RDF:Description>
         </em:targetApplication>
     </RDF:Description>
