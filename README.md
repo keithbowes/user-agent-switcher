@@ -12,18 +12,17 @@ The latest source code can be downloaded as a [ZIP file](https://github.com/keit
 
 ## <span id="works-in">Works in</span>
 
-The current version should work in any Toolkit-based application using [Gecko 1.9 or higher](https://developer.mozilla.org/en-US/docs/Mozilla/Gecko/Versions).  It's been successfully tested in:
+The current version should work in any Toolkit-based application using [Gecko 2.0 or higher](https://developer.mozilla.org/en-US/docs/Mozilla/Gecko/Versions).  It's been successfully tested in:
 
 * [Firefox](https://www.mozilla.org/en-US/firefox/organizations/all/) 52.3.0
-* [Nightingale](http://getnightingale.com/all-versions.php) 1.12.1
 * [Pale Moon](http://www.palemoon.org/) 27.0.3
 * [SeaMonkey](http://www.seamonkey-project.org/releases/) 2.48
 
-It should also work in [Flock](https://web.archive.org/web/20110325151017/http://www.flock.com/) 2.x, Firefox 3.0 or higher, Nightingale 1.8 or higher, Palemoon 2.0 or higher, SeaMonkey 2.0 or higher, versions 0.3 or higher of Nightingale's predecessor, [Songbird](http://getsongbird.net/), and in other applications using Toolkit and Gecko 1.9 or higher, but these haven't been tested.
+It should also work in Firefox 4.0 or higher, Palemoon 4.0 or higher, SeaMonkey 2.1 or higher, and in other applications using Toolkit and Gecko 2.0 or higher, but these haven't been tested.
 
 [Older versions](https://addons.mozilla.org/addon/user-agent-switcher/versions/) [claim to support](https://github.com/keithbowes/user-agent-switcher/blob/e8ddcbafcfc5caeac9c33bc787dd4328741df456/development/common_install.rdf) older 1.x and 2.x versions of Firefox and older 1.x versions of Flock.  For SeaMonkey, 2.0 or higher is needed for it to function in a meaningful way (older versions claim to work in SeaMonkey 1.x, but they don't).
 
-Of course, I recommend you use a current version of a maintained application if possible, to avoid putting yourself at risk for exploits.  Currently, such applications are Firefox and SeaMonkey.  Flock and Songbird have been discontinued and shouldn't be used.
+Of course, I recommend you use a current version of a maintained application if possible, to avoid putting yourself at risk for exploits.
 
 ## Plans
 
