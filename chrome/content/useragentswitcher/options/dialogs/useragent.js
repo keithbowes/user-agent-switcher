@@ -167,19 +167,19 @@ var UserAgentSwitcherUserAgentDialog =
 	saveUserAgent: function()
 	{
 		window.opener.UserAgentSwitcherOptions.allowEmptyProperties = Number(document.getElementById("useragentswitcher-allow-empty-properties").checked);
-		window.opener.UserAgentSwitcherOptions.appCodeName = UserAgentSwitcherString.trim(document.getElementById("useragentswitcher-app-code-name").value);
-		window.opener.UserAgentSwitcherOptions.appName     = UserAgentSwitcherString.trim(document.getElementById("useragentswitcher-app-name").value);
-		window.opener.UserAgentSwitcherOptions.appVersion  = UserAgentSwitcherString.trim(document.getElementById("useragentswitcher-app-version").value);
-		window.opener.UserAgentSwitcherOptions.description = UserAgentSwitcherString.trim(document.getElementById("useragentswitcher-description").value);
-		window.opener.UserAgentSwitcherOptions.platform    = UserAgentSwitcherString.trim(document.getElementById("useragentswitcher-platform").value);
-		window.opener.UserAgentSwitcherOptions.userAgent   = UserAgentSwitcherString.trim(document.getElementById("useragentswitcher-user-agent").value);
-		window.opener.UserAgentSwitcherOptions.vendor      = UserAgentSwitcherString.trim(document.getElementById("useragentswitcher-vendor").value);
-		window.opener.UserAgentSwitcherOptions.vendorSub   = UserAgentSwitcherString.trim(document.getElementById("useragentswitcher-vendor-sub").value);
+		window.opener.UserAgentSwitcherOptions.appCodeName = document.getElementById("useragentswitcher-app-code-name").value.trim();
+		window.opener.UserAgentSwitcherOptions.appName     = document.getElementById("useragentswitcher-app-name").value.trim();
+		window.opener.UserAgentSwitcherOptions.appVersion  = document.getElementById("useragentswitcher-app-version").value.trim();
+		window.opener.UserAgentSwitcherOptions.description = document.getElementById("useragentswitcher-description").value.trim();
+		window.opener.UserAgentSwitcherOptions.platform    = document.getElementById("useragentswitcher-platform").value.trim();
+		window.opener.UserAgentSwitcherOptions.userAgent   = document.getElementById("useragentswitcher-user-agent").value.trim();
+		window.opener.UserAgentSwitcherOptions.vendor      = document.getElementById("useragentswitcher-vendor").value.trim());
+		window.opener.UserAgentSwitcherOptions.vendorSub   = document.getElementById("useragentswitcher-vendor-sub").value.trim();
 	},
 
 	// Disable the OK button if the description is not set
 	updateDescription: function()
 	{
-		document.documentElement.getButton("accept").disabled = (UserAgentSwitcherString.trim(document.getElementById("useragentswitcher-description").value).length == 0);
+		document.documentElement.getButton("accept").disabled = (document.getElementById("useragentswitcher-description").value.trim()).length == 0);
 	}
 };

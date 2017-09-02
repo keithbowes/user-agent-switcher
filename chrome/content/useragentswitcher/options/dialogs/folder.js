@@ -28,12 +28,12 @@ var UserAgentSwitcherFolderDialog =
 	// Saves a folder
 	saveFolder: function()
 	{
-		window.opener.UserAgentSwitcherOptions.folder = UserAgentSwitcherString.trim(document.getElementById("useragentswitcher-name").value);
+		window.opener.UserAgentSwitcherOptions.folder = document.getElementById("useragentswitcher-name").value.trim();
 	},
 
 	// Disable the OK button if the name is not set
 	updateName: function()
 	{
-		document.documentElement.getButton("accept").disabled = (UserAgentSwitcherString.trim(document.getElementById("useragentswitcher-name").value).length == 0);
+		document.documentElement.getButton("accept").disabled = ((document.getElementById("useragentswitcher-name").value.trim()).length == 0);
 	}
 };

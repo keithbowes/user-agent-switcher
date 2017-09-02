@@ -88,7 +88,7 @@ var UserAgentSwitcherPreferences =
 			{
 				try
 				{
-					return UserAgentSwitcherString.trim(this.getPreferencesService().getComplexValue(preference, Components.interfaces.nsISupportsString).data);
+					return this.getPreferencesService().getComplexValue(preference, Components.interfaces.nsISupportsString).data.trim();
 				}
 				catch(exception)
 				{
