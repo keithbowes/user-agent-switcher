@@ -13,7 +13,6 @@
   <script src="chrome://useragentswitcher/content/common/preferences.js" type="application/x-javascript"/>
   <script src="chrome://useragentswitcher/content/common/string.js" type="application/x-javascript"/>
   <script src="chrome://useragentswitcher/content/common/stringbundle.js" type="application/x-javascript"/>
-  <script src="chrome://useragentswitcher/content/upgrade.js" type="application/x-javascript"/>
   <script src="chrome://useragentswitcher/content/useragentswitcher.js" type="application/x-javascript"/>
   <script src="chrome://useragentswitcher/content/xml/import.js" type="application/x-javascript"/>
 

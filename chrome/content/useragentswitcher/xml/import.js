@@ -427,6 +427,23 @@ var UserAgentSwitcherImporter =
 			}
 		}
 	},
+
+       // Installs the user agents
+       installUserAgents: function()
+       {
+               // If the user agent directory does not exist
+               if(!this.getUserAgentDirectoryLocation().exists())
+               {
+                       this.createUserAgentDirectory();
+               }
+
+               // If the user agent file does not exist
+               if(!this.getUserAgentFileLocation().exists())
+               {
+                       this.createUserAgentFile();
+                       this.reset();
+               }
+       },
 	
 	// Populates a user agent
 	populateUserAgent: function(userAgent, userAgentElement)

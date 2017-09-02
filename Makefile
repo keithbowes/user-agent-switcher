@@ -30,7 +30,7 @@ out_prefix = $(if $(findstring $(firstword $(sort 2 $(words $(locales)))),2),-lo
 out_xpi = builds/user-agent-switcher-$(VERSION)$(out_prefix).xpi
 signed_xpi = $(out_xpi:.xpi=-signed.xpi)
 
-common_files = $(addprefix chrome/content/useragentswitcher/,about/common_about.xul common_upgrade.js options/common_options.js) common_install.rdf
+common_files = $(addprefix chrome/content/useragentswitcher/,about/common_about.xul options/common_options.js) common_install.rdf
 generated_files = $(subst common_,,$(common_files))
 
 .PHONY: all build clean chrome distclean generate install sign-download

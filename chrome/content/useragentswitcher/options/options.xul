@@ -21,7 +21,6 @@
   <script src="chrome://useragentswitcher/content/common/string.js" type="application/x-javascript"/>
   <script src="chrome://useragentswitcher/content/common/stringbundle.js" type="application/x-javascript"/>
   <script src="chrome://useragentswitcher/content/options/options.js" type="application/x-javascript"/>
-  <script src="chrome://useragentswitcher/content/upgrade.js" type="application/x-javascript"/>
   <script src="chrome://useragentswitcher/content/xml/export.js" type="application/x-javascript"/>
   <script src="chrome://useragentswitcher/content/xml/import.js" type="application/x-javascript"/>
 
@@ -37,6 +36,9 @@
 				<checkbox id="useragentswitcher-menu-hide" label="&useragentswitcher.menu.hide;"/>
 				<spacer flex="1"/>
 				<button label="&useragentswitcher.reset.options;" oncommand="UserAgentSwitcherOptions.resetOptions()"/>
+			</hbox>
+			<hbox flex="1">
+				<checkbox id="useragentswitcher-reset-on-close" label="&useragentswitcher.reset.on.close;" oncommand="UserAgentSwitcherOptions.toggleResetOnClose(this)"/>
 			</hbox>
 		</groupbox>
 

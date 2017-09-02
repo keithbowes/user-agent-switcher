@@ -359,6 +359,9 @@ var UserAgentSwitcherOptions =
 		
 		document.getElementById("useragentswitcher-options-user-agents").addEventListener("dblclick", UserAgentSwitcherOptions.treeDoubleClick, false);
 
+		if (!UserAgentSwitcherPreferences.isPreferenceSet("useragentswitcher.reset.onclose"))
+			UserAgentSwitcherPreferences.setBooleanPreference("useragentswitcher.reset.onclose", false);
+		document.getElementById("useragentswitcher-reset-on-close").checked = UserAgentSwitcherPreferences.getBooleanPreference("useragentswitcher.reset.onclose", true);
 	},
 	
 	// Returns true if a separator is selected
@@ -564,7 +567,6 @@ var UserAgentSwitcherOptions =
 		if(Components.classes["@mozilla.org/embedcomp/prompt-service;1"].getService(promptServiceInterface).confirmEx(null, UserAgentSwitcherStringBundle.getString("resetConfirmationMessage"), UserAgentSwitcherStringBundle.getString("resetConfirmation"), promptServiceInterface.BUTTON_TITLE_IS_STRING * promptServiceInterface.BUTTON_POS_0 + promptServiceInterface.BUTTON_TITLE_CANCEL * promptServiceInterface.BUTTON_POS_1, UserAgentSwitcherStringBundle.getString("reset"), null, null, null, {}) == 0)
 		{
 			UserAgentSwitcherPreferences.deletePreferenceBranch("useragentswitcher.");
-			UserAgentSwitcherUpgrade.setVersion();
 			UserAgentSwitcherDOM.removeAllChildElements(document.getElementById("useragentswitcher-options-user-agents"));	
 			UserAgentSwitcherImporter.reset();
 	
@@ -677,6 +679,15 @@ var UserAgentSwitcherOptions =
 			document.getElementById("useragentswitcher-move-down-button").setAttribute("disabled", true);
 			document.getElementById("useragentswitcher-move-up-button").setAttribute("disabled", true);
 		}
+	},
+
+	// Toggles whether the user agent resets when the browser restarts 
+	toggleResetOnClose: function(wid)
+	{
+		if (wid.checked)
+			UserAgentSwitcherPreferences.deletePreference("useragentswitcher.reset.onclose");
+		else
+			UserAgentSwitcherPreferences.setBooleanPreference("useragentswitcher.reset.onclose", false);
 	},
 	
 	// Handles double clicking on the tree
