@@ -434,22 +434,25 @@ var UserAgentSwitcherImporter =
 		}
 	},
 
-	   // Installs the user agents
-	   installUserAgents: function()
-	   {
-			   // If the user agent directory does not exist
-			   if(!this.getUserAgentDirectoryLocation().exists())
-			   {
-					   this.createUserAgentDirectory();
-			   }
+	// Installs the user agents
+	installUserAgents: function()
+	{
+		// If the user agent directory does not exist
+		if(!this.getUserAgentDirectoryLocation().exists())
+		{
+			this.createUserAgentDirectory();
+		}
 
-			   // If the user agent file does not exist
-			   if(!this.getUserAgentFileLocation().exists())
-			   {
-					   this.createUserAgentFile();
-					   this.reset();
-			   }
-	   },
+		// If the user agent file does not exist
+		if(!this.getUserAgentFileLocation().exists())
+		{
+			this.createUserAgentFile();
+			this.reset();
+			return true;
+		}
+
+		return false;
+	},
 
 	// Populates a user agent
 	populateUserAgent: function(userAgent, userAgentElement)
@@ -575,6 +578,7 @@ var UserAgentSwitcherImporter =
 			var outputStream = FileUtils.openFileOutputStream(userAgentFile, FileUtils.RDWR | FileUtils.MODE_TRUNCATE | FileUtils.PERMS_FILE);
 			outputStream.write(request.responseText, request.responseText.length);
 			outputStream.close();
+			UserAgentSwitcherImporter.import(UserAgentSwitcherImporter.importTypeMenu, UserAgentSwitcherImporter.getUserAgentFileLocation(), true);
 		}
 
 		request.send();
