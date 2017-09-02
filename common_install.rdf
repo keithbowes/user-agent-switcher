@@ -22,7 +22,7 @@
       <Description>
         <em:id>toolkit@mozilla.org</em:id>
         <em:maxVersion>56.*</em:maxVersion>
-        <em:minVersion>2.0</em:minVersion>
+        <em:minVersion>7.0</em:minVersion>
       </Description>
     </em:targetApplication>
   </Description>

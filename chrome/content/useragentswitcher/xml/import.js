@@ -1,4 +1,6 @@
 // User Agent Switcher importer
+Components.utils.import("resource://gre/modules/FileUtils.jsm");
+
 var UserAgentSwitcherImporter =
 {
 	importType:        0,
@@ -140,13 +142,13 @@ var UserAgentSwitcherImporter =
 	{
 		var userAgentDirectory = this.getUserAgentDirectoryLocation();
 
-	  userAgentDirectory.create(Components.interfaces.nsIFile.DIRECTORY_TYPE, 0755);
+		userAgentDirectory.create(Components.interfaces.nsIFile.DIRECTORY_TYPE, 0755);
 	},
 
 	// Creates the user agent file
 	createUserAgentFile: function()
 	{
-		var userAgentFile = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsILocalFile);
+		var userAgentFile = this.getUserAgentDirectoryLocation();
 
 		userAgentFile.initWithPath(this.getUserAgentFileLocation().path);
 		userAgentFile.create(Components.interfaces.nsIFile.NORMAL_FILE_TYPE, 00644);
@@ -191,10 +193,7 @@ var UserAgentSwitcherImporter =
 	// Returns the user agent directory location
 	getUserAgentDirectoryLocation: function()
 	{
-		var directory = Components.classes["@mozilla.org/file/directory_service;1"].getService(Components.interfaces.nsIProperties).get("ProfD", Components.interfaces.nsILocalFile);
-
-		directory.append("useragentswitcher");
-
+		var directory = FileUtils.getDir("ProfD", ["useragentswitcher"], true, true);
 		return directory;
 	},
 
@@ -566,18 +565,19 @@ var UserAgentSwitcherImporter =
 	// Resets the user agent file
 	reset: function()
 	{
-		var outputStream  = Components.classes["@mozilla.org/network/file-output-stream;1"].createInstance(Components.interfaces.nsIFileOutputStream);
 		var request       = new XMLHttpRequest();
-		var userAgentFile = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsILocalFile);
+		var userAgentFile = this.getUserAgentFileLocation();
 
-		userAgentFile.initWithPath(this.getUserAgentFileLocation().path);
+		request.open("GET", "chrome://useragentswitcher/content/xml/useragents.xml");
 
-		request.open("get", "chrome://useragentswitcher/content/xml/useragents.xml", false);
-		request.send(null);
+		request.onload = function(e)
+		{
+			var outputStream = FileUtils.openFileOutputStream(userAgentFile, FileUtils.RDWR | FileUtils.MODE_TRUNCATE | FileUtils.PERMS_FILE);
+			outputStream.write(request.responseText, request.responseText.length);
+			outputStream.close();
+		}
 
-		outputStream.init(userAgentFile, 0x04 | 0x08 | 0x20, 00644, null);
-		outputStream.write(request.responseText, request.responseText.length);
-		outputStream.close();
+		request.send();
 	},
 
 	// Sets the import document
