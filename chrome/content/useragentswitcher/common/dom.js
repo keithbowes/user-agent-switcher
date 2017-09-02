@@ -9,14 +9,14 @@ var UserAgentSwitcherDOM =
 		var result            = null;
 		var resultList        = new Array();
 		var results           = null;
-		
+
 		// If the node has a namespace URI
 		if(namespaceURI)
 		{
 		namespaceResolver = new UserAgentSwitcherNamespaceResolver(namespaceURI);
 		xPath             = xPath.replace(/\/\//gi, "//useragentswitcher:");
 		}
-		
+
 		results = new XPathEvaluator().evaluate(xPath, node, namespaceResolver, XPathResult.ANY_TYPE, null);
 
 		// Loop through the results
@@ -33,13 +33,13 @@ var UserAgentSwitcherDOM =
 	{
 		var allWindows     = [];
 		var windowMediator = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
-		
+
 		allWindows = allWindows.concat(UserAgentSwitcherArray.convertEnumerationToArray(windowMediator.getEnumerator("navigator:browser")));
 
-		return allWindows;	
+		return allWindows;
 	},
 
-	// Returns the namespace URI for a node 
+	// Returns the namespace URI for a node
 	getNamespaceURI: function(node)
 	{
 		// If the node has an owner document
@@ -47,10 +47,10 @@ var UserAgentSwitcherDOM =
 		{
 			return node.ownerDocument.documentElement.namespaceURI;
 		}
-	
+
 		return node.documentElement.namespaceURI;
 	},
-	
+
 	// Returns the content document from a page load event
 	getPageLoadEventContentDocument: function(event)
 	{
@@ -59,18 +59,18 @@ var UserAgentSwitcherDOM =
 		{
 			var eventTarget    = event.target;
 			var originalTarget = event.originalTarget;
-		
+
 			// If the event targets are set and the original target is the document or the event target is the browser
 			if(eventTarget && originalTarget && (originalTarget.nodeName == "#document" || eventTarget == window.getBrowser()))
 			{
 				var contentDocument = eventTarget.contentDocument;
-	
+
 				// If the content document is not set and the original target default view parent is set
 				if(!contentDocument && originalTarget.defaultView && originalTarget.defaultView.parent)
 				{
 					contentDocument = originalTarget.defaultView.parent.document;
 				}
-	
+
 				// If the content document is set and has the same URI as the original target
 				if(contentDocument && contentDocument.documentURI == originalTarget.documentURI)
 				{
@@ -82,7 +82,7 @@ var UserAgentSwitcherDOM =
 		{
 			// Do nothing
 		}
-		
+
 		return null;
 	},
 
@@ -94,7 +94,7 @@ var UserAgentSwitcherDOM =
 		{
 			var nextSibling = after.nextSibling;
 			var parent      = after.parentNode;
-	
+
 			// If the element has a next sibling
 			if(nextSibling)
 			{
@@ -114,15 +114,15 @@ var UserAgentSwitcherDOM =
 		if(element)
 		{
 			var childElements = element.childNodes;
-	
+
 			// Loop through the child elements
 			for(var i = 0; i < childElements.length; i++)
 			{
 				element.removeChild(childElements[i]);
 			}
-	
+
 			childElements = element.childNodes;
-	
+
 			// Loop through the child elements
 			while(childElements.length > 0)
 			{

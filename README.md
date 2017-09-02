@@ -21,7 +21,7 @@ The current version should work in any Toolkit-based application using [Gecko 1.
 
 It should also work in [Flock](https://web.archive.org/web/20110325151017/http://www.flock.com/) 2.x, Firefox 3.0 or higher, Nightingale 1.8 or higher, Palemoon 2.0 or higher, SeaMonkey 2.0 or higher, versions 0.3 or higher of Nightingale's predecessor, [Songbird](http://getsongbird.net/), and in other applications using Toolkit and Gecko 1.9 or higher, but these haven't been tested.
 
-[Older versions](https://addons.mozilla.org/addon/user-agent-switcher/versions/) [claim to support](https://github.com/keithbowes/user-agent-switcher/blob/e8ddcbafcfc5caeac9c33bc787dd4328741df456/development/common_install.rdf) older 1.x and 2.x versions of Firefox and older 1.x versions of Flock.  For SeaMonkey, 2.0 or higher is needed for it to function in a meaningful way (older versions claim to work in SeaMonkey 1.x, but they don't). 
+[Older versions](https://addons.mozilla.org/addon/user-agent-switcher/versions/) [claim to support](https://github.com/keithbowes/user-agent-switcher/blob/e8ddcbafcfc5caeac9c33bc787dd4328741df456/development/common_install.rdf) older 1.x and 2.x versions of Firefox and older 1.x versions of Flock.  For SeaMonkey, 2.0 or higher is needed for it to function in a meaningful way (older versions claim to work in SeaMonkey 1.x, but they don't).
 
 Of course, I recommend you use a current version of a maintained application if possible, to avoid putting yourself at risk for exploits.  Currently, such applications are Firefox and SeaMonkey.  Flock and Songbird have been discontinued and shouldn't be used.
 

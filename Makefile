@@ -57,7 +57,7 @@ sign-download:
 	$(RM) signed.json
 
 sign-send: $(out_xpi)
-	$(CURL) -H "Authorization: JWT $(JWT)" -H "Content-type: multipart/form-data -XPUT -g --form "upload=@$(out_xpi)" https://addons.$(AMO_DOM)/api/v3/addons/$(ID)/versions/$(VERSION)/ 
+	$(CURL) -H "Authorization: JWT $(JWT)" -H "Content-type: multipart/form-data -XPUT -g --form "upload=@$(out_xpi)" https://addons.$(AMO_DOM)/api/v3/addons/$(ID)/versions/$(VERSION)/
 
 dtd_files ::= $(addsuffix /useragentswitcher/useragentswitcher.dtd,$(wildcard chrome/locale/*))
 update-translations: $(dtd_files)

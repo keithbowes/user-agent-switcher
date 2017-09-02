@@ -4,11 +4,11 @@ var UserAgentSwitcherImporter =
 	importType:        0,
 	importTypeMenu:    1,
 	importTypeOptions: 2,
-	
+
 	folderCount:    0,
 	separatorCount: 0,
 	userAgentCount: 0,
-	
+
 	menuParentFolder:    null,
 	optionsParentFolder: null,
 	toolbarParentFolder: null,
@@ -31,14 +31,14 @@ var UserAgentSwitcherImporter =
 		{
 			var menu             = this.importDocument.getElementById("useragentswitcher-popup-" + suffix);
 			var optionsSeparator = this.importDocument.getElementById("useragentswitcher-separator-2-" + suffix);
-		
+
 			// If the menu and options separator exist
 			if(menu && optionsSeparator)
-			{		
+			{
 				menu.insertBefore(newMenu, optionsSeparator);
-			}		
+			}
 		}
-		
+
 		return newMenu;
 	},
 
@@ -58,12 +58,12 @@ var UserAgentSwitcherImporter =
 		{
 			var menu             = this.importDocument.getElementById("useragentswitcher-popup-" + suffix);
 			var optionsSeparator = this.importDocument.getElementById("useragentswitcher-separator-2-" + suffix);
-		
+
 			// If the menu and options separator exist
 			if(menu && optionsSeparator)
-			{		
+			{
 				menu.insertBefore(newMenuSeparator, optionsSeparator);
-			}		
+			}
 		}
 	},
 
@@ -73,7 +73,7 @@ var UserAgentSwitcherImporter =
 		var newMenuItem = menuItem.cloneNode(false);
 
 		newMenuItem.setAttribute("id", "useragentswitcher-user-agent-" + this.userAgentCount + "-" + suffix);
-		newMenuItem.setAttribute("name", "useragentswitcher-group-" + suffix);		
+		newMenuItem.setAttribute("name", "useragentswitcher-group-" + suffix);
 
 		// If the parent folder is set
 		if(parentFolder)
@@ -84,12 +84,12 @@ var UserAgentSwitcherImporter =
 		{
 			var menu             = this.importDocument.getElementById("useragentswitcher-popup-" + suffix);
 			var optionsSeparator = this.importDocument.getElementById("useragentswitcher-separator-2-" + suffix);
-		
+
 			// If the menu and options separator exist
 			if(menu && optionsSeparator)
-			{		
+			{
 				menu.insertBefore(newMenuItem, optionsSeparator);
-			}		
+			}
 		}
 	},
 
@@ -139,7 +139,7 @@ var UserAgentSwitcherImporter =
 	createUserAgentDirectory: function()
 	{
 		var userAgentDirectory = this.getUserAgentDirectoryLocation();
-		
+
 	  userAgentDirectory.create(Components.interfaces.nsIFile.DIRECTORY_TYPE, 0755);
 	},
 
@@ -150,7 +150,7 @@ var UserAgentSwitcherImporter =
 
 		userAgentFile.initWithPath(this.getUserAgentFileLocation().path);
 		userAgentFile.create(Components.interfaces.nsIFile.NORMAL_FILE_TYPE, 00644);
-		
+
 		return userAgentFile;
 	},
 
@@ -163,15 +163,15 @@ var UserAgentSwitcherImporter =
 		var ownerDocument     = element.ownerDocument;
 		var xPathEvaluator    = new XPathEvaluator();
 		var resolver          = xPathEvaluator.createNSResolver(element.ownerDocument == null ? element.documentElement : element.ownerDocument.documentElement);
-	
+
 		evaluationResults = xPathEvaluator.evaluate(expression, element, resolver, 0, null);
-	
+
 		// While there are more matching elements
 		while((matchingElement = evaluationResults.iterateNext()) != null)
 		{
 			matchingElements.push(matchingElement);
 		}
-	
+
 		return matchingElements;
 	},
 
@@ -180,11 +180,11 @@ var UserAgentSwitcherImporter =
 	{
 		var existingCounts = {};
 		var userAgentTree  = this.importDocument.getElementById("useragentswitcher-options-user-agents");
-	
+
 		existingCounts.folderCount    = UserAgentSwitcherDOM.findElementsByXPath(userAgentTree, "//treeitem[@container='true']").length;
 		existingCounts.separatorCount = UserAgentSwitcherDOM.findElementsByXPath(userAgentTree, "//treeseparator").length;
 		existingCounts.userAgentCount = UserAgentSwitcherDOM.findElementsByXPath(userAgentTree, "//treeitem[not(@container)]").length;
-	
+
 		return existingCounts;
 	},
 
@@ -194,7 +194,7 @@ var UserAgentSwitcherImporter =
 		var directory = Components.classes["@mozilla.org/file/directory_service;1"].getService(Components.interfaces.nsIProperties).get("ProfD", Components.interfaces.nsILocalFile);
 
 		directory.append("useragentswitcher");
-		
+
 		return directory;
 	},
 
@@ -202,9 +202,9 @@ var UserAgentSwitcherImporter =
 	getUserAgentFileLocation: function()
 	{
 		var file = this.getUserAgentDirectoryLocation();
-		
+
 		file.append("useragents.xml");
-		
+
 		return file;
 	},
 
@@ -219,14 +219,14 @@ var UserAgentSwitcherImporter =
 			{
 				var request     = new XMLHttpRequest();
 				var xmlDocument = null;
-	
+
 				request.open("GET", "file://" + file.path);
 				request.onload = function(e)
 				{
-					if (XMLHttpRequest.DONE === request.readyState && 200 === request.status) 
+					if (XMLHttpRequest.DONE === request.readyState && 200 === request.status)
 					{
 						xmlDocument = request.responseXML;
-						
+
 						// If the file could not be parsed correctly
 						if(xmlDocument.documentElement.nodeName == "parsererror")
 						{
@@ -244,7 +244,7 @@ var UserAgentSwitcherImporter =
 							if(type == UserAgentSwitcherImporter.importTypeOptions)
 							{
 								UserAgentSwitcherImporter.importDocument = document;
-							
+
 								// If the overwrite preference is set
 								if(UserAgentSwitcherImporter.importDocument.getElementById("useragentswitcher-import-overwrite").checked)
 								{
@@ -253,7 +253,7 @@ var UserAgentSwitcherImporter =
 								else
 								{
 									var existingCounts = UserAgentSwitcherImporter.getExistingCounts();
-								
+
 									UserAgentSwitcherImporter.folderCount    = existingCounts.folderCount;
 									UserAgentSwitcherImporter.separatorCount = existingCounts.separatorCount;
 									UserAgentSwitcherImporter.userAgentCount = existingCounts.userAgentCount;
@@ -262,12 +262,12 @@ var UserAgentSwitcherImporter =
 							else
 							{
 								UserAgentSwitcherImporter.setImportDocument(ignoreParentWindow);
-								UserAgentSwitcherImporter.removeUserAgents();	
+								UserAgentSwitcherImporter.removeUserAgents();
 							}
-			
+
 							UserAgentSwitcherImporter.importFile(xmlDocument.documentElement);
 							UserAgentSwitcher.initializeDisplay();
-							
+
 							// If nothing was imported
 							if(UserAgentSwitcherImporter.separatorCount == 0 && UserAgentSwitcherImporter.folderCount == 0 && UserAgentSwitcherIMporter.userAgentCount == 0)
 							{
@@ -291,7 +291,7 @@ var UserAgentSwitcherImporter =
 
 		return null;
 	},
-	
+
 	// Imports the user agents
 	importFile: function(rootNode)
 	{
@@ -309,23 +309,23 @@ var UserAgentSwitcherImporter =
 			{
 				this.userAgentCount++;
 
-				this.importUserAgent(element);				
+				this.importUserAgent(element);
 			}
 			else if(element.nodeName == "folder")
 			{
-				this.folderCount++;				
+				this.folderCount++;
 
-				this.importFolder(element);				
+				this.importFolder(element);
 			}
 			else if(element.nodeName == "separator")
 			{
 				this.separatorCount++;
 
-				this.importSeparator();				
+				this.importSeparator();
 			}
 		}
 	},
-	
+
 	// Imports a folder
 	importFolder: function(folderElement)
 	{
@@ -335,22 +335,22 @@ var UserAgentSwitcherImporter =
 			var menu                        = this.importDocument.createElement("menu");
 			var previousMenuParentFolder    = this.menuParentFolder;
 			var previousToolbarParentFolder = this.toolbarParentFolder;
-	
+
 			// If the folder element has a description attribute
 			if(folderElement.hasAttribute("description"))
 			{
 				menu.setAttribute("label", folderElement.getAttribute("description"));
 			}
-	
+
 			menu.appendChild(this.importDocument.createElement("menupopup"));
-			
-			this.menuParentFolder    = this.addMenuFolder(menu, "menu", this.menuParentFolder);	
-			this.toolbarParentFolder = this.addMenuFolder(menu, "toolbar", this.toolbarParentFolder);	
-				
+
+			this.menuParentFolder    = this.addMenuFolder(menu, "menu", this.menuParentFolder);
+			this.toolbarParentFolder = this.addMenuFolder(menu, "toolbar", this.toolbarParentFolder);
+
 			this.importFile(folderElement);
-			
-			this.menuParentFolder    = previousMenuParentFolder;	
-			this.toolbarParentFolder = previousToolbarParentFolder;	
+
+			this.menuParentFolder    = previousMenuParentFolder;
+			this.toolbarParentFolder = previousToolbarParentFolder;
 		}
 		else if(this.importType == this.importTypeOptions)
 		{
@@ -359,7 +359,7 @@ var UserAgentSwitcherImporter =
 			var treeChildren         = this.importDocument.createElement("treechildren");
 			var treeItem             = this.importDocument.createElement("treeitem");
 			var treeRow              = this.importDocument.createElement("treerow");
-	
+
 			// If the folder element has a description attribute
 			if(folderElement.hasAttribute("description"))
 			{
@@ -371,17 +371,17 @@ var UserAgentSwitcherImporter =
 			treeRow.appendChild(treeCell);
 			treeItem.appendChild(treeRow);
 			treeItem.appendChild(treeChildren);
-			
-			this.addOptionsFolder(treeItem);	
-			
+
+			this.addOptionsFolder(treeItem);
+
 			this.optionsParentFolder = treeChildren;
-				
+
 			this.importFile(folderElement);
-			
+
 			this.optionsParentFolder = previousParentFolder
 		}
 	},
-	
+
 	// Imports a separator
 	importSeparator: function()
 	{
@@ -389,16 +389,16 @@ var UserAgentSwitcherImporter =
 		if(this.importType == this.importTypeMenu)
 		{
 			var menuSeparator = this.importDocument.createElement("menuseparator");
-	
-			this.addMenuSeparator(menuSeparator, "menu", this.menuParentFolder);	
-			this.addMenuSeparator(menuSeparator, "toolbar", this.toolbarParentFolder);	
+
+			this.addMenuSeparator(menuSeparator, "menu", this.menuParentFolder);
+			this.addMenuSeparator(menuSeparator, "toolbar", this.toolbarParentFolder);
 		}
 		else if(this.importType == this.importTypeOptions)
 		{
-			this.addOptionsSeparator(this.importDocument.createElement("treeseparator"));	
+			this.addOptionsSeparator(this.importDocument.createElement("treeseparator"));
 		}
 	},
-	
+
 	// Imports a user agent
 	importUserAgent: function(userAgentElement)
 	{
@@ -409,28 +409,28 @@ var UserAgentSwitcherImporter =
 			if(this.importType == this.importTypeMenu)
 			{
 				var menuItem = this.importDocument.createElement("menuitem");
-	
+
 				this.populateUserAgent(menuItem, userAgentElement);
-	
+
 				menuItem.setAttribute("oncommand", "UserAgentSwitcher.switchUserAgent(this)");
 				menuItem.setAttribute("type", "radio");
 				menuItem.setAttribute("useragentswitcherposition", this.userAgentCount);
-		
-				this.addMenuUserAgent(menuItem, "menu", this.menuParentFolder);	
-				this.addMenuUserAgent(menuItem, "toolbar", this.toolbarParentFolder);	
+
+				this.addMenuUserAgent(menuItem, "menu", this.menuParentFolder);
+				this.addMenuUserAgent(menuItem, "toolbar", this.toolbarParentFolder);
 			}
 			else if(this.importType == this.importTypeOptions)
 			{
 				var treeCell = this.importDocument.createElement("treecell");
 				var treeItem = this.importDocument.createElement("treeitem");
 				var treeRow  = this.importDocument.createElement("treerow");
-	
+
 				this.populateUserAgent(treeCell, userAgentElement);
-	
+
 				treeRow.appendChild(treeCell);
 				treeItem.appendChild(treeRow);
 
-				this.addOptionsUserAgent(treeItem);	
+				this.addOptionsUserAgent(treeItem);
 			}
 		}
 	},
@@ -451,7 +451,7 @@ var UserAgentSwitcherImporter =
 					   this.reset();
 			   }
 	   },
-	
+
 	// Populates a user agent
 	populateUserAgent: function(userAgent, userAgentElement)
 	{
@@ -539,7 +539,7 @@ var UserAgentSwitcherImporter =
 			userAgent.setAttribute("useragentswitchervendorsub", "");
 		}
 	},
-	
+
 	// Removes the user agents from the menu
 	removeMenuUserAgents: function(suffix)
 	{
@@ -547,7 +547,7 @@ var UserAgentSwitcherImporter =
 
 		// If the options separator exists
 		if(optionsSeparator)
-		{		
+		{
 			// Remove the next sibling to the top separator if it exists and is not the bottom separator
 			while(optionsSeparator.nextSibling && optionsSeparator.nextSibling.getAttribute("id") != "useragentswitcher-separator-2-" + suffix)
 			{
@@ -555,14 +555,14 @@ var UserAgentSwitcherImporter =
 			}
 		}
 	},
-	
+
 	// Removes the user agents
 	removeUserAgents: function()
 	{
 		this.removeMenuUserAgents("menu");
 		this.removeMenuUserAgents("toolbar");
 	},
-	
+
 	// Resets the user agent file
 	reset: function()
 	{
@@ -577,14 +577,14 @@ var UserAgentSwitcherImporter =
 
 		outputStream.init(userAgentFile, 0x04 | 0x08 | 0x20, 00644, null);
 		outputStream.write(request.responseText, request.responseText.length);
-		outputStream.close();	
+		outputStream.close();
 	},
 
 	// Sets the import document
 	setImportDocument: function(ignoreParentWindow)
 	{
 		this.importDocument = document;
-	
+
 		// If not ignoring the parent window and there is a parent window
 		if(!ignoreParentWindow && window.opener)
 		{

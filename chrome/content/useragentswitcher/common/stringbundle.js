@@ -5,7 +5,7 @@ var UserAgentSwitcherStringBundle =
 	getFormattedString: function(key, token)
 	{
 		var stringBundle = document.getElementById("useragentswitcher-string-bundle");
-		
+
 		// If the string bundle, key and token are set
 		if(stringBundle && key && token)
 		{
@@ -19,7 +19,7 @@ var UserAgentSwitcherStringBundle =
 				// Do nothing
 			}
 		}
-		
+
 		return "";
 	},
 
@@ -27,7 +27,7 @@ var UserAgentSwitcherStringBundle =
 	getString: function(key)
 	{
 		var stringBundle = document.getElementById("useragentswitcher-string-bundle");
-		
+
 		// If the string bundle and key are set
 		if(stringBundle && key)
 		{
@@ -41,7 +41,7 @@ var UserAgentSwitcherStringBundle =
 				// Do nothing
 			}
 		}
-		
+
 		return "";
 	}
 }

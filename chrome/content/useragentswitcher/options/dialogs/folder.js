@@ -6,12 +6,12 @@ var UserAgentSwitcherFolderDialog =
 	{
 		window.opener.UserAgentSwitcherOptions.folder = null;
 	},
-	
+
 	// Initializes the folder dialog box
 	initialize: function()
 	{
 		var type = window.arguments[0];
-	
+
 		// If the type is new
 		if(type == "new")
 		{
@@ -19,7 +19,7 @@ var UserAgentSwitcherFolderDialog =
 			document.title                                        = UserAgentSwitcherStringBundle.getString("newFolder");
 		}
 		else if(type == "edit")
-		{	
+		{
 			document.getElementById("useragentswitcher-name").value = window.arguments[1];
 			document.title                                          = UserAgentSwitcherStringBundle.getString("editFolder");
 		}
@@ -30,7 +30,7 @@ var UserAgentSwitcherFolderDialog =
 	{
 		window.opener.UserAgentSwitcherOptions.folder = UserAgentSwitcherString.trim(document.getElementById("useragentswitcher-name").value);
 	},
-	
+
 	// Disable the OK button if the name is not set
 	updateName: function()
 	{

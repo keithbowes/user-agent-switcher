@@ -14,7 +14,7 @@ var UserAgentSwitcherPreferences =
 			}
 		}
 	},
-	
+
 	// Deletes a preference branch
 	deletePreferenceBranch: function(branch)
 	{
@@ -24,7 +24,7 @@ var UserAgentSwitcherPreferences =
 			this.getPreferencesService().deleteBranch(branch);
 		}
 	},
-	
+
 	// Gets a boolean preference, returning false if the preference is not set
 	getBooleanPreference: function(preference, userPreference)
 	{
@@ -44,10 +44,10 @@ var UserAgentSwitcherPreferences =
 				}
 			}
 		}
-	
+
 		return false;
 	},
-	
+
 	// Gets an integer preference, returning 0 if the preference is not set
 	getIntegerPreference: function(preference, userPreference)
 	{
@@ -67,16 +67,16 @@ var UserAgentSwitcherPreferences =
 				}
 			}
 		}
-	
+
 		return 0;
 	},
-	
+
 	// Gets the preferences service
 	getPreferencesService: function()
 	{
 		return Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService).getBranch("");
 	},
-	
+
 	// Gets a string preference, returning null if the preference is not set
 	getStringPreference: function(preference, userPreference)
 	{
@@ -96,10 +96,10 @@ var UserAgentSwitcherPreferences =
 				}
 			}
 		}
-	
+
 		return null;
 	},
-	
+
 	// Is a preference set
 	isPreferenceSet: function(preference)
 	{
@@ -108,10 +108,10 @@ var UserAgentSwitcherPreferences =
 		{
 			return this.getPreferencesService().prefHasUserValue(preference);
 		}
-	
+
 		return false;
 	},
-	
+
 	// Sets a boolean preference
 	setBooleanPreference: function(preference, value)
 	{
@@ -121,7 +121,7 @@ var UserAgentSwitcherPreferences =
 			this.getPreferencesService().setBoolPref(preference, value);
 		}
 	},
-	
+
 	// Sets a boolean preference if it is not already set
 	setBooleanPreferenceIfNotSet: function(preference, value)
 	{
@@ -131,7 +131,7 @@ var UserAgentSwitcherPreferences =
 			this.getPreferencesService().setBoolPref(preference, value);
 		}
 	},
-	
+
 	// Sets an integer preference
 	setIntegerPreference: function(preference, value)
 	{
@@ -141,7 +141,7 @@ var UserAgentSwitcherPreferences =
 			this.getPreferencesService().setIntPref(preference, value);
 		}
 	},
-	
+
 	// Sets an integer preference if it is not already set
 	setIntegerPreferenceIfNotSet: function(preference, value)
 	{
@@ -151,7 +151,7 @@ var UserAgentSwitcherPreferences =
 			this.setIntegerPreference(preference, value);
 		}
 	},
-	
+
 	// Sets a string preference
 	setStringPreference: function(preference, value)
 	{
@@ -160,13 +160,13 @@ var UserAgentSwitcherPreferences =
 		{
 			var supportsStringInterface = Components.interfaces.nsISupportsString;
 			var string                  = Components.classes["@mozilla.org/supports-string;1"].createInstance(supportsStringInterface);
-	
+
 			string.data = value;
-	
+
 			this.getPreferencesService().setComplexValue(preference, supportsStringInterface, string);
 		}
 	},
-	
+
 	// Sets a string preference if it is not already set
 	setStringPreferenceIfNotSet: function(preference, value)
 	{

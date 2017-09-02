@@ -11,7 +11,7 @@ var UserAgentSwitcherOptions =
 	userAgent:   null,
 	vendor:      null,
 	vendorSub:   null,
-	
+
 	// Adds a tree item to the selection
 	addTreeItemToSelection: function(treeItem)
 	{
@@ -20,7 +20,7 @@ var UserAgentSwitcherOptions =
 		var treeView   = document.getElementById("useragentswitcher-options-tree").view;
 		var selections = treeView.selection.getRangeCount();
 		var selectedItem = null;
-				
+
 		// If there are no selections
 		if(selections == 0)
 		{
@@ -37,7 +37,7 @@ var UserAgentSwitcherOptions =
 			{
 				treeView.selection.getRangeAt(selections - 1, startIndex, endIndex);
 			}
-				
+
 			selectedItem = treeView.getItemAtIndex(endIndex.value);
 
 			// If the selected item is set
@@ -55,7 +55,7 @@ var UserAgentSwitcherOptions =
 			}
 		}
 	},
-	
+
 	// Copies user agents
 	copy: function()
 	{
@@ -63,14 +63,14 @@ var UserAgentSwitcherOptions =
 		var startIndex = {};
 		var treeView   = document.getElementById("useragentswitcher-options-tree").view;
 		var selections = treeView.selection.getRangeCount();
-		
+
 		this.clipboard = [];
 
 		// If there is 1 selection
 		if(selections == 1)
-		{		
+		{
 			treeView.selection.getRangeAt(0, startIndex, endIndex);
-			
+
 			// If more than one item is selected
 			if(endIndex.value - startIndex.value > 0)
 			{
@@ -79,13 +79,13 @@ var UserAgentSwitcherOptions =
 			else
 			{
 				var selectedItem = treeView.getItemAtIndex(startIndex.value);
-			
+
 				// If an item is selected
 				if(selectedItem)
 				{
 					this.clipboard.push(selectedItem.cloneNode(true));
 				}
-			}	
+			}
 		}
 		else
 		{
@@ -98,20 +98,20 @@ var UserAgentSwitcherOptions =
 			}
 		}
 	},
-	
+
 	// Copies selections
 	copySelections: function(treeView, startIndex, endIndex)
 	{
 		var endValue   = endIndex.value;
 		var startValue = startIndex.value;
-		
+
 		// Loop through the items in reverse order to delete without changing the index
 		for(var index = startValue; index <= endValue; index++)
 		{
 			this.clipboard.push(treeView.getItemAtIndex(index).cloneNode(true));
 		}
 	},
-	
+
 	// Cuts user agents
 	cut: function()
 	{
@@ -119,14 +119,14 @@ var UserAgentSwitcherOptions =
 		var startIndex = {};
 		var treeView   = document.getElementById("useragentswitcher-options-tree").view;
 		var selections = treeView.selection.getRangeCount();
-		
+
 		this.copy();
 
 		// If there is 1 selection
 		if(selections == 1)
-		{		
+		{
 			treeView.selection.getRangeAt(0, startIndex, endIndex);
-			
+
 			// If more than one item is selected
 			if(endIndex.value - startIndex.value > 0)
 			{
@@ -135,13 +135,13 @@ var UserAgentSwitcherOptions =
 			else
 			{
 				var selectedItem = treeView.getItemAtIndex(startIndex.value);
-			
+
 				// If an item is selected
 				if(selectedItem)
 				{
 					UserAgentSwitcherDOM.removeElement(selectedItem);
 				}
-			}	
+			}
 		}
 		else
 		{
@@ -154,7 +154,7 @@ var UserAgentSwitcherOptions =
 			}
 		}
 	},
-	
+
 	// Deletes user agents
 	deleteUserAgents: function()
 	{
@@ -162,12 +162,12 @@ var UserAgentSwitcherOptions =
 		var startIndex = {};
 		var treeView   = document.getElementById("useragentswitcher-options-tree").view;
 		var selections = treeView.selection.getRangeCount();
-		
+
 		// If there is 1 selection
 		if(selections == 1)
-		{		
+		{
 			treeView.selection.getRangeAt(0, startIndex, endIndex);
-			
+
 			// If more than one item is selected
 			if(endIndex.value - startIndex.value > 0)
 			{
@@ -180,13 +180,13 @@ var UserAgentSwitcherOptions =
 			else
 			{
 				var selectedItem = treeView.getItemAtIndex(startIndex.value);
-			
+
 				// If an item is selected and is either a separator, or a folder or user agent and the deletion is confirmed
 				if(selectedItem && (this.isSeparatorSelected(selectedItem) || (selectedItem.hasAttribute("container") && confirm(UserAgentSwitcherStringBundle.getString("deleteFolderConfirmation"))) || (!selectedItem.hasAttribute("container") && confirm(UserAgentSwitcherStringBundle.getString("deleteUserAgentConfirmation")))))
 				{
 					UserAgentSwitcherDOM.removeElement(selectedItem);
-				}		
-			}	
+				}
+			}
 		}
 		else
 		{
@@ -197,26 +197,26 @@ var UserAgentSwitcherOptions =
 				for(var i = selections - 1; i >= 0; i--)
 				{
 					treeView.selection.getRangeAt(i, startIndex, endIndex);
-	
+
 					this.deleteSelections(treeView, startIndex, endIndex);
 				}
 			}
 		}
 	},
-	
+
 	// Deletes selections
 	deleteSelections: function(treeView, startIndex, endIndex)
 	{
 		var endValue   = endIndex.value;
 		var startValue = startIndex.value;
-		
+
 		// Loop through the items in reverse order to delete without changing the index
 		for(var index = endValue; index >= startValue; index--)
 		{
 			UserAgentSwitcherDOM.removeElement(treeView.getItemAtIndex(index));
 		}
 	},
-	
+
 	// Edit user agents
 	edit: function()
 	{
@@ -224,11 +224,11 @@ var UserAgentSwitcherOptions =
 		var selectedItem = null;
 		var startIndex   = {};
 		var treeView     = document.getElementById("useragentswitcher-options-tree").view;
-		
+
 		treeView.selection.getRangeAt(0, startIndex, endIndex);
 
 		selectedItem = treeView.getItemAtIndex(startIndex.value);
-		
+
 		// If the selected item is set
 		if(selectedItem)
 		{
@@ -243,7 +243,7 @@ var UserAgentSwitcherOptions =
 			}
 		}
 	},
-	
+
 	// Edits a folder
 	editFolder: function(selectedItem)
 	{
@@ -251,7 +251,7 @@ var UserAgentSwitcherOptions =
 		if(selectedItem)
 		{
 			window.openDialog("chrome://useragentswitcher/content/options/dialogs/folder.xul", "useragentswitcher-folder-dialog", "centerscreen,chrome,modal,resizable", "edit", selectedItem.getAttribute("label"));
-	
+
 			// If the folder is set
 			if(this.folder)
 			{
@@ -259,7 +259,7 @@ var UserAgentSwitcherOptions =
 			}
 		}
 	},
-	
+
 	// Edits a user agent
 	editUserAgent: function(selectedItem)
 	{
@@ -267,7 +267,7 @@ var UserAgentSwitcherOptions =
 		if(selectedItem)
 		{
 			window.openDialog("chrome://useragentswitcher/content/options/dialogs/useragent.xul", "useragentswitcher-user-agent-dialog", "centerscreen,chrome,modal,resizable", "edit", selectedItem.getAttribute("useragentswitcherappcodename"), selectedItem.getAttribute("useragentswitcherappname"), selectedItem.getAttribute("useragentswitcherappversion"), selectedItem.getAttribute("label"), selectedItem.getAttribute("useragentswitcherplatform"), selectedItem.getAttribute("useragentswitcheruseragent"), selectedItem.getAttribute("useragentswitchervendor"), selectedItem.getAttribute("useragentswitchervendorsub"), selectedItem.getAttribute("useragentswitcherallowemptyproperties"));
-	
+
 			// If the description is set
 			if(this.description)
 			{
@@ -283,26 +283,26 @@ var UserAgentSwitcherOptions =
 			}
 		}
 	},
-	
+
 	// Exports user agents to a file
 	exportUserAgents: function()
 	{
 		var filePicker = Components.classes["@mozilla.org/filepicker;1"].createInstance(Components.interfaces.nsIFilePicker);
 		var result     = null;
-	
+
 		filePicker.defaultExtension = "xml";
 		filePicker.defaultString    = "useragentswitcher.xml";
-	
+
 		filePicker.appendFilter(UserAgentSwitcherStringBundle.getString("xmlFileDescription"), "*.xml");
 		filePicker.init(window, UserAgentSwitcherStringBundle.getString("exportUserAgents"), filePicker.modeSave);
-	
+
 		result = filePicker.show();
-	
+
 		// If the user selected a file
 		if(result == filePicker.returnOK || result == filePicker.returnReplace)
 		{
 			var errorMessage = UserAgentSwitcherExporter.export(filePicker.file);
-			
+
 			// If there is an error message
 			if(errorMessage)
 			{
@@ -310,20 +310,20 @@ var UserAgentSwitcherOptions =
 			}
 		}
 	},
-	
+
 	// Imports user agents from a file
 	importUserAgents: function()
 	{
 		var filePicker = Components.classes["@mozilla.org/filepicker;1"].createInstance(Components.interfaces.nsIFilePicker);
-	
+
 		filePicker.appendFilter(UserAgentSwitcherStringBundle.getString("xmlFileDescription"), "*.xml");
 		filePicker.init(window, UserAgentSwitcherStringBundle.getString("importUserAgents"), filePicker.modeOpen);
-	
+
 		// If the user selected an XML file
 		if(filePicker.show() == filePicker.returnOK)
 		{
 			var errorMessage = UserAgentSwitcherImporter.import(UserAgentSwitcherImporter.importTypeOptions, filePicker.file, false);
-			
+
 			// If there is an error message
 			if(errorMessage)
 			{
@@ -331,12 +331,12 @@ var UserAgentSwitcherOptions =
 			}
 		}
 	},
-	
+
 	// Initializes the options
 	initialize: function()
 	{
 		UserAgentSwitcherImporter.import(UserAgentSwitcherImporter.importTypeOptions, UserAgentSwitcherImporter.getUserAgentFileLocation(), false);
-	
+
 		// If the hide menu preference is set
 		if(UserAgentSwitcherPreferences.isPreferenceSet("useragentswitcher.menu.hide"))
 		{
@@ -356,14 +356,14 @@ var UserAgentSwitcherOptions =
 		{
 			document.getElementById("useragentswitcher-import-overwrite").checked = false;
 		}
-		
+
 		document.getElementById("useragentswitcher-options-user-agents").addEventListener("dblclick", UserAgentSwitcherOptions.treeDoubleClick, false);
 
 		if (!UserAgentSwitcherPreferences.isPreferenceSet("useragentswitcher.reset.onclose"))
 			UserAgentSwitcherPreferences.setBooleanPreference("useragentswitcher.reset.onclose", false);
 		document.getElementById("useragentswitcher-reset-on-close").checked = UserAgentSwitcherPreferences.getBooleanPreference("useragentswitcher.reset.onclose", true);
 	},
-	
+
 	// Returns true if a separator is selected
 	isSeparatorSelected: function(selectedItem)
 	{
@@ -371,11 +371,11 @@ var UserAgentSwitcherOptions =
 		if(selectedItem && selectedItem.nodeName == "treeseparator")
 		{
 			return true;
-		}	
-		
+		}
+
 		return false;
 	},
-	
+
 	// Moves the selected item down
 	moveDown: function()
 	{
@@ -384,11 +384,11 @@ var UserAgentSwitcherOptions =
 		var startIndex    = {};
 		var treeView      = document.getElementById("useragentswitcher-options-tree").view;
 		var treeSelection = treeView.selection;
-		
+
 		treeSelection.getRangeAt(0, startIndex, endIndex);
 
 		selectedItem = treeView.getItemAtIndex(startIndex.value);
-		
+
 		// If the selected item is set
 		if(selectedItem)
 		{
@@ -396,7 +396,7 @@ var UserAgentSwitcherOptions =
 			treeSelection.select(startIndex.value + 1);
 		}
 	},
-	
+
 	// Moves the selected item up
 	moveUp: function()
 	{
@@ -405,11 +405,11 @@ var UserAgentSwitcherOptions =
 		var startIndex    = {};
 		var treeView      = document.getElementById("useragentswitcher-options-tree").view;
 		var treeSelection = treeView.selection;
-		
+
 		treeSelection.getRangeAt(0, startIndex, endIndex);
 
 		selectedItem = treeView.getItemAtIndex(startIndex.value);
-		
+
 		// If the selected item is set
 		if(selectedItem)
 		{
@@ -417,12 +417,12 @@ var UserAgentSwitcherOptions =
 			treeSelection.select(startIndex.value - 1);
 		}
 	},
-	
+
 	// Adds a new folder
 	newFolder: function()
 	{
 		window.openDialog("chrome://useragentswitcher/content/options/dialogs/folder.xul", "useragentswitcher-folder-dialog", "centerscreen,chrome,modal,resizable", "new");
-	
+
 		// If the folder is set
 		if(this.folder)
 		{
@@ -439,29 +439,29 @@ var UserAgentSwitcherOptions =
 			treeRow.appendChild(treeCell);
 			treeItem.appendChild(treeRow);
 			treeItem.appendChild(treeChildren);
-			
-			this.addTreeItemToSelection(treeItem);	
+
+			this.addTreeItemToSelection(treeItem);
 		}
 	},
-	
+
 	// Adds a new separator
 	newSeparator: function()
 	{
-		this.addTreeItemToSelection(document.createElement("treeseparator"));	
+		this.addTreeItemToSelection(document.createElement("treeseparator"));
 	},
-	
+
 	// Adds a new user agent
 	newUserAgent: function()
 	{
 		window.openDialog("chrome://useragentswitcher/content/options/dialogs/useragent.xul", "useragentswitcher-user-agent-dialog", "centerscreen,chrome,modal,resizable", "new");
-	
+
 		// If the description is set
 		if(this.description)
 		{
 			var treeCell = document.createElement("treecell");
 			var treeItem = document.createElement("treeitem");
 			var treeRow  = document.createElement("treerow");
-	
+
 			treeCell.setAttribute("label", this.description);
 			treeRow.appendChild(treeCell);
 			treeItem.appendChild(treeRow);
@@ -474,16 +474,16 @@ var UserAgentSwitcherOptions =
 			treeCell.setAttribute("useragentswitchervendor", this.vendor);
 			treeCell.setAttribute("useragentswitchervendorsub", this.vendorSub);
 			treeCell.setAttribute("useragentswitcherallowemptyproperties", this.allowEmptyProperties);
-			
-			this.addTreeItemToSelection(treeItem);	
+
+			this.addTreeItemToSelection(treeItem);
 		}
 	},
-	
+
 	// Opens the user agents page
 	openUserAgentsPage: function()
 	{
 		var parentWindow = null;
-	
+
 		// If there is a parent window
 		if(window.opener)
 		{
@@ -497,16 +497,16 @@ var UserAgentSwitcherOptions =
 				parentWindow = window.opener;
 			}
 		}
-	
+
 		// If a parent window was found
 		if(parentWindow)
 		{
 			parentWindow.getBrowser().selectedTab = parentWindow.getBrowser().addTab("@user.agents.page@");
-	
+
 			window.close();
 		}
 	},
-	
+
 	// Pastes user agents
 	paste: function()
 	{
@@ -516,12 +516,12 @@ var UserAgentSwitcherOptions =
 		var startIndex   = {};
 		var treeView     = document.getElementById("useragentswitcher-options-tree").view;
 		var selections   = treeView.selection.getRangeCount();
-		
+
 		// If there are no selections
 		if(selections == 0)
 		{
 			var userAgents = document.getElementById("useragentswitcher-options-user-agents");
-		
+
 			// Loop through the clipboard
 			for(var i = 0; i < clipboardLength; i++)
 			{
@@ -531,9 +531,9 @@ var UserAgentSwitcherOptions =
 		else
 		{
 			treeView.selection.getRangeAt(0, startIndex, endIndex);
-	
+
 			selectedItem = treeView.getItemAtIndex(startIndex.value);
-			
+
 			// If the selected item is set
 			if(selectedItem)
 			{
@@ -557,23 +557,23 @@ var UserAgentSwitcherOptions =
 			}
 		}
 	},
-	
+
 	// Resets the user's options
 	resetOptions: function()
 	{
 		var promptServiceInterface = Components.interfaces.nsIPromptService;
-	
+
 		// If the reset is confirmed
 		if(Components.classes["@mozilla.org/embedcomp/prompt-service;1"].getService(promptServiceInterface).confirmEx(null, UserAgentSwitcherStringBundle.getString("resetConfirmationMessage"), UserAgentSwitcherStringBundle.getString("resetConfirmation"), promptServiceInterface.BUTTON_TITLE_IS_STRING * promptServiceInterface.BUTTON_POS_0 + promptServiceInterface.BUTTON_TITLE_CANCEL * promptServiceInterface.BUTTON_POS_1, UserAgentSwitcherStringBundle.getString("reset"), null, null, null, {}) == 0)
 		{
 			UserAgentSwitcherPreferences.deletePreferenceBranch("useragentswitcher.");
-			UserAgentSwitcherDOM.removeAllChildElements(document.getElementById("useragentswitcher-options-user-agents"));	
+			UserAgentSwitcherDOM.removeAllChildElements(document.getElementById("useragentswitcher-options-user-agents"));
 			UserAgentSwitcherImporter.reset();
-	
+
 			this.initialize();
 		}
 	},
-	
+
 	// Saves the user's options
 	saveOptions: function()
 	{
@@ -583,13 +583,13 @@ var UserAgentSwitcherOptions =
 		UserAgentSwitcherExporter.export(UserAgentSwitcherExporter.getUserAgentFileLocation());
 		UserAgentSwitcherImporter.import(UserAgentSwitcherImporter.importTypeMenu, UserAgentSwitcherImporter.getUserAgentFileLocation(), false);
 	},
-	
+
 	// Handles a user agent being selected
 	selectUserAgent: function(tree)
 	{
 		var treeView   = tree.view;
 		var selections = treeView.selection.getRangeCount();
-		
+
 		// If there are no selections
 		if(selections == 0)
 		{
@@ -602,9 +602,9 @@ var UserAgentSwitcherOptions =
 		{
 			var endIndex   = {};
 			var startIndex = {};
-			
+
 			treeView.selection.getRangeAt(0, startIndex, endIndex);
-			
+
 			// If more than one item is selected
 			if(endIndex.value - startIndex.value > 0)
 			{
@@ -612,8 +612,8 @@ var UserAgentSwitcherOptions =
 				if(document.getElementById("useragentswitcher-delete-button").hasAttribute("disabled"))
 				{
 					document.getElementById("useragentswitcher-delete-button").removeAttribute("disabled");
-				}		
-				
+				}
+
 				document.getElementById("useragentswitcher-edit-button").setAttribute("disabled", true);
 				document.getElementById("useragentswitcher-move-down-button").setAttribute("disabled", true);
 				document.getElementById("useragentswitcher-move-up-button").setAttribute("disabled", true);
@@ -621,23 +621,23 @@ var UserAgentSwitcherOptions =
 			else
 			{
 				var selectedItem = treeView.getItemAtIndex(startIndex.value);
-			
+
 				// If the delete button is disabled
 				if(document.getElementById("useragentswitcher-delete-button").hasAttribute("disabled"))
 				{
 					document.getElementById("useragentswitcher-delete-button").removeAttribute("disabled");
-				}		
-				
+				}
+
 				// If a separator is selected
 				if(this.isSeparatorSelected(treeView.getItemAtIndex(startIndex.value)))
 				{
 					document.getElementById("useragentswitcher-edit-button").setAttribute("disabled", true);
-				}		
+				}
 				else if(document.getElementById("useragentswitcher-edit-button").hasAttribute("disabled"))
 				{
 					document.getElementById("useragentswitcher-edit-button").removeAttribute("disabled");
-				}		
-				
+				}
+
 				// If the selected item is set and has a previous sibling
 				if(selectedItem && selectedItem.previousSibling)
 				{
@@ -645,13 +645,13 @@ var UserAgentSwitcherOptions =
 					if(document.getElementById("useragentswitcher-move-up-button").hasAttribute("disabled"))
 					{
 						document.getElementById("useragentswitcher-move-up-button").removeAttribute("disabled");
-					}		
+					}
 				}
 				else
 				{
 					document.getElementById("useragentswitcher-move-up-button").setAttribute("disabled", true);
 				}
-				
+
 				// If the selected item is set and has a next sibling
 				if(selectedItem && selectedItem.nextSibling)
 				{
@@ -659,13 +659,13 @@ var UserAgentSwitcherOptions =
 					if(document.getElementById("useragentswitcher-move-down-button").hasAttribute("disabled"))
 					{
 						document.getElementById("useragentswitcher-move-down-button").removeAttribute("disabled");
-					}		
+					}
 				}
 				else
 				{
 					document.getElementById("useragentswitcher-move-down-button").setAttribute("disabled", true);
 				}
-			}	
+			}
 		}
 		else
 		{
@@ -673,15 +673,15 @@ var UserAgentSwitcherOptions =
 			if(document.getElementById("useragentswitcher-delete-button").hasAttribute("disabled"))
 			{
 				document.getElementById("useragentswitcher-delete-button").removeAttribute("disabled");
-			}		
-			
+			}
+
 			document.getElementById("useragentswitcher-edit-button").setAttribute("disabled", true);
 			document.getElementById("useragentswitcher-move-down-button").setAttribute("disabled", true);
 			document.getElementById("useragentswitcher-move-up-button").setAttribute("disabled", true);
 		}
 	},
 
-	// Toggles whether the user agent resets when the browser restarts 
+	// Toggles whether the user agent resets when the browser restarts
 	toggleResetOnClose: function(wid)
 	{
 		if (wid.checked)
@@ -689,14 +689,14 @@ var UserAgentSwitcherOptions =
 		else
 			UserAgentSwitcherPreferences.setBooleanPreference("useragentswitcher.reset.onclose", false);
 	},
-	
+
 	// Handles double clicking on the tree
 	treeDoubleClick: function(event)
 	{
 		var tree        = document.getElementById("useragentswitcher-options-tree");
 		var rowPosition = tree.treeBoxObject.getRowAt(event.clientX, event.clientY);
 		var treeItem    = tree.view.getItemAtIndex(rowPosition);
-		
+
 		// If the tree item is set
 		if(treeItem)
 		{
@@ -707,13 +707,13 @@ var UserAgentSwitcherOptions =
 			}
 		}
 	},
-	
+
 	// Uninitializes the options
 	uninitialize: function()
 	{
 		document.getElementById("useragentswitcher-options-user-agents").removeEventListener("dblclick", UserAgentSwitcherOptions.treeDoubleClick, false);
 	},
-	
+
 	// Updates the context menu
 	updateContextMenu: function()
 	{
@@ -723,7 +723,7 @@ var UserAgentSwitcherOptions =
 		// If the clipboard is empty
 		if(this.clipboard.length == 0)
 		{
-			document.getElementById("useragentswitcher-paste").setAttribute("disabled", true);	
+			document.getElementById("useragentswitcher-paste").setAttribute("disabled", true);
 		}
 
 		// If there are no selections
@@ -735,20 +735,20 @@ var UserAgentSwitcherOptions =
 			document.getElementById("useragentswitcher-edit-menu").setAttribute("disabled", true);
 			document.getElementById("useragentswitcher-move-up").setAttribute("disabled", true);
 			document.getElementById("useragentswitcher-move-down").setAttribute("disabled", true);
-			
+
 			// If the clipboard is not empty and the paste menu is disabled
 			if(this.clipboard.length > 0 && document.getElementById("useragentswitcher-paste").hasAttribute("disabled"))
 			{
 				document.getElementById("useragentswitcher-paste").removeAttribute("disabled");
-			}		
+			}
 		}
 		else if(selections == 1)
 		{
 			var endIndex   = {};
 			var startIndex = {};
-			
+
 			treeView.selection.getRangeAt(0, startIndex, endIndex);
-			
+
 			// If more than one item is selected
 			if(endIndex.value - startIndex.value > 0)
 			{
@@ -756,20 +756,20 @@ var UserAgentSwitcherOptions =
 				if(document.getElementById("useragentswitcher-copy").hasAttribute("disabled"))
 				{
 					document.getElementById("useragentswitcher-copy").removeAttribute("disabled");
-				}		
-				
+				}
+
 				// If the cut menu is disabled
 				if(document.getElementById("useragentswitcher-cut").hasAttribute("disabled"))
 				{
 					document.getElementById("useragentswitcher-cut").removeAttribute("disabled");
-				}		
-				
+				}
+
 				// If the delete menu is disabled
 				if(document.getElementById("useragentswitcher-delete-menu").hasAttribute("disabled"))
 				{
 					document.getElementById("useragentswitcher-delete-menu").removeAttribute("disabled");
-				}		
-				
+				}
+
 				document.getElementById("useragentswitcher-edit-menu").setAttribute("disabled", true);
 				document.getElementById("useragentswitcher-move-up").setAttribute("disabled", true);
 				document.getElementById("useragentswitcher-move-down").setAttribute("disabled", true);
@@ -778,41 +778,41 @@ var UserAgentSwitcherOptions =
 			else
 			{
 				var selectedItem = treeView.getItemAtIndex(startIndex.value);
-			
+
 				// If the copy menu is disabled
 				if(document.getElementById("useragentswitcher-copy").hasAttribute("disabled"))
 				{
 					document.getElementById("useragentswitcher-copy").removeAttribute("disabled");
-				}		
-				
+				}
+
 				// If the cut menu is disabled
 				if(document.getElementById("useragentswitcher-cut").hasAttribute("disabled"))
 				{
 					document.getElementById("useragentswitcher-cut").removeAttribute("disabled");
-				}		
-				
+				}
+
 				// If the delete menu is disabled
 				if(document.getElementById("useragentswitcher-delete-menu").hasAttribute("disabled"))
 				{
 					document.getElementById("useragentswitcher-delete-menu").removeAttribute("disabled");
-				}		
-				
+				}
+
 				// If a separator is selected
 				if(this.isSeparatorSelected(selectedItem))
 				{
 					document.getElementById("useragentswitcher-edit-menu").setAttribute("disabled", true);
-				}		
+				}
 				else if(document.getElementById("useragentswitcher-edit-menu").hasAttribute("disabled"))
 				{
 					document.getElementById("useragentswitcher-edit-menu").removeAttribute("disabled");
-				}		
-			
+				}
+
 				// If the clipboard is not empty and the paste menu is disabled
 				if(this.clipboard.length > 0 && document.getElementById("useragentswitcher-paste").hasAttribute("disabled"))
 				{
 					document.getElementById("useragentswitcher-paste").removeAttribute("disabled");
-				}		
-				
+				}
+
 				// If the selected item is set and has a previous sibling
 				if(selectedItem && selectedItem.previousSibling)
 				{
@@ -820,13 +820,13 @@ var UserAgentSwitcherOptions =
 					if(document.getElementById("useragentswitcher-move-up").hasAttribute("disabled"))
 					{
 						document.getElementById("useragentswitcher-move-up").removeAttribute("disabled");
-					}		
+					}
 				}
 				else
 				{
 					document.getElementById("useragentswitcher-move-up").setAttribute("disabled", true);
 				}
-				
+
 				// If the selected item is set and has a next sibling
 				if(selectedItem && selectedItem.nextSibling)
 				{
@@ -834,13 +834,13 @@ var UserAgentSwitcherOptions =
 					if(document.getElementById("useragentswitcher-move-down").hasAttribute("disabled"))
 					{
 						document.getElementById("useragentswitcher-move-down").removeAttribute("disabled");
-					}		
+					}
 				}
 				else
 				{
 					document.getElementById("useragentswitcher-move-down").setAttribute("disabled", true);
 				}
-			}	
+			}
 		}
 		else
 		{
@@ -848,20 +848,20 @@ var UserAgentSwitcherOptions =
 			if(document.getElementById("useragentswitcher-copy").hasAttribute("disabled"))
 			{
 				document.getElementById("useragentswitcher-copy").removeAttribute("disabled");
-			}		
-			
+			}
+
 			// If the cut menu is disabled
 			if(document.getElementById("useragentswitcher-cut").hasAttribute("disabled"))
 			{
 				document.getElementById("useragentswitcher-cut").removeAttribute("disabled");
-			}		
-			
+			}
+
 			// If the delete menu is disabled
 			if(document.getElementById("useragentswitcher-delete-menu").hasAttribute("disabled"))
 			{
 				document.getElementById("useragentswitcher-delete-menu").removeAttribute("disabled");
-			}		
-			
+			}
+
 			document.getElementById("useragentswitcher-edit-menu").setAttribute("disabled", true);
 			document.getElementById("useragentswitcher-move-up").setAttribute("disabled", true);
 			document.getElementById("useragentswitcher-move-down").setAttribute("disabled", true);

@@ -1,6 +1,6 @@
 // User Agent Switcher log
 var UserAgentSwitcherLog =
-{	
+{
 	// Logs a message to the console
 	log: function(identifier, message)
 	{
@@ -13,8 +13,8 @@ var UserAgentSwitcherLog =
 				message    = identifier;
 				identifier = "User Agent Switcher";
 			}
-		
-			Components.classes["@mozilla.org/consoleservice;1"].getService().QueryInterface(Components.interfaces.nsIConsoleService).logStringMessage(identifier + ": " + message);		
+
+			Components.classes["@mozilla.org/consoleservice;1"].getService().QueryInterface(Components.interfaces.nsIConsoleService).logStringMessage(identifier + ": " + message);
 		}
 		catch(exception)
 		{

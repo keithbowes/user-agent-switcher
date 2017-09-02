@@ -12,7 +12,7 @@ var UserAgentSwitcherExporter =
 			{
 				file.create(Components.interfaces.nsIFile.NORMAL_FILE_TYPE, 00644);
 			}
-	
+
 			// If the file exists, is a file and is writable
 			if(file.exists() && file.isFile() && file.isWritable())
 			{
@@ -21,9 +21,9 @@ var UserAgentSwitcherExporter =
 				var xmlDocument   = document.implementation.createDocument("", "", null);
 				var rootElement   = xmlDocument.createElement("useragentswitcher");
 				var xmlSerializer = new XMLSerializer();
-	
+
 				this.exportFile(document.getElementById("useragentswitcher-options-user-agents").childNodes, rootElement, xmlDocument);
-	
+
 				xmlDocument.appendChild(rootElement);
 
 				outputStream.init(file, 0x04 | 0x08 | 0x20, 00644, null);
@@ -39,7 +39,7 @@ var UserAgentSwitcherExporter =
 		{
 			UserAgentSwitcherLog.log("UserAgentSwitcherExporter.export", exception);
 		}
-		
+
 		return null;
 	},
 
@@ -52,7 +52,7 @@ var UserAgentSwitcherExporter =
 		for(var i = 0; i < elementsLength; i++)
 		{
 			var element = elements[i];
-			
+
 			// If the element is a separator
 			if(element.nodeName == "treeseparator")
 			{
@@ -68,7 +68,7 @@ var UserAgentSwitcherExporter =
 			}
 		}
 	},
-	
+
 	// Exports a folder
 	exportFolder: function(element, parentElement, xmlDocument)
 	{
@@ -82,7 +82,7 @@ var UserAgentSwitcherExporter =
 		}
 
 		this.exportFile(element.getElementsByTagName("treechildren")[0].childNodes, folder, xmlDocument);
-	
+
 		parentElement.appendChild(folder);
 	},
 
@@ -91,12 +91,12 @@ var UserAgentSwitcherExporter =
 	{
 		parentElement.appendChild(xmlDocument.createElement("separator"));
 	},
-	
+
 	// Exports a user agent
 	exportUserAgent: function(element, parentElement, xmlDocument)
 	{
 		var userAgentElement = element.getElementsByTagName("treerow")[0].getElementsByTagName("treecell")[0];
-		
+
 		// If the user agent has a label
 		if(userAgentElement.hasAttribute("label"))
 		{
@@ -113,7 +113,7 @@ var UserAgentSwitcherExporter =
 			{
 				userAgent.setAttribute("useragent", "");
 			}
-	
+
 			// If the app code name is set
 			if(userAgentElement.hasAttribute("useragentswitcherappcodename"))
 			{
@@ -123,7 +123,7 @@ var UserAgentSwitcherExporter =
 			{
 				userAgent.setAttribute("appcodename", "");
 			}
-	
+
 			// If the app name is set
 			if(userAgentElement.hasAttribute("useragentswitcherappname"))
 			{
@@ -133,7 +133,7 @@ var UserAgentSwitcherExporter =
 			{
 				userAgent.setAttribute("appname", "");
 			}
-	
+
 			// If the app version is set
 			if(userAgentElement.hasAttribute("useragentswitcherappversion"))
 			{
@@ -143,7 +143,7 @@ var UserAgentSwitcherExporter =
 			{
 				userAgent.setAttribute("appversion", "");
 			}
-	
+
 			// If the platform is set
 			if(userAgentElement.hasAttribute("useragentswitcherplatform"))
 			{
@@ -153,7 +153,7 @@ var UserAgentSwitcherExporter =
 			{
 				userAgent.setAttribute("platform", "");
 			}
-	
+
 			// If the vendor is set
 			if(userAgentElement.hasAttribute("useragentswitchervendor"))
 			{
@@ -163,7 +163,7 @@ var UserAgentSwitcherExporter =
 			{
 				userAgent.setAttribute("vendor", "");
 			}
-	
+
 			// If the vendor sub is set
 			if(userAgentElement.hasAttribute("useragentswitchervendorsub"))
 			{
@@ -183,7 +183,7 @@ var UserAgentSwitcherExporter =
 			{
 				userAgent.setAttribute("allowemptyproperties", "0");
 			}
-	
+
 			parentElement.appendChild(userAgent);
 		}
 	},
