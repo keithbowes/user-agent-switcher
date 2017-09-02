@@ -221,61 +221,61 @@ var UserAgentSwitcherImporter =
 				var xmlDocument = null;
 	
 				request.open("GET", "file://" + file.path);
-                request.onload = function(e)
-                {
-                    if (XMLHttpRequest.DONE === request.readyState && 200 === request.status) 
-                    {
-                        xmlDocument = request.responseXML;
-                        
-                        // If the file could not be parsed correctly
-                        if(xmlDocument.documentElement.nodeName == "parsererror")
-                        {
-                            return UserAgentSwitcherStringBundle.getFormattedString("importParserError", [file.path]);
-                        }
-                        else
-                        {
-                            UserAgentSwitcherImporter.folderCount    = 0;
-                            UserAgentSwitcherImporter.importType     = type;
-                            UserAgentSwitcherImporter.parentFolder   = null;
-                            UserAgentSwitcherImporter.separatorCount = 0;
-                            UserAgentSwitcherImporter.userAgentCount = 0;
+				request.onload = function(e)
+				{
+					if (XMLHttpRequest.DONE === request.readyState && 200 === request.status) 
+					{
+						xmlDocument = request.responseXML;
+						
+						// If the file could not be parsed correctly
+						if(xmlDocument.documentElement.nodeName == "parsererror")
+						{
+							return UserAgentSwitcherStringBundle.getFormattedString("importParserError", [file.path]);
+						}
+						else
+						{
+							UserAgentSwitcherImporter.folderCount    = 0;
+							UserAgentSwitcherImporter.importType     = type;
+							UserAgentSwitcherImporter.parentFolder   = null;
+							UserAgentSwitcherImporter.separatorCount = 0;
+							UserAgentSwitcherImporter.userAgentCount = 0;
 
-                            // If we are importing from the options
-                            if(type == UserAgentSwitcherImporter.importTypeOptions)
-                            {
-                                UserAgentSwitcherImporter.importDocument = document;
-                            
-                                // If the overwrite preference is set
-                                if(UserAgentSwitcherImporter.importDocument.getElementById("useragentswitcher-import-overwrite").checked)
-                                {
-                                    UserAgentSwitcherDOM.removeAllChildElements(UserAgentSwitcherImporter.importDocument.getElementById("useragentswitcher-options-user-agents"));
-                                }
-                                else
-                                {
-                                    var existingCounts = UserAgentSwitcherImporter.getExistingCounts();
-                                
-                                    UserAgentSwitcherImporter.folderCount    = existingCounts.folderCount;
-                                    UserAgentSwitcherImporter.separatorCount = existingCounts.separatorCount;
-                                    UserAgentSwitcherImporter.userAgentCount = existingCounts.userAgentCount;
-                                }
-                            }
-                            else
-                            {
-                                UserAgentSwitcherImporter.setImportDocument(ignoreParentWindow);
-                                UserAgentSwitcherImporter.removeUserAgents();	
-                            }
-            
-                            UserAgentSwitcherImporter.importFile(xmlDocument.documentElement);
-                            UserAgentSwitcher.initializeDisplay();
-                            
-                            // If nothing was imported
-                            if(UserAgentSwitcherImporter.separatorCount == 0 && UserAgentSwitcherImporter.folderCount == 0 && UserAgentSwitcherIMporter.userAgentCount == 0)
-                            {
-                                return UserAgentSwitcherStringBundle.getFormattedString("importParserError", [file.path]);
-                            }
-                        }
-                    }
-                }
+							// If we are importing from the options
+							if(type == UserAgentSwitcherImporter.importTypeOptions)
+							{
+								UserAgentSwitcherImporter.importDocument = document;
+							
+								// If the overwrite preference is set
+								if(UserAgentSwitcherImporter.importDocument.getElementById("useragentswitcher-import-overwrite").checked)
+								{
+									UserAgentSwitcherDOM.removeAllChildElements(UserAgentSwitcherImporter.importDocument.getElementById("useragentswitcher-options-user-agents"));
+								}
+								else
+								{
+									var existingCounts = UserAgentSwitcherImporter.getExistingCounts();
+								
+									UserAgentSwitcherImporter.folderCount    = existingCounts.folderCount;
+									UserAgentSwitcherImporter.separatorCount = existingCounts.separatorCount;
+									UserAgentSwitcherImporter.userAgentCount = existingCounts.userAgentCount;
+								}
+							}
+							else
+							{
+								UserAgentSwitcherImporter.setImportDocument(ignoreParentWindow);
+								UserAgentSwitcherImporter.removeUserAgents();	
+							}
+			
+							UserAgentSwitcherImporter.importFile(xmlDocument.documentElement);
+							UserAgentSwitcher.initializeDisplay();
+							
+							// If nothing was imported
+							if(UserAgentSwitcherImporter.separatorCount == 0 && UserAgentSwitcherImporter.folderCount == 0 && UserAgentSwitcherIMporter.userAgentCount == 0)
+							{
+								return UserAgentSwitcherStringBundle.getFormattedString("importParserError", [file.path]);
+							}
+						}
+					}
+				}
 
 				request.send();
 			}
@@ -435,22 +435,22 @@ var UserAgentSwitcherImporter =
 		}
 	},
 
-       // Installs the user agents
-       installUserAgents: function()
-       {
-               // If the user agent directory does not exist
-               if(!this.getUserAgentDirectoryLocation().exists())
-               {
-                       this.createUserAgentDirectory();
-               }
+	   // Installs the user agents
+	   installUserAgents: function()
+	   {
+			   // If the user agent directory does not exist
+			   if(!this.getUserAgentDirectoryLocation().exists())
+			   {
+					   this.createUserAgentDirectory();
+			   }
 
-               // If the user agent file does not exist
-               if(!this.getUserAgentFileLocation().exists())
-               {
-                       this.createUserAgentFile();
-                       this.reset();
-               }
-       },
+			   // If the user agent file does not exist
+			   if(!this.getUserAgentFileLocation().exists())
+			   {
+					   this.createUserAgentFile();
+					   this.reset();
+			   }
+	   },
 	
 	// Populates a user agent
 	populateUserAgent: function(userAgent, userAgentElement)

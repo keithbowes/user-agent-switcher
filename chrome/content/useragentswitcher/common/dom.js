@@ -4,28 +4,28 @@ var UserAgentSwitcherDOM =
 	// Returns all elements under a given node that match the given XPath
 	findElementsByXPath: function(node, xPath)
 	{
-    var namespaceResolver = null;
-    var namespaceURI      = UserAgentSwitcherDOM.getNamespaceURI(node);
-    var result            = null;
-    var resultList        = new Array();
-    var results           = null;
-    
-    // If the node has a namespace URI
-    if(namespaceURI)
-    {
-      namespaceResolver = new UserAgentSwitcherNamespaceResolver(namespaceURI);
-      xPath             = xPath.replace(/\/\//gi, "//useragentswitcher:");
-    }
-    
-    results = new XPathEvaluator().evaluate(xPath, node, namespaceResolver, XPathResult.ANY_TYPE, null);
+		var namespaceResolver = null;
+		var namespaceURI      = UserAgentSwitcherDOM.getNamespaceURI(node);
+		var result            = null;
+		var resultList        = new Array();
+		var results           = null;
+		
+		// If the node has a namespace URI
+		if(namespaceURI)
+		{
+		namespaceResolver = new UserAgentSwitcherNamespaceResolver(namespaceURI);
+		xPath             = xPath.replace(/\/\//gi, "//useragentswitcher:");
+		}
+		
+		results = new XPathEvaluator().evaluate(xPath, node, namespaceResolver, XPathResult.ANY_TYPE, null);
 
-    // Loop through the results
-    while((result = results.iterateNext()) != null)
-    {
-      resultList.push(result);
-    }
+		// Loop through the results
+		while((result = results.iterateNext()) != null)
+		{
+		resultList.push(result);
+		}
 
-    return resultList;
+		return resultList;
 	},
 
 	// Returns all the windows
@@ -42,13 +42,13 @@ var UserAgentSwitcherDOM =
 	// Returns the namespace URI for a node 
 	getNamespaceURI: function(node)
 	{
-	    // If the node has an owner document
-	    if(node.ownerDocument)
-	    {
-	        return node.ownerDocument.documentElement.namespaceURI;
-	    }
+		// If the node has an owner document
+		if(node.ownerDocument)
+		{
+			return node.ownerDocument.documentElement.namespaceURI;
+		}
 	
-	    return node.documentElement.namespaceURI;
+		return node.documentElement.namespaceURI;
 	},
 	
 	// Returns the content document from a page load event
@@ -145,11 +145,11 @@ var UserAgentSwitcherDOM =
 // Constructs a namespace resolver object
 function UserAgentSwitcherNamespaceResolver(namespaceURI)
 {
-  this.namespaceURI = namespaceURI;
+	this.namespaceURI = namespaceURI;
 }
 
 // Looks up the namespace URI
 UserAgentSwitcherNamespaceResolver.prototype.lookupNamespaceURI = function(prefix)
 {
-  return this.namespaceURI;
+	return this.namespaceURI;
 }

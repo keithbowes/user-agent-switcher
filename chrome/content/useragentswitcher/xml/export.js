@@ -19,7 +19,7 @@ var UserAgentSwitcherExporter =
 				var element       = null;
 				var outputStream  = Components.classes["@mozilla.org/network/file-output-stream;1"].createInstance(Components.interfaces.nsIFileOutputStream);
 				var xmlDocument   = document.implementation.createDocument("", "", null);
-        		var rootElement   = xmlDocument.createElement("useragentswitcher");
+				var rootElement   = xmlDocument.createElement("useragentswitcher");
 				var xmlSerializer = new XMLSerializer();
 	
 				this.exportFile(document.getElementById("useragentswitcher-options-user-agents").childNodes, rootElement, xmlDocument);

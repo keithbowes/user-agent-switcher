@@ -139,7 +139,7 @@ var UserAgentSwitcher =
 		{
 			var observerService = Components.classes["@mozilla.org/observer-service;1"].getService(Components.interfaces.nsIObserverService);
 
-            UserAgentSwitcherImporter.installUserAgents();
+			UserAgentSwitcherImporter.installUserAgents();
 			UserAgentSwitcherImporter.import(UserAgentSwitcherImporter.importTypeMenu, UserAgentSwitcherImporter.getUserAgentFileLocation(), true);
 	
 			// If the observer service is set
