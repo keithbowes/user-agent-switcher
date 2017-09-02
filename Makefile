@@ -46,8 +46,8 @@ clean:
 distclean: clean
 	$(RMDIR) $(wildcard builds)
 
-install: sign
-	$(BROWSER) $(out_xpi)
+install: $(out_xpi)
+	$(BROWSER) $<
 
 sign-download:
 	$(CURL) -H "Authorization: JWT $(JWT)" -g -o signed.json https://$(AMO_DOM)/api/v3/addons/$(ID)/versions/$(VERSION)/
