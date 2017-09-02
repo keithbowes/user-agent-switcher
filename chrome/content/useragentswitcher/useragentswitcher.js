@@ -57,7 +57,7 @@ var UserAgentSwitcher =
 		}
 	},
 	
-	// Finds the selected user agent and returns it's position and description
+	// Finds the selected user agent and returns its position and description
 	findSelectedUserAgent: function()
 	{
 		var selectedUserAgent = {};
@@ -141,7 +141,6 @@ var UserAgentSwitcher =
 
             UserAgentSwitcherImporter.installUserAgents();
 			UserAgentSwitcherImporter.import(UserAgentSwitcherImporter.importTypeMenu, UserAgentSwitcherImporter.getUserAgentFileLocation(), true);
-			UserAgentSwitcher.initializeDisplay();
 	
 			// If the observer service is set
 			if(observerService)
@@ -260,7 +259,6 @@ var UserAgentSwitcher =
 	if(transferData.data == "useragentswitcher-button")
 	{
 			UserAgentSwitcherImporter.import(UserAgentSwitcherImporter.importTypeMenu, UserAgentSwitcherImporter.getUserAgentFileLocation(), true);
-			UserAgentSwitcher.initializeDisplay();    		
 	}
 	},
 	
