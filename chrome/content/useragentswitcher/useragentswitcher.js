@@ -1,6 +1,7 @@
 // User Agent Switcher
 var UserAgentSwitcher = 
 {
+    uninstalled: false,
 	// Displays the about dialog
 	about: function()
 	{
@@ -12,6 +13,30 @@ var UserAgentSwitcher =
 	{
 		nsDragAndDrop.drop(event, UserAgentSwitcher);
 	},
+
+    // Information about the add-on state
+    addonListener:
+    {
+        onInstalling: function(addon, needsRestart)
+        {
+            UserAgentSwitcher.uninstalled = addon.pendingUpgrade;
+        },
+
+        onOperationCancelled: function(addon)
+        {
+            UserAgentSwitcher.uninstalled = !UserAgentSwitcher.uninstalled;
+        },
+
+        onUninstalled: function(addon)
+        {
+            UserAgentSwitcher.uninstalled = true;
+        },
+
+        onUninstalling: function(addon, needsRestart)
+        {
+            UserAgentSwitcher.uninstalled = true;
+        }
+    },
 	
 	// Changes the options
 	changeOptions: function()
@@ -202,11 +227,28 @@ var UserAgentSwitcher =
 	// Observes quits
 	observe: function(subject, topic, data)
 	{
-		// If the reset on close preference is not set or is set to true
-		if(!UserAgentSwitcherPreferences.isPreferenceSet("useragentswitcher.reset.onclose") || UserAgentSwitcherPreferences.getBooleanPreference("useragentswitcher.reset.onclose", true))
-		{
-			UserAgentSwitcher.reset();
-		}
+        if ('quit-application' == topic)
+        {
+            // If the reset on close preference is not set or is set to true
+            if(!UserAgentSwitcherPreferences.isPreferenceSet("useragentswitcher.reset.onclose") || UserAgentSwitcherPreferences.getBooleanPreference("useragentswitcher.reset.onclose", true))
+            {
+                UserAgentSwitcher.reset();
+            }
+
+            // If the add-on is to be uninstalled, delete the data
+            if (UserAgentSwitcher.uninstalled)
+            {
+                UserAgentSwitcher.reset();
+
+                UserAgentSwitcherPreferences.deletePreference("useragentswitcher.import.overwrite");
+                UserAgentSwitcherPreferences.deletePreference("useragentswitcher.menu.hide");
+                UserAgentSwitcherPreferences.deletePreference("useragentswitcher.reset.onclose");
+                UserAgentSwitcherPreferences.deletePreference("useragentswitcher.version");
+
+                if (confirm(UserAgentSwitcherStringBundle.getString("deleteFile")))
+                    UserAgentSwitcherImporter.getUserAgentDirectoryLocation().remove(true);
+            }
+        }
 
 		return false;
 	},
@@ -519,3 +561,7 @@ var UserAgentSwitcher =
 
 window.addEventListener("load", UserAgentSwitcher.initialize, false);
 window.addEventListener("unload", UserAgentSwitcher.uninitialize, false);
+
+// Delete preferences on uninstall or upgrade
+Components.utils.import("resource://gre/modules/AddonManager.jsm");
+AddonManager.addAddonListener(UserAgentSwitcher.addonListener);
