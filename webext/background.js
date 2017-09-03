@@ -16,6 +16,13 @@ var Background = {
 
             return {requestHeaders: e.requestHeaders};
         },
+        command: function(cmd)
+        {
+            if ('open-options' == cmd)
+                browser.runtime.openOptionsPage();
+            else if ('open-test' == cmd)
+                browser.browserAction.getPopup({}).then(function(url) { window.open(url); }, null);
+        },
         updated: function(tabId, changeInfo, tab)
         {
             Background.userAgent.set();
@@ -33,6 +40,8 @@ var Background = {
             let pval = Options.hosts[host];
             if (host && pval)
             {
+                browser.browserAction.setTitle({title: Options.hosts[host].description});
+
                 if (pval = pval[prop.toLowerCase()])
                 {
                     return pval;
@@ -66,6 +75,7 @@ var Background = {
     }
 };
 
+browser.commands.onCommand.addListener(Background.events.command);
 browser.tabs.onActivated.addListener(Background.events.activated);
 browser.tabs.onUpdated.addListener(Background.events.updated);
 browser.webRequest.onBeforeSendHeaders.addListener(Background.events.beforeSendHeaders, {urls: ["<all_urls>"]}, ["blocking", "requestHeaders"]);

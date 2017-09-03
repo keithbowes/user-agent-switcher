@@ -128,6 +128,7 @@ var OptionsPage = {
         var ualist = document.createElement('select');
         ualist.id = 'ua-list';
         ualist.size = 10;
+        ualist.tabIndex = 2;
         uacell.appendChild(ualist);
     },
     downloadList: function(e)
