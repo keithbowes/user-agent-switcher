@@ -45,6 +45,13 @@
     "message": "Value",
     "description": "Value of the property of navigator"
   },
+  "Reset": {
+    "message": "Reset",
+    "description": "Reset options to their defaults"
+  },
+  "ResetConfirmation": {
+    "message": "Are you sure you want to reset all the User Agent Switcher options including the user agent list?"
+  },
   "Save": {
     "message": "Save",
     "description": "Save options"

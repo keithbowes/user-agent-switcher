@@ -73,6 +73,14 @@ var Options = {
         browser.storage.local.get('hosts').then(function (o) { if (o.hosts) Options.hosts = JSON.parse(o.hosts); }, null);
         browser.storage.local.get('uafile').then(function (o) { Options.ua_file = o.uafile ? o.uafile : browser.runtime.getURL('useragents.xml'); }, null);
     },
+    reset: function(e)
+    {
+        if (confirm(browser.i18n.getMessage('ResetConfirmation')))
+        {
+            browser.storage.local.clear();
+            location.reload();
+        }
+    },
     save: function(e)
     {
         browser.storage.local.set({uafile: document.getElementById('ua-file').value});
@@ -152,6 +160,7 @@ var OptionsPage = {
         document.getElementById('hosts-list').addEventListener('change', OptionsPage.hosts.selectUserAgent);
         document.getElementById('move-down').addEventListener('click', OptionsPage.hosts.down);
         document.getElementById('move-up').addEventListener('click', OptionsPage.hosts.up);
+        document.getElementById('reset').addEventListener('click', Options.reset);
         document.getElementById('save').addEventListener('click', Options.save);
         document.getElementById('ua-list').addEventListener('change', OptionsPage.userAgents.selected);
 
@@ -185,6 +194,7 @@ var OptionsPage = {
         document.querySelector('#dl-ua').value = browser.i18n.getMessage('DownloadLatest');
         document.querySelector('#move-down').value = browser.i18n.getMessage('MoveDown');
         document.querySelector('#move-up').value = browser.i18n.getMessage('MoveUp');
+        document.querySelector('#reset').value = browser.i18n.getMessage('Reset');
         document.querySelector('#save').value = browser.i18n.getMessage('Save');
         document.querySelector('[for="ua-file"]').appendChild(document.createTextNode(browser.i18n.getMessage('UserAgentsFile')));
     },
