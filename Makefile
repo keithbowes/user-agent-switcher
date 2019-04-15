@@ -3,9 +3,9 @@ SHELL = /bin/sh
 BROWSER ?= $(if $(and $(DISPLAY),$(XDG_SESSION_ID)),xdg-open, \
 	   $(if $(and $(COMSPEC),$(OS)),start,firefox))
 
+CMARK ?= cmark
 CURL ?= curl
 ECHO ?= echo
-MARKDOWN ?= Markdown.pl
 MKDIR ?= install -d -m 755
 RM ?= rm -f
 RMDIR ?= $(RM) -r
@@ -70,13 +70,13 @@ $(dtd_files): $(addprefix chrome/locale/en-US/useragentswitcher/useragentswitche
 docs/index.html: README.md
 	$(MKDIR) $(dir $@)
 	$(file > $@,<title>User Agent Switcher Overview</title>)
-	$(file >> $@,$(shell $(MARKDOWN) $<))
+	$(file >> $@,$(shell $(CMARK) $<))
 	-tidy -config docs/tidy.conf $@
 
 docs/help.html: docs/HELP.md
 	$(MKDIR) $(dir $@)
 	$(file > $@,<title>User Agent Switcher Help</title>)
-	$(file >> $@,$(shell $(MARKDOWN) $<))
+	$(file >> $@,$(shell $(CMARK) $<))
 	-tidy -config docs/tidy.conf $@
 
 $(generated_files): $(common_files)
