@@ -4,7 +4,7 @@ This is a short help document inspired by [Chris Pederick's](http://chrispederic
 
 ## Requirements
 
-Please read the [README file](https://keithbowes.github.io/user-agent-switcher/) for that.
+Please read the [README file](https://keithbowes.gitlab.io/user-agent-switcher/) for that.
 
 ## Adding different user agents
 
@@ -24,4 +24,4 @@ As this extension changes user agent settings, Mozilla won't sign it.  Maybe whe
 
 ## How to report bugs
 
-Please use [GitHub issues](https://github.com/keithbowes/user-agent-switcher/issues).
+Please use [GitLab issues](https://gitlab.com/keithbowes/user-agent-switcher/issues).

@@ -16,7 +16,7 @@
     <em:type>2</em:type><!-- extension -->
     <em:unpack>true</em:unpack>
     <em:updateInfoURL>@home.page@releases/</em:updateInfoURL>
-    <em:updateURL>https://cdn.rawgit.com/keithbowes/user-agent-switcher/master/update.rdf</em:updateURL>
+    <em:updateURL>https://gitlab.com/keithbowes/user-agent-switcher/raw/master/update.rdf</em:updateURL>
     <em:version>@version@</em:version>
     <em:targetApplication>
       <Description>

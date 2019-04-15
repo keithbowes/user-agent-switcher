@@ -1,12 +1,12 @@
 {
   "addons": {
-    "user-agent-switcher@keithbowes.github.io" : {
+    "user-agent-switcher@keithbowes.gitlabb.io" : {
       "updates": [
         {
           "version": "0.9",
-          "update_link": "https://github.com/keithbowes/releases/download/0.9/user_agent_switcher-0.9.xpi"
-        }
-      ]
+          "update_link": "https://gitlab.com/keithbowes/user-agent-switcher/-/archive/0.9/user_agent_switcher-0.9.xpi"
+        },
+      ],
     }
   }
 }

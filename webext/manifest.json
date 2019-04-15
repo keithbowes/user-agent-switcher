@@ -7,7 +7,7 @@
   "author": "Keith Bowes",
   "default_locale": "en",
   "description": "__MSG_Description__",
-  "homepage_url": "https://keithbowes.github.io/user-agent-switcher/",
+  "homepage_url": "https://keithbowes.gitlab.io/user-agent-switcher/",
 
   "useragents_download": "http://techpatterns.com/downloads/download_item.php?folder=firefox&filename=useragentswitcher.xml",
 
@@ -57,8 +57,8 @@
   "applications": {
     "gecko":
     {
-      "id": "user-agent-switcher@keithbowes.github.io",
-      "update_url": "https://cdn.rawgit.com/keithbowes/user-agent-switcher/master/webext/updates.json"
+      "id": "user-agent-switcher@keithbowes.gitlab.io",
+      "update_url": "https://gitlab.com/keithbowes/user-agent-switcher/raw/master/webext/updates.json"
     }
   }
 }
