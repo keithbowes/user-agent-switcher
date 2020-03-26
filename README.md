@@ -5,9 +5,9 @@ The extension is available for [Toolkit](https://developer.mozilla.org/en-US/doc
 
 ## Downloading and installing
 
-The extension can be installed from from the [releases page](https://gitlab.com/keithbowes/user-agent-switcher/releases/).
+The extension can be installed from from the [releases page](https://github.com/keithbowes/user-agent-switcher/releases/).
 
-The latest source code can be downloaded as a [ZIP file](https://gitlab.com/keithbowes/user-agent-switcher/zipball/master)  or directly from [GitLab](https://gitlab.com/keithbowes/user-agent-switcher.git).
+The latest source code can be downloaded as a [ZIP file](https://github.com/keithbowes/user-agent-switcher/zipball/master)  or directly from [Github](https://github.com/keithbowes/user-agent-switcher.git).
 
 
 ## <span id="works-in">Works in</span>
@@ -35,8 +35,8 @@ Currently my planned releases are:
 
 ## Help
 
-* [Help](https://gitlab.com/keithbowes/docs/help.html)
-* [Known issues](https://gitlab.com/keithbowes/user-agent-switcher/issues/)
+* [Help](https://keithbowes.github.com/keithbowes/help.html)
+* [Known issues](https://github.com/keithbowes/user-agent-switcher/issues/)
 
 ## Acknowledgements
 
@@ -47,10 +47,10 @@ Supported by:
 ## Authors
 
 * [Chris Pederick](http://chrispederick.com/), 0.1&ndash;0.7.3
-* [Keith Bowes](http://gitlab.com/keithbowes), 0.8&ndash;current
+* [Keith Bowes](http://github.com/keithbowes), 0.8&ndash;current
 
 ## License
 
 All files are distributed for free under the terms of the
-[GNU General Public License](https://gitlab.com/keithbowes/user-agent-switcher/blob/master/license.txt).
+[GNU General Public License](https://github.com/keithbowes/user-agent-switcher/blob/master/license.txt).
 This does not apply to the icons included in the extension which have their own individual licenses.
